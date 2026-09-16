@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/districts/state/11"
-method: GET
-settings: {}
-order: 2000

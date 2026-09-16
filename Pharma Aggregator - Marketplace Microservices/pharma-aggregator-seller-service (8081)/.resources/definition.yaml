@@ -1,9 +1,0 @@
-$kind: collection
-description: Seller User domain — registration, onboarding docs, bank/GST verification, seller/coordinator auth, admin approval, live seller profile. Full endpoint coverage — see also pharma-aggregator-seller-service/postman/ (source of truth for this service alone).
-auth:
-  - id: 9a9e574b-2c3a-4bf6-af10-1d3cf54bd913
-    type: bearer
-    name: bearer auth
-    credentials:
-      token: "{{accessToken}}"
-order: 1000

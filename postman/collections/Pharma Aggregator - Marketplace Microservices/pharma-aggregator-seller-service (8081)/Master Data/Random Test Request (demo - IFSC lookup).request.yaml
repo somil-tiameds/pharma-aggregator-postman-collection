@@ -1,0 +1,5 @@
+$kind: http-request
+description: Added as a demo to show the manual-update-then-reimport workflow — not a real new endpoint, just Get IFSC Details with a hardcoded code instead of a variable.
+url: "{{baseUrl}}/ifsc/HDFC0000123"
+method: GET
+order: 3000

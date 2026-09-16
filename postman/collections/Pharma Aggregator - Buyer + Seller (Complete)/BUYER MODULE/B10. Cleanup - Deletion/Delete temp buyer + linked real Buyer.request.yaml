@@ -1,6 +1,0 @@
-$kind: http-request
-description: Only meaningful after ACCEPT.
-url: "{{baseUrl}}/temp-buyers/both/{{tempBuyerId}}"
-method: DELETE
-settings: {}
-order: 2000

@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}/documents/{{sellerDocumentId}}/file"
-method: DELETE
-settings: {}
-order: 6000

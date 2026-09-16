@@ -1,3 +1,0 @@
-$kind: collection
-description: "Core seller-facing product catalog endpoints: create/read/update/delete products with nested packaging & pricing, Excel bulk import, batch-number validation, image uploads, and manual/nutrition-label uploads."
-order: 8000

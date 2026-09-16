@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/returns/{{returnId}}"
-method: GET
-settings: {}
-order: 3000

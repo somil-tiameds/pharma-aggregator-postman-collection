@@ -1,7 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/temp-sellers/coordinator/check-gstnumber?gstnumber=27AAECS1234A1Z5"
-method: GET
-queryParams:
-  gstnumber: 27AAECS1234A1Z5
-settings: {}
-order: 3000

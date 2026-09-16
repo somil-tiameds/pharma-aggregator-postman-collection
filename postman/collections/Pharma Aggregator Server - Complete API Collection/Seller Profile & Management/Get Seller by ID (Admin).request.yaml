@@ -1,7 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/admin-seller/{{sellerId}}"
-method: GET
-headers:
-  Authorization: Bearer {{adminToken}}
-settings: {}
-order: 3000

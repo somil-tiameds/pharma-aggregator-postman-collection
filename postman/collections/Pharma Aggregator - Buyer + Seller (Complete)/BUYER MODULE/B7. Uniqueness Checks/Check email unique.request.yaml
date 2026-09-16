@@ -1,9 +1,0 @@
-$kind: http-request
-description: Returns a bare boolean.
-url: "{{baseUrl}}/temp-buyers/contact/check-email?email=buyer.contact@example.com&tempBuyerId={{tempBuyerId}}"
-method: GET
-queryParams:
-  email: buyer.contact@example.com
-  tempBuyerId: "{{tempBuyerId}}"
-settings: {}
-order: 1000

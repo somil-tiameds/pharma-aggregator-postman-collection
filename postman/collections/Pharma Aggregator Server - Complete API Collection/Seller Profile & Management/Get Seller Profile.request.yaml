@@ -1,7 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/seller-profile/get"
-method: GET
-headers:
-  Authorization: Bearer {{authToken}}
-settings: {}
-order: 1000

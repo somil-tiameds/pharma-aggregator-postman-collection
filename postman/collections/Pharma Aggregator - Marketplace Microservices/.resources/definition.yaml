@@ -1,0 +1,7 @@
+$kind: collection
+description: |-
+  Master collection for the pharma-aggregator-marketplace-micro monorepo. One top-level folder per service/module — each folder carries its own `baseUrl` folder variable so it can be run standalone (hit the service directly on its own port) or repointed at the API Gateway.
+
+  Only `pharma-aggregator-seller-service` and the three platform pieces (api-gateway, config-server, service-registry) have real, working endpoints today. Every other service folder is a placeholder — those modules are still empty scaffolds from spring-boot-microservice-template (no controllers yet); update this file's folder as each one gets built out.
+
+  Import this file classically (File > Import) for normal request-builder testing with Send buttons and response panes. The Git-synced copy under postman/ (Git-native v3 format) is for version control, not day-to-day testing.

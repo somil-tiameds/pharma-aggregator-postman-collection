@@ -1,4 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/admin/seller-requests/{{sellerId}}"
-method: GET
-order: 3000

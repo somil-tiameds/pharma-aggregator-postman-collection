@@ -1,3 +1,0 @@
-$kind: collection
-description: Read-mostly dropdown/classification endpoints spanning drug, medical device, cosmetic, supplement, and food/infant product hierarchies (categories, sub-categories, dosage forms, molecules, storage conditions, pack types, units, certifications, etc). Includes CRUD for flavours. All public (no auth required).
-order: 10000

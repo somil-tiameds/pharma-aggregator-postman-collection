@@ -1,6 +1,0 @@
-$kind: http-request
-description: Returns every registration regardless of status. No filter/pagination exists yet - filter client-side on the `status` field (DRAFT, SUBMITTED, UNDER_REVIEW, APPROVED, CORRECTION_REQUIRED, REJECTED, SUSPENDED) to build a pending queue or counts.
-url: "{{baseUrl}}/temp-buyers"
-method: GET
-settings: {}
-order: 1000

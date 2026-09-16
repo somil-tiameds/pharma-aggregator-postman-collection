@@ -1,3 +1,0 @@
-$kind: collection
-description: "Batch-wise, FIFO (first-in-first-out) stock ledger for products: add stock to an existing or brand-new batch, debit stock against an order by draining the oldest batches first, and query current / available / lifetime totals. Batches can optionally be linked to a packaging/pack-size variant via packagingId (reference an existing one, or submit packagingDetails to reuse-or-create one inline on Add Stock) — required once a product has more than one packaging variant, optional for single-variant products. Backed by StockController / StockService / StockLedger / PricingDetailsService / PackagingDetailsService, reusing PricingDetails as the batch table and PackagingDetails as the variant table."
-order: 12000

@@ -1,6 +1,0 @@
-$kind: http-request
-description: Every registration regardless of status - no server-side filter/count.
-url: "{{baseUrl}}/temp-buyers"
-method: GET
-settings: {}
-order: 5000

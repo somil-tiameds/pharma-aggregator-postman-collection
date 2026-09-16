@@ -1,6 +1,0 @@
-$kind: http-request
-description: 404 is the normal state for a browsing-only buyer with no registration yet.
-url: "{{baseUrl}}/temp-buyers/user/{{buyerUserId}}"
-method: GET
-settings: {}
-order: 4000

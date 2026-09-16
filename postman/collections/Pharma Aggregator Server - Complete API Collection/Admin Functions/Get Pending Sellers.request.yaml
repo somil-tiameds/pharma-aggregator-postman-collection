@@ -1,7 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/admin-seller-approval/pending"
-method: GET
-headers:
-  Authorization: Bearer {{adminToken}}
-settings: {}
-order: 1000

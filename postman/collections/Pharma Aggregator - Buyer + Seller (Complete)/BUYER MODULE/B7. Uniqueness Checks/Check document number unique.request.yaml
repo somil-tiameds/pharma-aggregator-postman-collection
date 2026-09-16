@@ -1,7 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/temp-buyers/contact/check-document?documentnumber=CEL-2026-001"
-method: GET
-queryParams:
-  documentnumber: CEL-2026-001
-settings: {}
-order: 5000

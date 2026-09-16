@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/ifsc/{{ifscCode}}"
-method: GET
-settings: {}
-order: 2000

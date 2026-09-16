@@ -1,6 +1,0 @@
-$kind: http-request
-description: Marks the Refund COMPLETED, restocks the batch (assumes resellable — no such flag exists in the product model yet), and moves the SellerOrder to RETURNED. Idempotent — calling again on an already-COMPLETED refund is a no-op.
-url: "{{baseUrl}}/returns/refunds/{{refundId}}/process"
-method: POST
-settings: {}
-order: 4000

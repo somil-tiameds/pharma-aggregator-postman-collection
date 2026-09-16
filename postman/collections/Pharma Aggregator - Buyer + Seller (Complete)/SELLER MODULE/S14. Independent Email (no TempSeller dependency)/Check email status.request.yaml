@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/independent/email/status/SREQ-000123"
-method: GET
-settings: {}
-order: 3000

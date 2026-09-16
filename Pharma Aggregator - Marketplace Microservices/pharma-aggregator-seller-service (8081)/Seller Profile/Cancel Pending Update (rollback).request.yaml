@@ -1,4 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/sellers/pendingSellerId/{{pendingSellerId}}"
-method: DELETE
-order: 6000

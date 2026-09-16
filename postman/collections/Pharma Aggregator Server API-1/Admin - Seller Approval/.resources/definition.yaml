@@ -1,3 +1,0 @@
-$kind: collection
-description: Administrative endpoints for reviewing, approving, rejecting, or batch-approving seller registrations and profile-update requests.
-order: 7000

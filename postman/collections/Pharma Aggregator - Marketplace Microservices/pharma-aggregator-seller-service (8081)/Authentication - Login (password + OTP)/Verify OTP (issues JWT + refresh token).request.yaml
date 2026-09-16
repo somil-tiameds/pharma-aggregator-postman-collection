@@ -1,0 +1,24 @@
+$kind: http-request
+description: Step 2 of login. Auto-saves accessToken/refreshToken as collection variables.
+url: "{{baseUrl}}/authentication/verify-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "{{username}}",
+      "otp": "123456"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+          const body = pm.response.json();
+          if (body.accessToken) { pm.collectionVariables.set('accessToken', body.accessToken); }
+          if (body.token) { pm.collectionVariables.set('accessToken', body.token); }
+          if (body.refreshToken) { pm.collectionVariables.set('refreshToken', body.refreshToken); }
+      }
+    language: text/javascript
+order: 2000

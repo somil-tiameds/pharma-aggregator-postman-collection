@@ -1,6 +1,0 @@
-$kind: http-request
-description: Returns the raw TempBuyer entity (nested address/contact/documents/buyerType objects), not a flat DTO.
-url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}"
-method: GET
-settings: {}
-order: 2000

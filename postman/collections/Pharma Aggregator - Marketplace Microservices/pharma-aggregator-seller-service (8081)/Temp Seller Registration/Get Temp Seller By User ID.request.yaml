@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/user/{{userId}}"
+method: GET
+order: 4000

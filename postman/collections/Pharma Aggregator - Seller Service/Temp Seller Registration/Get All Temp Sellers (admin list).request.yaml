@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/temp-sellers"
-method: GET
-settings: {}
-order: 2000

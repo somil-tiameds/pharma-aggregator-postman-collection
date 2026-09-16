@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/buyer-types"
-method: GET
-settings: {}
-order: 1000

@@ -1,6 +1,0 @@
-$kind: http-request
-name: Districts (all - inefficient, seller frontend flags this as deprecated)
-url: "{{baseUrl}}/districts"
-method: GET
-settings: {}
-order: 3000

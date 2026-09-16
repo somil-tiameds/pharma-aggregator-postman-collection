@@ -1,3 +1,0 @@
-$kind: collection
-description: Standalone transactional email endpoints for sending and tracking seller application confirmation emails.
-order: 5000

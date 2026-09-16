@@ -1,9 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/seller-orders/seller/{{sellerId}}?status=PLACED"
-method: GET
-queryParams:
-  - key: status
-    value: PLACED
-    description: optional
-settings: {}
-order: 2000

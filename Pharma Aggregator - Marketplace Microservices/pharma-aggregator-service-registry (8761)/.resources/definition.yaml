@@ -1,3 +1,0 @@
-$kind: collection
-description: "Standalone Eureka registry. NOTE: Eureka has been removed from the gateway and seller-service in favor of Docker DNS / ECS Service Connect (see root docker-compose.yml) — this module is currently unused by any live service; kept only pending a decision on whether to delete it."
-order: 4000

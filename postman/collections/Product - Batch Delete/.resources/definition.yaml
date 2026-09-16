@@ -1,8 +1,0 @@
-$kind: collection
-description: Batch delete products by a list of IDs.
-variables:
-  baseUrl: http://localhost:8080
-  token: ""
-  productId1: prd_01
-  productId2: prd_02
-  productId3: prd_03

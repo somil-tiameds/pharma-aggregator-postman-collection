@@ -1,3 +1,0 @@
-$kind: collection
-description: Endpoints for an authenticated seller to view/update their own profile, including the two-step metadata + document-upload update flow, and admin listing/deletion of sellers.
-order: 6000

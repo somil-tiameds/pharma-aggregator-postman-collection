@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/state-master/getAll"
-method: GET
-settings: {}
-order: 1000

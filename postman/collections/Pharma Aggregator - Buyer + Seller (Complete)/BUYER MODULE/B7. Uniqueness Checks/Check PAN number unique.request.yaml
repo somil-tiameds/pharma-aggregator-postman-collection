@@ -1,7 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/temp-buyers/contact/check-pannumber?pannumber=FABPM4879L"
-method: GET
-queryParams:
-  pannumber: FABPM4879L
-settings: {}
-order: 4000

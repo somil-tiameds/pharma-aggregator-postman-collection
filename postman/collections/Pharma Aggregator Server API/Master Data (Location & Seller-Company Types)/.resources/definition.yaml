@@ -1,4 +1,0 @@
-$kind: collection
-name: Master Data (Location & Seller/Company Types)
-description: Read-only lookup/master endpoints for states, districts, talukas, company types, seller types, product types, and IFSC bank code overrides. All public (no auth required).
-order: 2000

@@ -1,7 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/admin/seller-requests/{{pendingSellerId}}/approve?approvedBy=admin@tiameds.ai"
-method: POST
-queryParams:
-  approvedBy: admin@tiameds.ai
-settings: {}
-order: 4000

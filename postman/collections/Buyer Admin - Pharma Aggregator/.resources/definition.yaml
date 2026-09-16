@@ -1,6 +1,0 @@
-$kind: collection
-description: "Admin-facing endpoints for the buyer onboarding module: AdminBuyerController (review/approve) and the admin listing/detail parts of TempBuyerController. Base path already includes the app's /api/v1 context-path."
-variables:
-  baseUrl: http://localhost:8080/api/v1
-  tempBuyerId: "2"
-  buyerUserId: "1"

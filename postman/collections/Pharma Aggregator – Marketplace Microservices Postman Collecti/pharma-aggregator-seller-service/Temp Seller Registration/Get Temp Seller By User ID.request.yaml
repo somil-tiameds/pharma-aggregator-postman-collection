@@ -1,6 +1,0 @@
-$kind: http-request
-description: 404 means the user hasn't submitted a registration yet.
-url: "{{baseUrl}}/temp-sellers/user/{{userId}}"
-method: GET
-settings: {}
-order: 4000

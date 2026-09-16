@@ -1,3 +1,0 @@
-$kind: collection
-description: Basic liveness/info endpoints for the API.
-order: 11000

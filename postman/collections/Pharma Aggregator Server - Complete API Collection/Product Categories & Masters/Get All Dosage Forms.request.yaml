@@ -1,5 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/dosage-form/getAll"
-method: GET
-settings: {}
-order: 4000
