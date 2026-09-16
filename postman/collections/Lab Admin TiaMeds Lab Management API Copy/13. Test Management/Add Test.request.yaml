@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/lab/{{labId}}/add"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "testName": "Complete Blood Count",
+      "testCode": "CBC",
+      "price": 250.00,
+      "description": "Full blood panel analysis",
+      "category": "HAEMATOLOGY",
+      "unit": "cells/µL",
+      "normalRange": "4.5-5.5 million"
+    }
+settings: {}
+order: 3000

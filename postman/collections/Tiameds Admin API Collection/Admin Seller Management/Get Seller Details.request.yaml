@@ -1,0 +1,9 @@
+$kind: http-request
+description: Get complete details of a specific seller
+url: "{{baseUrl}}/admin/seller-requests/{{sellerId}}"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+settings: {}
+order: 3000

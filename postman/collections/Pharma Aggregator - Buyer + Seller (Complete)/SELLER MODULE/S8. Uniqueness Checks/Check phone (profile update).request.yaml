@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/coordinator/check-profilephone?mobile=9876543211"
+method: GET
+queryParams:
+  mobile: "9876543211"
+settings: {}
+order: 6000

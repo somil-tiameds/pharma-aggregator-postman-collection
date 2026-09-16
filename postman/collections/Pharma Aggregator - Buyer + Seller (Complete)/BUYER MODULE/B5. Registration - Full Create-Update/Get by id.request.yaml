@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns the raw TempBuyer entity, not a flat DTO.
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}"
+method: GET
+settings: {}
+order: 3000

@@ -1,0 +1,7 @@
+$kind: http-request
+description: Refreshes access token using the refresh_token cookie. Both new tokens are set as HttpOnly cookies. No body required.
+url: "{{baseUrl}}/auth/refresh"
+method: POST
+settings: {}
+examples: ./.resources/Refresh Token.resources/examples
+order: 5000

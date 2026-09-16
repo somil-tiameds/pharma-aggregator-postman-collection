@@ -1,0 +1,6 @@
+$kind: http-request
+name: Seller Types via Gateway (/api/v1 -> seller-service)
+description: Proves the gateway->seller-service route works end-to-end. StripPrefix=2 turns this into GET /seller-types on the seller service.
+url: "{{baseUrl}}/api/v1/seller-types"
+method: GET
+order: 3000

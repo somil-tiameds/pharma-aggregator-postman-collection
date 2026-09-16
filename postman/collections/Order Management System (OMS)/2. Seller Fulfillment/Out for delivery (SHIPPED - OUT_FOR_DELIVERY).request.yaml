@@ -1,0 +1,14 @@
+$kind: http-request
+name: Out for delivery (SHIPPED -> OUT_FOR_DELIVERY)
+url: "{{baseUrl}}/seller-orders/{{sellerOrderId}}/out-for-delivery"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerId": "{{sellerId}}"
+    }
+settings: {}
+order: 6000

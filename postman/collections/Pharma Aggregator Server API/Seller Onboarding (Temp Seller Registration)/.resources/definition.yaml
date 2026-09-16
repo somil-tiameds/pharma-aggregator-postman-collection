@@ -1,0 +1,3 @@
+$kind: collection
+description: "Self-service seller registration flow: create a temp seller, upload supporting documents, run live-validation checks (email/phone/GST/document uniqueness), and let admins verify individual documents before final approval."
+order: 3000

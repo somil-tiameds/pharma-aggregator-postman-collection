@@ -1,0 +1,13 @@
+$kind: http-request
+description: "Bulk upload tests from CSV file. Content-Type: multipart/form-data."
+url: "{{baseUrl}}/admin/lab/test/{{labId}}/csv/upload"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: ""
+      description: CSV file with test data
+settings: {}
+order: 7000

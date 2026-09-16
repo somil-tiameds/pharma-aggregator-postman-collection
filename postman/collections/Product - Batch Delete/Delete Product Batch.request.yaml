@@ -1,0 +1,20 @@
+$kind: http-request
+description: Deletes multiple products in a single request. Returns a summary of deleted and not-found IDs.
+url: "{{baseUrl}}/api/v1/products/batch"
+method: DELETE
+headers:
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+body:
+  type: json
+  content: |-
+    {
+      "productIds": [
+        "{{productId1}}",
+        "{{productId2}}",
+        "{{productId3}}"
+      ]
+    }
+settings: {}
+examples: ./.resources/Delete Product Batch.resources/examples
+order: 1000

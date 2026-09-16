@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/admin/insurance/{{labId}}/insurance/{{insuranceId}}"
+method: DELETE
+settings: {}
+order: 5000

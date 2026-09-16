@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/delete-samples"
+method: DELETE
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sampleIds": [1, 2, 3]
+    }
+settings: {}
+order: 7000

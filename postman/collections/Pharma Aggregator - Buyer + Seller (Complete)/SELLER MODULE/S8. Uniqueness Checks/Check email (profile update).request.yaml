@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/coordinator/check-profileemail?email=coordinator@example.com"
+method: GET
+queryParams:
+  email: coordinator@example.com
+settings: {}
+order: 5000

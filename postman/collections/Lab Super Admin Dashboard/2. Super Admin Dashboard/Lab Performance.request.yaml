@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/lab-super-admin/stats/lab-performance?startDate={{startDate}}&endDate={{endDate}}&limit={{limit}}"
+method: GET
+headers:
+  Authorization: Bearer {{token}}
+queryParams:
+  startDate: "{{startDate}}"
+  endDate: "{{endDate}}"
+  limit: "{{limit}}"
+settings: {}
+order: 15000

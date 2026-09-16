@@ -1,0 +1,10 @@
+$kind: http-request
+description: Cross-seller — every order regardless of which seller it belongs to.
+url: "{{baseUrl}}/admin/orders?status=PLACED"
+method: GET
+queryParams:
+  - key: status
+    value: PLACED
+    description: optional
+settings: {}
+order: 1000

@@ -1,0 +1,3 @@
+$kind: collection
+description: Onboarding flow for a new Blood Centre (self-registration, pending OTP verification).
+order: 2000

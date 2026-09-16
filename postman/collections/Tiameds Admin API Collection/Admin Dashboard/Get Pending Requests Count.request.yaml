@@ -1,0 +1,9 @@
+$kind: http-request
+description: Get count of pending seller requests
+url: "{{baseUrl}}/admin/dashboard/pending-count"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+settings: {}
+order: 2000

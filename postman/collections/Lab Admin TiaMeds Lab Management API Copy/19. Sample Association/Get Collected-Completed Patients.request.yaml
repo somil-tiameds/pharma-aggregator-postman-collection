@@ -1,0 +1,7 @@
+$kind: http-request
+name: Get Collected/Completed Patients
+description: Returns patients with sample collection status of collected or completed.
+url: "{{baseUrl}}/lab/{{labId}}/patients/collected-completed"
+method: GET
+settings: {}
+order: 8000

@@ -1,0 +1,14 @@
+$kind: http-request
+description: Sends OTP to an existing user's email. Rate limited to 1 per 5 minutes.
+url: "{{baseUrl}}/auth/send-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "user@example.com"
+    }
+settings: {}
+order: 4000

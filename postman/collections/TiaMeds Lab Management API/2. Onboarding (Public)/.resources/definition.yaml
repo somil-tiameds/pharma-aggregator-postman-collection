@@ -1,0 +1,3 @@
+$kind: collection
+description: Public endpoints for new lab registration onboarding flow. No auth required.
+order: 2000

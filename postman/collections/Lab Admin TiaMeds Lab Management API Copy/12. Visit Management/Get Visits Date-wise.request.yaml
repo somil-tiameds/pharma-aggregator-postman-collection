@@ -1,0 +1,9 @@
+$kind: http-request
+description: Returns visits filtered by date range. Requires ROLE_ADMIN or ROLE_TECHNICIAN.
+url: "{{baseUrl}}/lab/{{labId}}/visitsdatewise?startDate=2024-01-01&endDate=2024-01-31"
+method: GET
+queryParams:
+  startDate: 2024-01-01
+  endDate: 2024-01-31
+settings: {}
+order: 7000

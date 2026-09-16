@@ -1,0 +1,10 @@
+$kind: http-request
+description: Step 2 of onboarding. Validates email verification token clicked from email link.
+url: "{{baseUrl}}/public/onboarding/verify-email?token={{token}}"
+method: GET
+queryParams:
+  - key: token
+    value: "{{token}}"
+    description: Email verification token from the email link
+settings: {}
+order: 3000

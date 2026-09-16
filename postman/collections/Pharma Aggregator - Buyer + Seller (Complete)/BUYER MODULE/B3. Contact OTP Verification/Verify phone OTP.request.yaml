@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/otp/verify"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "phone": "+918780719280",
+      "otp": "123456"
+    }
+settings: {}
+order: 4000

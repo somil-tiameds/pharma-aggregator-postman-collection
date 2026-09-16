@@ -1,0 +1,14 @@
+$kind: http-request
+name: Pack (CONFIRMED -> PACKED)
+url: "{{baseUrl}}/seller-orders/{{sellerOrderId}}/pack"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerId": "{{sellerId}}"
+    }
+settings: {}
+order: 4000

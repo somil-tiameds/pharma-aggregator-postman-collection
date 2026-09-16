@@ -1,0 +1,27 @@
+$kind: http-request
+description: Sends a one-time verification code to an email address that is already associated with an existing seller/coordinator record.
+url: "{{baseUrl}}/temp-seller/email-otp/exist/send"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "rahul.sharma@sunrisepharma.example.com"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 2000

@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns all labs associated with the authenticated user. Available to ADMIN, TECHNICIAN, DESKROLE, SUPERADMIN.
+url: "{{baseUrl}}/lab/admin/get-user-labs"
+method: GET
+settings: {}
+order: 8000

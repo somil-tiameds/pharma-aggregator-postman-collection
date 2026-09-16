@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/validate-reset-token"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "token": "{{passwordResetToken}}"
+    }
+order: 4000

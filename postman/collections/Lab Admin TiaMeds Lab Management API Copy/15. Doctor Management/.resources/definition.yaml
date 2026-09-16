@@ -1,0 +1,3 @@
+$kind: collection
+description: Manage doctors within a lab. Requires ROLE_ADMIN, ROLE_TECHNICIAN, or ROLE_DESKROLE.
+order: 15000

@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/super-admin/referance-and-test/test-referance/search-by-reference-ranges"
+method: GET
+settings: {}
+order: 12000

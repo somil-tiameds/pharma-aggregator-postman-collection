@@ -1,0 +1,58 @@
+$kind: http-request
+name: Register Blood Centre / Send Code
+description: |-
+  Registers a new Blood Centre and (intended flow) triggers an OTP to the provided mobile number via Twilio.
+
+  **Controller:** `BloodCentreController`
+  **Method:** POST
+  **Auth:** None
+
+  **Validation rules (`BloodCentreRegistrationRequest`):**
+  - `bloodCentreName`: required
+  - `licenseNumber`: required, 5-30 chars, pattern `^[A-Za-z0-9/-]+$`
+  - `mobileNumber`: required, pattern `^[6-9][0-9]{9}$` (10-digit Indian mobile starting 6-9)
+  - `email`: required, valid email format
+  - `password`: required, min 8 characters
+  - `confirmPassword`: required
+  - `address`: required
+  - `pincode`: required, exactly 6 digits
+
+  **Success response (200):**
+  ```json
+  { "success": true, "message": "OTP sent successfully" }
+  ```
+
+  **Failure response (400) — e.g. duplicate license/email or validation error caught as RuntimeException:**
+  ```json
+  { "success": false, "message": "<error message>" }
+  ```
+url: "{{baseUrl}}/blood-centres/send-code"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "bloodCentreName": "City Blood Bank",
+      "licenseNumber": "LIC-2024-001",
+      "mobileNumber": "{{mobileNumber}}",
+      "email": "{{email}}",
+      "password": "{{password}}",
+      "confirmPassword": "{{password}}",
+      "address": "221B Baker Street, Pune",
+      "pincode": "411001"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status code is 200 or 400", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 400]);
+      });
+      pm.test("Response has success flag", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("success");
+      });
+    language: text/javascript
+settings: {}
+order: 1000

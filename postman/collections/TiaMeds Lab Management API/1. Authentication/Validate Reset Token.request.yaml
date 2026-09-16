@@ -1,0 +1,10 @@
+$kind: http-request
+description: Validates a password reset token before showing the reset form. Returns token validity and user email.
+url: "{{baseUrl}}/auth/validate-reset-token?token={{token}}"
+method: GET
+queryParams:
+  - key: token
+    value: "{{token}}"
+    description: Password reset token from email link
+settings: {}
+order: 8000

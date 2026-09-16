@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/delete-patient-visit/{{visitId}}"
+method: DELETE
+settings: {}
+order: 10000

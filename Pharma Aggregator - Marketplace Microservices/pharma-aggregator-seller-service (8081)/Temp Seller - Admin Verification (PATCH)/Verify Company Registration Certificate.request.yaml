@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}/verify/company-registration-certificate"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "isCompanyRegistrationCertificateVerified": true
+    }
+order: 4000

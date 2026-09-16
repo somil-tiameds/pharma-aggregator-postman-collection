@@ -1,0 +1,14 @@
+$kind: http-request
+description: Validates the onboarding token for frontend use before showing the registration form.
+url: "{{baseUrl}}/public/onboarding/validate-token"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "token": "{{token}}"
+    }
+settings: {}
+order: 4000

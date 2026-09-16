@@ -1,0 +1,46 @@
+$kind: http-request
+description: |-
+  Verifies a previously sent OTP for the given mobile number.
+
+  **Controller:** `OtpController`
+  **Method:** POST
+  **Auth:** None
+
+  **Request body (`OtpVerifyRequest`):**
+  - `mobileNumber`: required
+  - `otp`: required
+
+  **Success response (200):**
+  ```json
+  { "success": true, "message": "OTP verified successfully" }
+  ```
+
+  **Invalid/expired OTP (400):**
+  ```json
+  { "success": false, "message": "Invalid or expired OTP" }
+  ```
+
+  **Server/Twilio error (500):**
+  ```json
+  { "success": false, "message": "<exception message>" }
+  ```
+url: "{{baseUrl}}/otp/verify"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "mobileNumber": "{{mobileNumber}}",
+      "otp": "{{otp}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status code is 200, 400 or 500", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 400, 500]);
+      });
+    language: text/javascript
+settings: {}
+order: 2000

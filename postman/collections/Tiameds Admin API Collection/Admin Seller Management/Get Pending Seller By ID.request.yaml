@@ -1,0 +1,9 @@
+$kind: http-request
+description: Get specific pending seller request details by ID
+url: "{{baseUrl}}/admin/seller-requests/pending/{{pendingSellerId}}"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+settings: {}
+order: 2000

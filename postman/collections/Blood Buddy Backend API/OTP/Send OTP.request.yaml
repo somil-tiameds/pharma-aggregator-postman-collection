@@ -1,0 +1,41 @@
+$kind: http-request
+description: |-
+  Sends an OTP to the given mobile number via Twilio Verify.
+
+  **Controller:** `OtpController`
+  **Method:** POST
+  **Auth:** None
+
+  **Request body (`OtpRequest`):**
+  - `mobileNumber`: required
+
+  **Success response (200):**
+  ```json
+  { "success": true, "message": "OTP sent successfully", "status": "pending" }
+  ```
+
+  **Failure response (500):**
+  ```json
+  { "success": false, "message": "<exception message>" }
+  ```
+
+  > Requires valid Twilio env vars (`ACCOUNT_SID`, `AUTH_TOKEN`, `SERVICE_SID`) configured on the server; otherwise this will 500.
+url: "{{baseUrl}}/otp/send"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "mobileNumber": "{{mobileNumber}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status code is 200 or 500", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 500]);
+      });
+    language: text/javascript
+settings: {}
+order: 1000

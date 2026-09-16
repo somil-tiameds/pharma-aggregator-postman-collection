@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/super-admin/referance-and-test/test-referance/{{testReferenceId}}/json"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "jsonFields": {"male": {"min": 70, "max": 100}, "female": {"min": 70, "max": 100}}
+    }
+settings: {}
+order: 8000

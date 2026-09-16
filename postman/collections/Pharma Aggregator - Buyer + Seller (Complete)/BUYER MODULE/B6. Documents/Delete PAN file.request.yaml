@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}/files/pan"
+method: DELETE
+settings: {}
+order: 3000

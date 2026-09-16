@@ -1,0 +1,31 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/verify-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "{{email}}",
+      "otp": "{{otp}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      // Postman's node runtime can read the httpOnly cookie set by the server,
+      // even though it's not accessible to browser JS. Extract it into a
+      // collection variable so every other request can send it as a Bearer header.
+      const jar = pm.cookies.jar();
+      const url = pm.collectionVariables.get('baseUrl').replace('/api/v1', '');
+      jar.get(url, 'accessToken', (err, cookieValue) => {
+          if (!err && cookieValue) {
+              pm.collectionVariables.set('accessToken', cookieValue);
+              console.log('accessToken captured');
+          } else {
+              console.warn('accessToken cookie not found — copy it manually from the response cookies tab');
+          }
+      });
+    language: text/javascript
+settings: {}
+order: 2000

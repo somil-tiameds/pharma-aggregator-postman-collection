@@ -1,0 +1,19 @@
+$kind: http-request
+description: Public user registration endpoint.
+url: "{{baseUrl}}/public/register"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "newuser",
+      "password": "Password@123",
+      "email": "newuser@example.com",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "phone": "+91-9876543210"
+    }
+settings: {}
+order: 3000

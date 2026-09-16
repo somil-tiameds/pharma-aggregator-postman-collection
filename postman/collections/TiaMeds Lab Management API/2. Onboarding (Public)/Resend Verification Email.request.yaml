@@ -1,0 +1,14 @@
+$kind: http-request
+description: Resends verification email. Same rate limits as request-verification.
+url: "{{baseUrl}}/public/onboarding/resend-verification"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "newlab@example.com"
+    }
+settings: {}
+order: 2000

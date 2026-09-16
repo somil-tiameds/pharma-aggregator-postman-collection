@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}/verify/bank"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "isBankDocumentVerified": true
+    }
+settings: {}
+order: 3000

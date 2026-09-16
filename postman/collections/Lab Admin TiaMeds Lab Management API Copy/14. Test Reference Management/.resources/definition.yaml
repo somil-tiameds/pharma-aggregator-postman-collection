@@ -1,0 +1,3 @@
+$kind: collection
+description: Manage reference ranges for lab tests. Requires ROLE_ADMIN, ROLE_TECHNICIAN, or ROLE_DESKROLE.
+order: 14000

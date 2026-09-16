@@ -1,0 +1,25 @@
+$kind: http-request
+description: POST /public/register — register a new user (see `UserController.java`).
+url: "{{baseUrl}}/public/register"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "newuser",
+      "password": "Password123!",
+      "email": "newuser@example.com",
+      "firstName": "New",
+      "lastName": "User",
+      "phone": "1234567890",
+      "address": "123 Street",
+      "city": "City",
+      "state": "State",
+      "zip": "000000",
+      "country": "Country",
+      "verified": false
+    }
+settings: {}
+order: 3000

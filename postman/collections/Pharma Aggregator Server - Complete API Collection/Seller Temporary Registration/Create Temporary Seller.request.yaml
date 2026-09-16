@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-seller/create"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "newseller@example.com",
+      "mobileNumber": "+919876543210",
+      "companyName": "XYZ Pharmacy",
+      "sellerType": "RETAIL",
+      "firstName": "John",
+      "lastName": "Doe"
+    }
+settings: {}
+order: 5000

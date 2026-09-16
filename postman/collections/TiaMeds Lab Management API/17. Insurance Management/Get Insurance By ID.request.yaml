@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/admin/insurance/{{labId}}/insurance/{{insuranceId}}"
+method: GET
+settings: {}
+order: 3000

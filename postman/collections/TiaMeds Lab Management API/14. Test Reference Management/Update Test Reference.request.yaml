@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/test-reference/{{labId}}/{{testReferenceId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "normalRangeMale": "14.0-18.0",
+      "unit": "g/dL"
+    }
+settings: {}
+order: 3000

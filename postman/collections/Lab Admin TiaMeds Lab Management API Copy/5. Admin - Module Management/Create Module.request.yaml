@@ -1,0 +1,14 @@
+$kind: http-request
+description: Create a new system module.
+url: "{{baseUrl}}/admin/modules"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Radiology Module"
+    }
+settings: {}
+order: 3000

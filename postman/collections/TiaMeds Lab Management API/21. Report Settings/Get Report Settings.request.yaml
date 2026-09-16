@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/report-settings"
+method: GET
+settings: {}
+order: 1000

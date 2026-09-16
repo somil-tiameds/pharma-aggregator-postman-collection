@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/lab/{{labId}}/doctors"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Dr. Priya Patel",
+      "specialization": "Pathology",
+      "phone": "+91-9988776655",
+      "email": "dr.priya@lab.com",
+      "registrationNumber": "MCI-12345"
+    }
+settings: {}
+order: 1000

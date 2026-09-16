@@ -1,0 +1,3 @@
+$kind: collection
+description: Manage lab memberships, user profiles, and role assignments within labs.
+order: 9000

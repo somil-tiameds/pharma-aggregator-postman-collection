@@ -1,0 +1,19 @@
+$kind: http-request
+description: Records a partial payment against an existing billing record.
+url: "{{baseUrl}}/lab/{{labId}}/billing/{{billingId}}/partial-payment"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "paidAmount": 500.00,
+      "transaction": {
+        "amount": 500.00,
+        "paymentMode": "UPI",
+        "remarks": "Partial payment via UPI"
+      }
+    }
+settings: {}
+order: 9000

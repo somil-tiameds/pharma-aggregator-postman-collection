@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/seller-profile/update"
+method: PUT
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "mobileNumber": "+919876543210",
+      "companyName": "XYZ Pharmacy",
+      "description": "Quality pharmaceutical products"
+    }
+settings: {}
+order: 2000

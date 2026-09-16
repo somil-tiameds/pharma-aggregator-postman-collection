@@ -1,0 +1,8 @@
+$kind: collection
+description: Professional API collection for Tiameds Admin Panel - Complete admin management system for pharmacy marketplace including seller approvals, management, and administration operations.
+variables:
+  baseUrl: http://localhost:8080
+  authToken: ""
+  adminId: admin-001
+  sellerId: "1"
+  pendingSellerId: "1"

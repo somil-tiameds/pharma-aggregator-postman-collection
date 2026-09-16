@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns full details of a specific lab.
+url: "{{baseUrl}}/lab/admin/get-lab-by-id/{{labId}}"
+method: GET
+settings: {}
+order: 3000

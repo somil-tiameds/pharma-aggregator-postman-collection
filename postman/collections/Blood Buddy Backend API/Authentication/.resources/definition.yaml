@@ -1,0 +1,3 @@
+$kind: collection
+description: Email/password login for registered blood centres.
+order: 4000

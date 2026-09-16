@@ -1,0 +1,3 @@
+$kind: collection
+description: Manage lab tests. Requires ROLE_ADMIN or ROLE_SUPERADMIN (write); ROLE_TECHNICIAN (read).
+order: 13000

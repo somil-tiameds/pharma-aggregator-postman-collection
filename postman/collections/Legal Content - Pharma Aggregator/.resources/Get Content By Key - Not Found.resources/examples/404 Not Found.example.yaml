@@ -1,0 +1,18 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/content/PRIVACY_POLICY"
+  method: GET
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "status": "ERROR",
+        "message": "No active legal content found for key: PRIVACY_POLICY",
+        "data": null
+      }
+order: 1000

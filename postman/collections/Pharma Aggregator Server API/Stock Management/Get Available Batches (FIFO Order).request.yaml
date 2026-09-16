@@ -1,0 +1,31 @@
+$kind: http-request
+description: Returns all batches with remaining stock for a product, ordered oldest-manufacturingDate-first - the exact order in which a FIFO debit would consume them. Each batch now includes its packagingId. Pass ?packagingId=... to restrict to one variant.
+url: "{{baseUrl}}/stock/{{productId}}/batches?packagingId={{packagingId}}"
+method: GET
+queryParams:
+  - key: packagingId
+    value: "{{packagingId}}"
+    description: Optional — restrict to one packaging variant. Remove this param (or leave it blank) to see all batches for the whole product.
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+
+      pm.test('Batches are sorted oldest manufacturingDate first', function () {
+          var jsonData = pm.response.json();
+          for (var i = 1; i < jsonData.length; i++) {
+              pm.expect(new Date(jsonData[i - 1].manufacturingDate).getTime())
+                  .to.be.at.most(new Date(jsonData[i].manufacturingDate).getTime());
+          }
+      });
+    language: text/javascript
+settings: {}
+order: 8000

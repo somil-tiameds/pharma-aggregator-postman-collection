@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/datewise-lab-visits?startDate=2024-01-01&endDate=2024-01-31"
+method: GET
+queryParams:
+  startDate: 2024-01-01
+  endDate: 2024-01-31
+settings: {}
+order: 8000

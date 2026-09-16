@@ -1,0 +1,15 @@
+$kind: http-request
+name: Deliver (OUT_FOR_DELIVERY -> DELIVERED)
+description: Starts the return-window clock (7 days, placeholder pending a real business decision).
+url: "{{baseUrl}}/seller-orders/{{sellerOrderId}}/deliver"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerId": "{{sellerId}}"
+    }
+settings: {}
+order: 7000

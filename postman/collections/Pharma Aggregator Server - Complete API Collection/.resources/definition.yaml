@@ -1,0 +1,8 @@
+$kind: collection
+description: Comprehensive API collection for Pharma Aggregator Server - Pharmacy Marketplace Platform. Includes all endpoints for Authentication, Products, Sellers, Masters, Admin, and more.
+variables:
+  baseUrl: http://localhost:8080/api/v1
+  authToken: ""
+  adminToken: ""
+  resetToken: ""
+  sellerId: "1"

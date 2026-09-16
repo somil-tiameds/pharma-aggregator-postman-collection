@@ -1,0 +1,3 @@
+$kind: collection
+description: Admin dashboard and analytics endpoints
+order: 4000

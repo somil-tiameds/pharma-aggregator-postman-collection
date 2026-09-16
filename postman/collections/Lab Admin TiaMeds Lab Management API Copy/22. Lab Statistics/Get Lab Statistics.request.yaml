@@ -1,0 +1,10 @@
+$kind: http-request
+description: Returns summary statistics for a lab within a date range.
+url: "{{baseUrl}}/lab/statistics/{{labId}}?startDate=2024-01-01&endDate=2024-01-31"
+method: GET
+queryParams:
+  startDate: 2024-01-01
+  endDate: 2024-01-31
+settings: {}
+examples: ./.resources/Get Lab Statistics.resources/examples
+order: 1000

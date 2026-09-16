@@ -1,0 +1,6 @@
+$kind: http-request
+description: Marks a visit as completed. Typically called after all tests are reported.
+url: "{{baseUrl}}/lab/{{labId}}/complete-visit/{{visitId}}"
+method: PUT
+settings: {}
+order: 6000

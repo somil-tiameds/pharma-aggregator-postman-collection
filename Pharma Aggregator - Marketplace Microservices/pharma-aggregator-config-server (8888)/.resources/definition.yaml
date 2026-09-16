@@ -1,0 +1,3 @@
+$kind: collection
+description: Native/filesystem-backed Spring Cloud Config Server, serving per-service YAML from src/main/resources/config-repo/.
+order: 3000

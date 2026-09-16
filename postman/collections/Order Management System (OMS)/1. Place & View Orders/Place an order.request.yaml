@@ -1,0 +1,39 @@
+$kind: http-request
+description: "buyerId is explicit — no Buyer security principal exists yet. sellerId is NEVER sent — it's resolved server-side from pricingId -> productDetails -> seller, never trusted from the client. deliveryAddressId can be sent instead of the raw delivery* fields once BuyerDeliveryAddress has data, but that table has no CRUD yet so raw fields are the practical path today. Watch for two real validation errors this triggers correctly: \"quantity below minimum order quantity\" (packaging-defined MOQ) and \"has multiple packaging variants — packagingId is required\" (pick a pricingId whose batch already has a packagingId set, or a single-variant product, to avoid the latter)."
+url: "{{baseUrl}}/orders"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "buyerId": "{{buyerId}}",
+      "deliveryName": "OMS Test Contact",
+      "deliveryPhone": "9998887771",
+      "deliveryAddressLine": "MG Road, Building 12",
+      "deliveryCity": "Bengaluru",
+      "deliveryDistrict": "Bengaluru Rural",
+      "deliveryState": "Karnataka",
+      "deliveryPinCode": "560001",
+      "paymentMethod": "COD",
+      "lines": [
+        { "productId": "{{productId}}", "pricingId": "{{pricingId}}", "quantity": 5 }
+      ]
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 201) {
+        const body = pm.response.json().data;
+        if (body.orderId) pm.collectionVariables.set('orderId', body.orderId);
+        if (body.paymentId) pm.collectionVariables.set('paymentId', body.paymentId);
+        const so = body.sellerOrders && body.sellerOrders[0];
+        if (so) {
+          pm.collectionVariables.set('sellerOrderId', so.sellerOrderId);
+          if (so.items && so.items[0]) pm.collectionVariables.set('orderItemId', String(so.items[0].orderItemId));
+        }
+      }
+    language: text/javascript
+settings: {}
+order: 1000

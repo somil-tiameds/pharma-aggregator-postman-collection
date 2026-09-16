@@ -1,0 +1,25 @@
+$kind: collection
+description: |-
+  Complete REST API collection for TiaMeds Lab Management System. Covers Authentication, Onboarding, Lab Management, Patient Management, Visits, Tests, Reports, Doctors, Insurance, Health Packages, Billing, Sample Association, and Super Admin operations.
+
+  Authentication: Cookie-based JWT (HttpOnly cookies). Login flow: POST /auth/login → POST /auth/verify-otp → cookies set automatically.
+
+  Base URL: {{baseUrl}}
+  All protected endpoints require a valid access_token cookie.
+variables:
+  baseUrl: http://localhost:8080
+  labId: "1"
+  patientId: "1"
+  visitId: "1"
+  userId: "1"
+  testId: "1"
+  doctorId: "1"
+  packageId: "1"
+  insuranceId: "1"
+  roleId: "1"
+  moduleId: "1"
+  reportId: "1"
+  sampleId: "1"
+  billingId: "1"
+  testReferenceId: "1"
+  token: ""

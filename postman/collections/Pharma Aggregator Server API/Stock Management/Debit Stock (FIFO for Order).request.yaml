@@ -1,0 +1,42 @@
+$kind: http-request
+description: Debits stock for a product using FIFO (oldest manufacturingDate batch first), spanning multiple batches if one isn't enough to cover the requested quantity. `packagingId` is optional — omit it for a single-variant product to debit across all its batches; if the product has more than one packaging variant, omitting it now returns 400 (packagingId required), and passing it scopes FIFO to just that variant's batches. Returns one StockLedger row per batch touched, all sharing the same referenceId so they can be traced back to one order. Returns 409 Conflict if the requested quantity exceeds total available stock in scope.
+url: "{{baseUrl}}/stock/debit"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "packagingId": null,
+      "quantity": 150,
+      "referenceId": "ORD-9001",
+      "referenceType": "ORDER"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+
+      pm.test('One or more STOCK_OUT ledger rows returned', function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData).to.be.an('array').that.is.not.empty;
+          jsonData.forEach(function (row) {
+              pm.expect(row.transactionType).to.eql('STOCK_OUT');
+              pm.expect(row.referenceId).to.eql('ORD-9001');
+          });
+      });
+    language: text/javascript
+settings: {}
+order: 5000

@@ -1,0 +1,13 @@
+$kind: http-request
+description: Search sellers by name, email, or other criteria
+url: "{{baseUrl}}/admin/sellers/search?query=pharmacy&page=0&size=10"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+queryParams:
+  query: pharmacy
+  page: "0"
+  size: "10"
+settings: {}
+order: 2000

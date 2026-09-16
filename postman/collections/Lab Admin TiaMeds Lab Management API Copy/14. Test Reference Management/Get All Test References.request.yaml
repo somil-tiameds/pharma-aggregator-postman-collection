@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns all test references.
+url: "{{baseUrl}}/lab/test-reference"
+method: GET
+settings: {}
+order: 1000

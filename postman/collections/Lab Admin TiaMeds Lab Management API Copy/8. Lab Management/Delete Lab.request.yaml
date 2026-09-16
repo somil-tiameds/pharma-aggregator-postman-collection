@@ -1,0 +1,6 @@
+$kind: http-request
+description: Permanently deletes a lab. Requires ROLE_ADMIN or ROLE_SUPERADMIN.
+url: "{{baseUrl}}/lab/admin/delete-lab/{{labId}}"
+method: DELETE
+settings: {}
+order: 6000

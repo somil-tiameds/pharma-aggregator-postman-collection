@@ -1,0 +1,16 @@
+$kind: http-request
+description: One-time/on-demand backfill for the daily_lab_stats rollup table (DashboardRollupAdminController). Omit labId to backfill every lab. Safe to re-run for any date range at any time.
+url: "{{baseUrl}}/api/v1/lab-super-admin/stats/rollup/backfill?startDate={{startDate}}&endDate={{endDate}}"
+method: POST
+headers:
+  Authorization: Bearer {{token}}
+queryParams:
+  - key: startDate
+    value: "{{startDate}}"
+  - key: endDate
+    value: "{{endDate}}"
+  - key: labId
+    value: "{{labId}}"
+    disabled: true
+settings: {}
+order: 1000

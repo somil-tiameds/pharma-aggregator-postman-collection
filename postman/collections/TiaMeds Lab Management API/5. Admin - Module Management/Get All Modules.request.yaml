@@ -1,0 +1,6 @@
+$kind: http-request
+description: List all system modules.
+url: "{{baseUrl}}/admin/modules"
+method: GET
+settings: {}
+order: 1000

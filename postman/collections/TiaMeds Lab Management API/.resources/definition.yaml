@@ -1,0 +1,75 @@
+$kind: collection
+description: |-
+  Complete REST API collection for TiaMeds Lab Management System. Covers Authentication, Onboarding, Lab Management, Patient Management, Visits, Tests, Reports, Doctors, Insurance, Health Packages, Billing, Sample Association, and Super Admin operations.
+
+  Authentication: Cookie-based JWT (HttpOnly cookies). Login flow: POST /auth/login → POST /auth/verify-otp → cookies set automatically.
+
+  Base URL: {{baseUrl}}
+  All protected endpoints require a valid access_token cookie.
+variables:
+  - key: baseUrl
+    value: http://localhost:8080
+    disabled: false
+    secret: false
+  - key: labId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: patientId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: visitId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: userId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: testId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: doctorId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: packageId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: insuranceId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: roleId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: moduleId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: reportId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: sampleId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: billingId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: testReferenceId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: token
+    value: ""
+    disabled: false
+    secret: false
+  - key: supabase_service_role_api_key_06es
+    secret: true

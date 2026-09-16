@@ -1,0 +1,14 @@
+$kind: http-request
+description: Step 1 of onboarding. Sends a verification email with a secure token link. Rate limited to 3 emails/hour per address.
+url: "{{baseUrl}}/public/onboarding/request-verification"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "newlab@example.com"
+    }
+settings: {}
+order: 1000

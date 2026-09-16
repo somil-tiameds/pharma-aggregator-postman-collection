@@ -1,0 +1,4 @@
+$kind: collection
+name: Auth / Public
+description: "Endpoints from `UserController.java` (class-level mapping: /public)."
+order: 1000

@@ -1,0 +1,6 @@
+$kind: http-request
+description: Remove a role from a specific user.
+url: "{{baseUrl}}/admin/users/{{userId}}/roles/{{roleId}}"
+method: DELETE
+settings: {}
+order: 8000

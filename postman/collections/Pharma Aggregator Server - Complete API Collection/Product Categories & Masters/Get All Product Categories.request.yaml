@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/product-category/getAll"
+method: GET
+settings: {}
+order: 1000

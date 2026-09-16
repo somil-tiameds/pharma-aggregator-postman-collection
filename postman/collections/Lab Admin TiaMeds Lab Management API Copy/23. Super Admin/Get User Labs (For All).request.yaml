@@ -1,0 +1,10 @@
+$kind: http-request
+description: "Returns all labs the authenticated user belongs to. NOTE: This endpoint uses Authorization header instead of cookie."
+url: "{{baseUrl}}/lab-for-all/get-user-labs"
+method: GET
+headers:
+  - key: Authorization
+    value: Bearer {{token}}
+    description: This endpoint uses Bearer token header instead of cookie
+settings: {}
+order: 3000

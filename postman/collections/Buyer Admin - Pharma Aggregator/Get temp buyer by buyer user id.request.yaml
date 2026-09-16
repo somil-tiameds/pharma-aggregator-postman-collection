@@ -1,0 +1,6 @@
+$kind: http-request
+description: 404 if this buyer user has no registration draft/submission yet.
+url: "{{baseUrl}}/temp-buyers/user/{{buyerUserId}}"
+method: GET
+settings: {}
+order: 3000

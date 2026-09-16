@@ -1,0 +1,6 @@
+$kind: http-request
+description: Resolves the seller from the authenticated principal (Bearer token) — requires accessToken to be set.
+url: "{{baseUrl}}/sellers/product-types"
+method: GET
+settings: {}
+order: 3000

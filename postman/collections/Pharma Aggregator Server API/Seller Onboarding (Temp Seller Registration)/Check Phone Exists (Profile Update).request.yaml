@@ -1,0 +1,21 @@
+$kind: http-request
+description: Checks whether a coordinator mobile number is already used by another seller profile, used during seller profile-update validation.
+url: "{{baseUrl}}/temp-sellers/coordinator/check-profilephone?mobile=9876500000"
+method: GET
+queryParams:
+  mobile: "9876500000"
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 15000

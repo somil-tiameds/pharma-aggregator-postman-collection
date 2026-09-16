@@ -1,0 +1,51 @@
+$kind: http-request
+description: Uploads seller image, GST file, bank file, company registration certificate, authorization letter, and one or more license/agreement files for a temp seller. All parts are optional multipart fields; licenseFiles/licenseNames/documentIds are positionally matched lists — this same trio is reused for seller-level agreement documents (Brand Owner/White Labeling/Distribution/PCD Agreement etc.), since the backend attaches by documentId regardless of whether the underlying TempSellerDocument row is a product-tied licence or a documentType-tied agreement.
+url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}/documents/upload"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: sellerImage
+      src: /path/to/seller-image.jpg
+    - type: file
+      key: gstFile
+      src: /path/to/gst-certificate.pdf
+    - type: file
+      key: bankFile
+      src: /path/to/cancelled-cheque.pdf
+    - type: file
+      key: companyRegistrationCertificate
+      src: /path/to/company-reg-cert.pdf
+    - type: file
+      key: authorizationLetter
+      src: /path/to/authorization-letter.pdf
+    - type: file
+      key: licenseFiles
+      src: /path/to/drug-license.pdf
+    - type: text
+      key: licenseNames
+      value: Drug
+    - type: text
+      key: documentIds
+      value: "1"
+    - type: file
+      key: licenseFiles
+      src: /path/to/distribution-agreement.pdf
+      description: Example second entry showing an agreement document uploaded through the same list — e.g. for a Distributor seller's Distribution Agreement. Enable alongside a matching licenseNames='Distribution Agreement' and documentIds='<the TempSellerDocument row id created with documentTypeId=13>'.
+      disabled: true
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 18000

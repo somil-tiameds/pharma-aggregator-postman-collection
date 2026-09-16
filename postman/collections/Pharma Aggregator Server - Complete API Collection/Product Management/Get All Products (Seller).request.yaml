@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/products/getAll"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+settings: {}
+order: 2000

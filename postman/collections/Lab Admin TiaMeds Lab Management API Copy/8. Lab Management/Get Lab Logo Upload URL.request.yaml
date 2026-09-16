@@ -1,0 +1,16 @@
+$kind: http-request
+description: Returns a pre-signed S3 URL for uploading the lab logo.
+url: "{{baseUrl}}/lab/admin/lab-logo/upload-url"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "labId": 1,
+      "fileName": "lab-logo.png",
+      "contentType": "image/png"
+    }
+settings: {}
+order: 7000

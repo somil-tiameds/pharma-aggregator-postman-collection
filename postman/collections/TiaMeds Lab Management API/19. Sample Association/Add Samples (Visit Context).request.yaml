@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/add-samples"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "visitId": 101,
+      "labId": 1,
+      "samples": [
+        { "sampleType": "BLOOD", "testId": 1 },
+        { "sampleType": "URINE", "testId": 3 }
+      ]
+    }
+settings: {}
+order: 5000

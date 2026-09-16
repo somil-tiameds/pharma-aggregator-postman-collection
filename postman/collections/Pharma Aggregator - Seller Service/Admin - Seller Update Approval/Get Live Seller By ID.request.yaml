@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/seller-requests/{{sellerId}}"
+method: GET
+settings: {}
+order: 3000

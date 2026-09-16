@@ -1,0 +1,26 @@
+$kind: http-request
+description: Reject seller registration after review
+url: "{{baseUrl}}/admin/sellers/review"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "id": {{pendingSellerId}},
+      "status": "REJECT",
+      "comments": "Business license expired"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+          pm.test('Seller review processed', function() {
+              pm.expect(pm.response.status).to.equal('OK');
+          });
+      }
+    language: text/javascript
+settings: {}
+order: 2000

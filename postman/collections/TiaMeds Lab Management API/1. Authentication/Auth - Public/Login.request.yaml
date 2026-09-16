@@ -1,0 +1,15 @@
+$kind: http-request
+description: POST /public/login — returns AuthResponse with token (see `UserController.java`). After successful login set {{token}} with returned token.
+url: "{{baseUrl}}/public/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+settings: {}
+order: 2000

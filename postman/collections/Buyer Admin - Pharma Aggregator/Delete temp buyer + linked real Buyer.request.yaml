@@ -1,0 +1,6 @@
+$kind: http-request
+description: Only meaningful once the registration has been ACCEPTed (a real Buyer row exists to also delete).
+url: "{{baseUrl}}/temp-buyers/both/{{tempBuyerId}}"
+method: DELETE
+settings: {}
+order: 11000

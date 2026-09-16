@@ -1,0 +1,6 @@
+$kind: http-request
+description: This is NOT the same as S10's ACCEPT/REJECT/CORRECTION flow - this older PendingSeller/PendingSellerDocument path only ever handles post-approval profile-EDIT requests (S12), never the original registration.
+url: "{{baseUrl}}/admin/seller-requests/pending"
+method: GET
+settings: {}
+order: 1000

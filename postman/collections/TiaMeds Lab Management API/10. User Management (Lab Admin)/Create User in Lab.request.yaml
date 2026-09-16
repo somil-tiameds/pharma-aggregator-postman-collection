@@ -1,0 +1,20 @@
+$kind: http-request
+description: Creates a new user and immediately adds them as a lab member.
+url: "{{baseUrl}}/user-management/create-user/{{labId}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "technician01",
+      "password": "Tech@12345",
+      "email": "tech01@lab.com",
+      "firstName": "Tech",
+      "lastName": "User",
+      "phone": "+91-9876543210",
+      "roleId": 2
+    }
+settings: {}
+order: 2000

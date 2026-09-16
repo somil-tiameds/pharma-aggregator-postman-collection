@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/admin/update-lab/{{labId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Updated Lab Name",
+      "address": "New Address",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "isActive": true,
+      "description": "Updated description"
+    }
+settings: {}
+order: 4000

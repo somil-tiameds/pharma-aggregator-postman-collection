@@ -1,0 +1,44 @@
+$kind: http-request
+description: Adds stock for a product. If batchLotNumber already exists in scope (product, or product+packagingId if provided), tops up that batch's stockQuantity (rejects with 400 if the supplied expiryDate doesn't match what's on file); otherwise creates a brand-new batch. `packagingId` is optional — omit it for a single-variant product; if the product has more than one packaging variant, omitting it now returns 400 (packagingId required). Writes one STOCK_IN StockLedger row and returns it. Requires the authenticated seller to own the product (401 otherwise).
+url: "{{baseUrl}}/stock/add"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "packagingId": null,
+      "batchLotNumber": "BATCH-2026-002",
+      "manufacturingDate": "2026-01-10T00:00:00",
+      "expiryDate": "2028-01-10T00:00:00",
+      "quantity": 500,
+      "mrp": 30.0,
+      "sellingPrice": 25.5,
+      "referenceId": "PO-2026-0417",
+      "referenceType": "PURCHASE"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+
+      pm.test('Ledger row returned with STOCK_IN type', function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData).to.have.property('transactionType', 'STOCK_IN');
+          pm.expect(jsonData).to.have.property('balanceAfter');
+      });
+    language: text/javascript
+settings: {}
+order: 1000

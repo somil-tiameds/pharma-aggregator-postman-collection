@@ -1,0 +1,3 @@
+$kind: collection
+description: Two-step OTP login (login -> verify-otp) issuing JWT access/refresh tokens, plus password reset flows. The verify-otp and refresh requests auto-save tokens to collection variables consumed by {{access_token}} across the rest of the collection.
+order: 1000

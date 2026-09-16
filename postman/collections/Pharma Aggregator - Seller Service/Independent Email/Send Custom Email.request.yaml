@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/independent/email/send?to={{email}}&subject=Application Update&body=Your application has been updated."
+method: POST
+queryParams:
+  to: "{{email}}"
+  subject: Application Update
+  body: Your application has been updated.
+settings: {}
+order: 2000

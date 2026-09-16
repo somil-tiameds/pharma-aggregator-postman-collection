@@ -1,0 +1,315 @@
+$kind: collection
+name: Pharma Aggregator – Marketplace Microservices Postman Collection
+description: |-
+  # Pharma Aggregator — Marketplace Microservices Documentation
+
+  ## Table of Contents
+
+  1. [Project Overview](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#project-overview)
+      
+  2. [Architecture](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#architecture)
+      
+  3. [Service Directory](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#service-directory)
+      
+  4. [Database Configuration](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#database-configuration)
+      
+  5. [Postman Collection Guide](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#postman-collection-guide)
+      
+  6. [Environment Variables](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#environment-variables)
+      
+  7. [Authentication](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#authentication)
+      
+  8. [Suggested Testing Flow](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#suggested-testing-flow)
+      
+  9. [Notes &amp; Conventions](https://claude.ai/chat/ea71e7d7-513d-41cc-8c06-833e4310ccf5#notes--conventions)
+      
+
+  ---
+
+  ## Project Overview
+
+  **Pharma Aggregator** is a B2B pharmaceutical marketplace platform built on a microservices architecture. It connects **buyers** (pharmacies, hospitals, distributors) with **sellers** (manufacturers, wholesalers) — enabling product discovery, price quotation/negotiation, ordering, billing, and notifications, all coordinated through a central API Gateway with service discovery and externalized configuration.
+
+  ---
+
+  ## Architecture
+
+  ```
+                          ┌─────────────────────┐
+                          │   Config Server      │  (8091 / DB 5443)
+                          └──────────┬───────────┘
+                                     │  pulls config
+                          ┌──────────▼───────────┐
+                          │  Service Registry     │  (8090 / DB 5442)
+                          │      (Eureka)         │
+                          └──────────┬───────────┘
+                                     │  registers/discovers
+       ┌─────────────────────────────┼─────────────────────────────┐
+       │                             │                             │
+  ┌────▼─────┐  ┌─────────┐  ┌───────▼──────┐  ┌────────┐  ┌───────▼───────┐
+  │  Buyer   │  │ Seller  │  │   Product     │  │ Order  │  │  Quotation    │
+  │ Service  │  │ Service │  │   Service     │  │Service │  │   Service     │
+  │  8081    │  │  8082   │  │    8083       │  │  8084  │  │    8085       │
+  └──────────┘  └─────────┘  └──────────────┘  └────────┘  └───────────────┘
+       │                             │                             │
+  ┌────▼─────┐  ┌─────────────┐  ┌───▼────────┐
+  │  Search  │  │  Billing    │  │Notification│
+  │ Service  │  │  Service    │  │  Service   │
+  │  8086    │  │   8087      │  │    8088    │
+  └──────────┘  └─────────────┘  └────────────┘
+                      │
+            ┌─────────▼──────────┐
+            │    API Gateway      │  (8089 / DB 5441)
+            │  (single entry pt)  │
+            └─────────┬──────────┘
+                       │
+                   ┌───▼───┐
+                   │ Client │
+                   └────────┘
+
+   ```
+
+  **Base URL (via Gateway):** `http://localhost:8089`
+
+  Each service is an independently deployable Spring Boot application with its own dedicated PostgreSQL database (database-per-service pattern) — there is no shared schema between services.
+
+  ---
+
+  ## Service Directory
+
+  | # | Folder Name | Package | Main Class | App Port | DB Port |
+  | --- | --- | --- | --- | --- | --- |
+  | 1 | `pharma-aggregator-buyer-service` | `com.tiameds.pharmaaggregator.buyerservice` | `BuyerServiceApplication` | 8081 | 5433 |
+  | 2 | `pharma-aggregator-seller-service` | `com.tiameds.pharmaaggregator.sellerservice` | `SellerServiceApplication` | 8082 | 5434 |
+  | 3 | `pharma-aggregator-product-service` | `com.tiameds.pharmaaggregator.productservice` | `ProductServiceApplication` | 8083 | 5435 |
+  | 4 | `pharma-aggregator-order-service` | `com.tiameds.pharmaaggregator.orderservice` | `OrderServiceApplication` | 8084 | 5436 |
+  | 5 | `pharma-aggregator-quotation-service` | `com.tiameds.pharmaaggregator.quotationservice` | `QuotationServiceApplication` | 8085 | 5437 |
+  | 6 | `pharma-aggregator-search-service` | `com.tiameds.pharmaaggregator.searchservice` | `SearchServiceApplication` | 8086 | 5438 |
+  | 7 | `pharma-aggregator-billing-service` | `com.tiameds.pharmaaggregator.billingservice` | `BillingServiceApplication` | 8087 | 5439 |
+  | 8 | `pharma-aggregator-notification-service` | `com.tiameds.pharmaaggregator.notificationservice` | `NotificationServiceApplication` | 8088 | 5440 |
+  | 9 | `pharma-aggregator-api-gateway` | `com.tiameds.pharmaaggregator.apigateway` | `ApiGatewayApplication` | 8089 | 5441 |
+  | 10 | `pharma-aggregator-service-registry` | `com.tiameds.pharmaaggregator.serviceregistry` | `ServiceRegistryApplication` | 8090 | 5442 |
+  | 11 | `pharma-aggregator-config-server` | `com.tiameds.pharmaaggregator.configserver` | `ConfigServerApplication` | 8091 | 5443 |
+
+  ### Service Responsibilities
+
+  | Service | Purpose |
+  | --- | --- |
+  | **Buyer Service** | Buyer registration, profile management, authentication, buyer preferences |
+  | **Seller Service** | Seller/vendor onboarding, verification, catalog ownership, seller profiles |
+  | **Product Service** | Pharmaceutical product catalog, SKUs, batch/expiry tracking, pricing |
+  | **Order Service** | Order creation, status tracking, order history, fulfillment workflow |
+  | **Quotation Service** | RFQ (Request for Quotation), price negotiation, quote approvals between buyers & sellers |
+  | **Search Service** | Product/seller search, filtering, discovery |
+  | **Billing Service** | Invoicing, payment processing, billing history |
+  | **Notification Service** | Email/SMS/push notifications for order updates, quotations, and alerts |
+  | **API Gateway** | Single entry point; routes all client requests to the correct downstream service |
+  | **Service Registry** | Eureka server — service discovery and health monitoring |
+  | **Config Server** | Centralized externalized configuration (Spring Cloud Config) for all microservices |
+
+  ---
+
+  ## Database Configuration
+
+  | # | Service | Recommended Database Name | DB Port |
+  | --- | --- | --- | --- |
+  | 1 | Buyer Service | `pharma_aggregator_buyer_db` | 5433 |
+  | 2 | Seller Service | `pharma_aggregator_seller_db` | 5434 |
+  | 3 | Product Service | `pharma_aggregator_product_db` | 5435 |
+  | 4 | Order Service | `pharma_aggregator_order_db` | 5436 |
+  | 5 | Quotation Service | `pharma_aggregator_quotation_db` | 5437 |
+  | 6 | Search Service | `pharma_aggregator_search_db` | 5438 |
+  | 7 | Billing Service | `pharma_aggregator_billing_db` | 5439 |
+  | 8 | Notification Service | `pharma_aggregator_notification_db` | 5440 |
+  | 9 | API Gateway | `pharma_aggregator_gateway_db`\* | 5441 |
+  | 10 | Service Registry | `pharma_aggregator_registry_db`\* | 5442 |
+  | 11 | Config Server | `pharma_aggregator_config_db`\* | 5443 |
+
+  \* Infrastructure services (Gateway, Registry, Config Server) typically don't need a business database — a DB port is reserved here for consistency/future use (e.g., audit logs, dynamic route config).
+
+  ---
+
+  ## Postman Collection Guide
+
+  ### Collection Folder Structure
+
+  ```
+  Pharma Aggregator - Marketplace
+  │
+  ├── 01 - Buyer Service
+  │    ├── Register Buyer
+  │    ├── Login Buyer
+  │    ├── Get Buyer Profile
+  │    ├── Update Buyer Profile
+  │    └── List/Search Buyers (admin)
+  │
+  ├── 02 - Seller Service
+  │    ├── Register Seller
+  │    ├── Login Seller
+  │    ├── Get Seller Profile
+  │    ├── Update Seller Profile
+  │    └── Seller Verification Status
+  │
+  ├── 03 - Product Service
+  │    ├── Add Product
+  │    ├── Update Product
+  │    ├── Get Product by ID
+  │    ├── List Products (by seller)
+  │    └── Delete Product
+  │
+  ├── 04 - Order Service
+  │    ├── Create Order
+  │    ├── Get Order by ID
+  │    ├── List Orders (by buyer/seller)
+  │    ├── Update Order Status
+  │    └── Cancel Order
+  │
+  ├── 05 - Quotation Service
+  │    ├── Request Quotation (RFQ)
+  │    ├── Respond to Quotation (seller)
+  │    ├── Approve/Reject Quotation (buyer)
+  │    └── List Quotations
+  │
+  ├── 06 - Search Service
+  │    ├── Search Products
+  │    ├── Search Sellers
+  │    └── Filter/Facet Search
+  │
+  ├── 07 - Billing Service
+  │    ├── Generate Invoice
+  │    ├── Get Invoice by Order ID
+  │    ├── Process Payment
+  │    └── Billing History
+  │
+  ├── 08 - Notification Service
+  │    ├── Send Notification (internal/test)
+  │    ├── Get Notification History
+  │    └── Notification Preferences
+  │
+  ├── 09 - API Gateway
+  │    ├── Health Check
+  │    └── Route Verification (per service)
+  │
+  ├── 10 - Service Registry
+  │    ├── Eureka Dashboard (GET /)
+  │    ├── List Registered Apps
+  │    └── Instance Health
+  │
+  └── 11 - Config Server
+       ├── Get Config (per service/profile)
+       └── Config Server Health
+
+   ```
+
+  ### Base Path Convention (via Gateway)
+
+  | Service | Suggested Base Path |
+  | --- | --- |
+  | Buyer Service | `/api/buyers` |
+  | Seller Service | `/api/sellers` |
+  | Product Service | `/api/products` |
+  | Order Service | `/api/orders` |
+  | Quotation Service | `/api/quotations` |
+  | Search Service | `/api/search` |
+  | Billing Service | `/api/billing` |
+  | Notification Service | `/api/notifications` |
+  | API Gateway | `/` |
+  | Service Registry | `/eureka` |
+  | Config Server | `/config` |
+
+  ---
+
+  ## Environment Variables
+
+  Create a Postman **Environment** named `Pharma Aggregator - Local` with the following variables:
+
+  | Variable | Description | Example Value |
+  | --- | --- | --- |
+  | `gateway_url` | API Gateway base URL | `http://localhost:8089` |
+  | `buyer_service_url` | Direct Buyer Service URL | `http://localhost:8081` |
+  | `seller_service_url` | Direct Seller Service URL | `http://localhost:8082` |
+  | `product_service_url` | Direct Product Service URL | `http://localhost:8083` |
+  | `order_service_url` | Direct Order Service URL | `http://localhost:8084` |
+  | `quotation_service_url` | Direct Quotation Service URL | `http://localhost:8085` |
+  | `search_service_url` | Direct Search Service URL | `http://localhost:8086` |
+  | `billing_service_url` | Direct Billing Service URL | `http://localhost:8087` |
+  | `notification_service_url` | Direct Notification Service URL | `http://localhost:8088` |
+  | `registry_url` | Service Registry (Eureka) URL | `http://localhost:8090` |
+  | `config_server_url` | Config Server URL | `http://localhost:8091` |
+  | `auth_token` | JWT bearer token (set after login) | `{{token}}` |
+  | `buyer_id` | Sample buyer ID for chained requests | `1` |
+  | `seller_id` | Sample seller ID for chained requests | `1` |
+  | `product_id` | Sample product ID for chained requests | `1` |
+  | `order_id` | Sample order ID for chained requests | `1` |
+
+  > 
+
+  💡 **Best Practice:** Use `{{gateway_url}}` as the base URL for all requests so traffic flows through the Gateway (mirroring production routing). Keep the individual `\*_service_url` variables available for direct, isolated debugging of a single service.
+
+   
+    
+
+  ---
+
+  ## Authentication
+
+  Most Buyer, Seller, Order, Quotation, and Billing endpoints require a **Bearer Token**, issued after a successful login via the Buyer or Seller authentication endpoint.
+
+  **Collection-level Auth setup:**
+
+  - Type: `Bearer Token`
+      
+  - Token: `{{auth_token}}`
+      
+
+  **Recommended flow:**
+
+  1. Call `Login Buyer` or `Login Seller`.
+      
+  2. const response = pm.response.json();pm.environment.set("auth_token", response.token);
+      
+  3. All subsequent requests in the collection automatically inherit `{{auth_token}}`.
+      
+
+  ---
+
+  ## Suggested Testing Flow
+
+  1. **Service Registry** — confirm all 9 business services are registered (`GET {{registry_url}}/eureka/apps`)
+      
+  2. **Config Server** — verify each service can fetch its configuration
+      
+  3. **Seller Service** — register and log in a seller
+      
+  4. **Product Service** — seller adds one or more products
+      
+  5. **Buyer Service** — register and log in a buyer
+      
+  6. **Search Service** — buyer searches for the newly added product
+      
+  7. **Quotation Service** — buyer requests a quote → seller responds → buyer approves
+      
+  8. **Order Service** — buyer places an order from the approved quotation
+      
+  9. **Billing Service** — generate an invoice and process payment for the order
+      
+  10. **Notification Service** — verify notifications fired for quotation/order/billing events
+      
+  11. **API Gateway** — re-run the key requests above through `{{gateway_url}}` to confirm end-to-end routing
+      
+
+  ---
+
+  ## Notes & Conventions
+
+  - **Database-per-service**: Each business service owns an isolated PostgreSQL database; no service accesses another's schema directly.
+      
+  - **Tech stack**: Spring Boot microservices, Spring Cloud Config, Netflix Eureka (Service Registry), Spring Cloud Gateway.
+      
+  - **Local ports**: All ports listed assume local development. Update environment variables accordingly for staging/production deployments.
+      
+  - **Naming convention**: Databases follow the pattern `pharma_aggregator__db`.
+      
+  - **Versioning**: Consider prefixing API paths with a version, e.g. `/api/v1/products`, once the API stabilizes.
+      
+  - **Error handling**: Standardize error response shape across all services (e.g., `{ "timestamp", "status", "error", "message", "path" }`) for consistent client-side handling in Postman tests.

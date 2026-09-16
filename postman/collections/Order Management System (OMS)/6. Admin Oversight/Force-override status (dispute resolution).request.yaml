@@ -1,0 +1,16 @@
+$kind: http-request
+description: Force-transitions every SellerOrder under this Order to newStatus, bypassing the normal legal-transition check — still writes OrderStatusHistory with changedByRole ADMIN. Use sparingly; this does not reverse stock/refunds automatically the way the normal cancel flow does.
+url: "{{baseUrl}}/admin/orders/{{orderId}}/override"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "newStatus": "CANCELLED",
+      "reason": "Fraud investigation - buyer account suspended",
+      "adminId": "admin@tiameds.ai"
+    }
+settings: {}
+order: 2000

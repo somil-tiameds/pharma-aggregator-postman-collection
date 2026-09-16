@@ -1,0 +1,15 @@
+$kind: collection
+name: Full Admin Dashboard (lab-admin/stats)
+description: Login (OTP flow) as a lab ADMIN, then call each /lab-admin/stats endpoint separately. The Verify OTP request auto-extracts the accessToken cookie into the {{accessToken}} collection variable used by every request below.
+variables:
+  baseUrl: http://localhost:8080/api/v1
+  username: admin_username
+  password: admin_password
+  email: admin@example.com
+  otp: "123456"
+  accessToken: ""
+  labId: "1"
+  startDate: 2026-08-01
+  endDate: 2026-09-04
+  patientId: "1"
+  limit: "10"

@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/authentication/verify-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "{{sellerUsername}}",
+      "otp": "123456"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+        const body = pm.response.json();
+        if (body.accessToken) pm.collectionVariables.set('sellerAccessToken', body.accessToken);
+        if (body.refreshToken) pm.collectionVariables.set('sellerRefreshToken', body.refreshToken);
+      }
+    language: text/javascript
+settings: {}
+order: 2000

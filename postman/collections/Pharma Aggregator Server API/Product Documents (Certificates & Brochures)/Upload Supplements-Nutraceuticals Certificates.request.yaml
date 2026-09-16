@@ -1,0 +1,37 @@
+$kind: http-request
+name: Upload Supplements/Nutraceuticals Certificates
+description: Uploads one or more compliance certificate files for a Supplements/Nutraceuticals product attribute.
+url: "{{baseUrl}}/product-documents/supplements/{{productAttributeId}}/certificates"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: certificateFiles
+      src: /path/to/certificate-1.pdf
+    - type: file
+      key: certificateFiles
+      src: /path/to/certificate-2.pdf
+    - type: text
+      key: documentIds
+      value: "4"
+    - type: text
+      key: documentIds
+      value: "5"
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 5000

@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/update-samples"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "visitId": 101,
+      "labId": 1,
+      "samples": [{ "sampleId": 1, "status": "PROCESSED" }]
+    }
+settings: {}
+order: 6000

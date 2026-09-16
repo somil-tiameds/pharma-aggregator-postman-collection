@@ -1,0 +1,6 @@
+$kind: http-request
+description: "WARNING: Deletes all patient visits for the specified lab. Use with extreme caution."
+url: "{{baseUrl}}/lab/{{labId}}/delete-all-patient-visits"
+method: DELETE
+settings: {}
+order: 11000

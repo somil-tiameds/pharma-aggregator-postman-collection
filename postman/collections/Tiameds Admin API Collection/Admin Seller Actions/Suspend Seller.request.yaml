@@ -1,0 +1,16 @@
+$kind: http-request
+description: Suspend a seller account temporarily
+url: "{{baseUrl}}/admin/sellers/{{sellerId}}/suspend"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "reason": "Violation of marketplace policies",
+      "suspensionDays": 30
+    }
+settings: {}
+order: 1000

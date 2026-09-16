@@ -1,0 +1,25 @@
+$kind: http-request
+description: OTP must be exactly 6 digits. Auto-saves tokens/buyerUserId into collection variables.
+url: "{{baseUrl}}/buyer/authentication/verify-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "{{buyerUsername}}",
+      "otp": "123456"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+        const body = pm.response.json();
+        if (body.accessToken) pm.collectionVariables.set('buyerAccessToken', body.accessToken);
+        if (body.refreshToken) pm.collectionVariables.set('buyerRefreshToken', body.refreshToken);
+        if (body.buyerUserId) pm.collectionVariables.set('buyerUserId', String(body.buyerUserId));
+      }
+    language: text/javascript
+settings: {}
+order: 4000

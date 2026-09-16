@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/report"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "visitId": 101,
+      "testResults": [
+        {
+          "testId": 1,
+          "testName": "Hemoglobin",
+          "result": "14.5",
+          "unit": "g/dL",
+          "referenceRange": "13.5-17.5",
+          "status": "NORMAL"
+        }
+      ],
+      "remarks": "All values within normal range",
+      "reportedBy": "Dr. Smith"
+    }
+settings: {}
+order: 2000

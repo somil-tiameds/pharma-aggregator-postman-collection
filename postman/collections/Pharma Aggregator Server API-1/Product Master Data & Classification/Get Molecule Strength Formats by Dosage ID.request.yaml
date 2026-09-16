@@ -1,0 +1,19 @@
+$kind: http-request
+description: Returns the valid strength-format options (e.g. mg, mg/ml) for molecules of a given dosage form.
+url: "{{baseUrl}}/dosageMolecule/strengthFormat/{{dosageId}}"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 31000

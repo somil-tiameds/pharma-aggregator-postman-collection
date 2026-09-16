@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/seller-requests/pending/{{pendingSellerId}}"
+method: GET
+settings: {}
+order: 2000

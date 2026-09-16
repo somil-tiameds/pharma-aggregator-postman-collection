@@ -1,0 +1,30 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/auth/login"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "username": "deep",
+        "password": "Seller@123"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "status": "success",
+        "message": "OTP sent to your registered email",
+        "data": {
+          "email": "admin@example.com",
+          "message": "OTP sent to your registered email address"
+        }
+      }
+order: 1000

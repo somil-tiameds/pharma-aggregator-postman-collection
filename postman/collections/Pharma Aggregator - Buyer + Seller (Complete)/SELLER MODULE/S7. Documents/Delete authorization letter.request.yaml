@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}/files/authorization-letter"
+method: DELETE
+settings: {}
+order: 4000

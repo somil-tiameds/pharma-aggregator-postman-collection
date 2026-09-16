@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/pricing-details/create"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productId": 1,
+      "costPrice": 40.00,
+      "mrp": 60.00,
+      "sellingPrice": 50.00,
+      "quantity": 100,
+      "packType": "Box"
+    }
+settings: {}
+order: 1000

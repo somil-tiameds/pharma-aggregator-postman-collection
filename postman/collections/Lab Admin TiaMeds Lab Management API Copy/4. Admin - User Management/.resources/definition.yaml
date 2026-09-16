@@ -1,0 +1,3 @@
+$kind: collection
+description: Super-admin endpoints for managing users and roles. Requires ROLE_ADMIN.
+order: 4000

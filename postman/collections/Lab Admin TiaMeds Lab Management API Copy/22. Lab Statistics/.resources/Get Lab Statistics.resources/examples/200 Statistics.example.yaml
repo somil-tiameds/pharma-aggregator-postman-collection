@@ -1,0 +1,21 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/lab/statistics/{{labId}}?startDate=2024-01-01&endDate=2024-01-31"
+  method: GET
+  queryParams:
+    startDate: 2024-01-01
+    endDate: 2024-01-31
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: text
+    content: |-
+      {
+        "totalPatients": 250,
+        "totalVisits": 310,
+        "totalRevenue": 125000.00,
+        "totalPending": 15000.00,
+        "totalTests": 620
+      }
+order: 1000

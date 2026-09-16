@@ -1,0 +1,6 @@
+$kind: http-request
+description: Get specific user by ID.
+url: "{{baseUrl}}/admin/users/{{userId}}"
+method: GET
+settings: {}
+order: 2000

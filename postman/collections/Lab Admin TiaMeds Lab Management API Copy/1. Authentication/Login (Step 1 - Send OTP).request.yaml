@@ -1,0 +1,16 @@
+$kind: http-request
+description: Step 1 of login. Validates credentials and sends OTP to registered email. Supports username or email as identifier.
+url: "{{baseUrl}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "deep",
+      "password": "Seller@123"
+    }
+settings: {}
+examples: ./.resources/Login (Step 1 - Send OTP).resources/examples
+order: 2000

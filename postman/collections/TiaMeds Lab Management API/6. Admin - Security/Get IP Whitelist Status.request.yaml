@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns current IP whitelist status and enabled IPs.
+url: "{{baseUrl}}/admin/security/ip-whitelist/status"
+method: GET
+settings: {}
+order: 1000

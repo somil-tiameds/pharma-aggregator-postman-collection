@@ -1,0 +1,3 @@
+$kind: collection
+description: Super admin operations across all labs. Requires ROLE_SUPERADMIN.
+order: 23000

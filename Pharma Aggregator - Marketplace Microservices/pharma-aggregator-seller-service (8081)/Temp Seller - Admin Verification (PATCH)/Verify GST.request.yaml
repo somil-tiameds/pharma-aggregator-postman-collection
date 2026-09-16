@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}/verify/gst"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "isGstVerified": true
+    }
+order: 1000

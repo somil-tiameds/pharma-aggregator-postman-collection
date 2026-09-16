@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}/files/org-logo"
+method: DELETE
+settings: {}
+order: 4000

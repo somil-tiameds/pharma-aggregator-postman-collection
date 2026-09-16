@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/lab/{{labId}}/doctors/{{doctorId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Dr. Priya Patel Updated",
+      "specialization": "Clinical Pathology",
+      "phone": "+91-9988776655"
+    }
+settings: {}
+order: 4000

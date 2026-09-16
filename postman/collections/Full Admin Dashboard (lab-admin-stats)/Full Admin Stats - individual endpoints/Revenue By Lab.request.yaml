@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/lab-admin/stats/{{labId}}/revenue-by-lab?startDate={{startDate}}&endDate={{endDate}}"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+queryParams:
+  startDate: "{{startDate}}"
+  endDate: "{{endDate}}"
+settings: {}
+order: 15000

@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/sellers/{{sellerId}}"
+method: DELETE
+settings: {}
+order: 7000

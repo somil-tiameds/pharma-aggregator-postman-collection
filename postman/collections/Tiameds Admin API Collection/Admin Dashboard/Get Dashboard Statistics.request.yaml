@@ -1,0 +1,9 @@
+$kind: http-request
+description: Get admin dashboard statistics and metrics
+url: "{{baseUrl}}/admin/dashboard/stats"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+settings: {}
+order: 1000

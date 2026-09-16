@@ -1,0 +1,24 @@
+$kind: http-request
+description: Admin login endpoint to get authentication token
+url: "{{baseUrl}}/admin/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "admin",
+      "password": "Admin@123"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+          var jsonData = pm.response.json();
+          pm.environment.set('authToken', jsonData.data.token);
+          pm.environment.set('adminId', jsonData.data.adminId);
+      }
+    language: text/javascript
+settings: {}
+order: 1000

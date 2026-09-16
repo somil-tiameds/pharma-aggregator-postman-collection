@@ -1,0 +1,15 @@
+$kind: http-request
+description: Update seller verification status
+url: "{{baseUrl}}/admin/sellers/{{sellerId}}/status"
+method: PUT
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "status": "VERIFIED"
+    }
+settings: {}
+order: 4000

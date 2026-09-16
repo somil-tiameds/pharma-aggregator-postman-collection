@@ -1,0 +1,8 @@
+$kind: http-request
+description: Adds an IP address to the whitelist.
+url: "{{baseUrl}}/admin/security/ip-whitelist/add?ipAddress=192.168.1.100"
+method: POST
+queryParams:
+  ipAddress: 192.168.1.100
+settings: {}
+order: 4000

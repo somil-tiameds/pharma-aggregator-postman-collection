@@ -1,0 +1,7 @@
+$kind: http-request
+name: Cancel/rollback pending profile update
+description: Frontend calls this immediately if step 2's upload returns an error.
+url: "{{baseUrl}}/sellers/pendingSellerId/{{pendingSellerId}}"
+method: DELETE
+settings: {}
+order: 3000

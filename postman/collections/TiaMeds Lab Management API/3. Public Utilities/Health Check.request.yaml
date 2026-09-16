@@ -1,0 +1,7 @@
+$kind: http-request
+description: Returns server health status. No authentication required.
+url: "{{baseUrl}}/public/health-check"
+method: GET
+settings: {}
+examples: ./.resources/Health Check.resources/examples
+order: 1000

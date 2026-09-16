@@ -1,0 +1,16 @@
+$kind: http-request
+description: Password needs upper+lower+digit+special, >=8 chars. Phone must be exactly 10 digits.
+url: "{{baseUrl}}/buyer/auth/signup"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "newbuyer@example.com",
+      "phone": "9876543210",
+      "password": "Buyer@12345"
+    }
+settings: {}
+order: 1000

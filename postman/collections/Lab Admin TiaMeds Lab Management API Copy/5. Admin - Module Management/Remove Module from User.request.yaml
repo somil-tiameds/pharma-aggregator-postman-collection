@@ -1,0 +1,6 @@
+$kind: http-request
+description: Remove a module from a user.
+url: "{{baseUrl}}/admin/users/{{userId}}/modules/{{moduleId}}"
+method: DELETE
+settings: {}
+order: 7000

@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns all visits for the specified lab.
+url: "{{baseUrl}}/lab/{{labId}}/visits"
+method: GET
+settings: {}
+order: 2000

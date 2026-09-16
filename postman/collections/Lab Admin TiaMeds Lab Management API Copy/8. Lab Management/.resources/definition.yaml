@@ -1,0 +1,3 @@
+$kind: collection
+description: CRUD operations for lab entities. Requires ROLE_ADMIN or ROLE_SUPERADMIN.
+order: 8000

@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/invoices/{{invoiceId}}"
+method: GET
+settings: {}
+order: 2000

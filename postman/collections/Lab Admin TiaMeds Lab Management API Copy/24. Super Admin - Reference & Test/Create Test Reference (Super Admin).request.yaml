@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/super-admin/referance-and-test/test-referance/create"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "testName": "Glucose Fasting",
+      "unit": "mg/dL",
+      "normalRange": "70-100",
+      "criticalLow": 50,
+      "criticalHigh": 500
+    }
+settings: {}
+order: 7000

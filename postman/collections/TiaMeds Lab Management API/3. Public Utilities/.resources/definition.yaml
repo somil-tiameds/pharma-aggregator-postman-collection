@@ -1,0 +1,3 @@
+$kind: collection
+description: Health checks and public utility endpoints.
+order: 3000

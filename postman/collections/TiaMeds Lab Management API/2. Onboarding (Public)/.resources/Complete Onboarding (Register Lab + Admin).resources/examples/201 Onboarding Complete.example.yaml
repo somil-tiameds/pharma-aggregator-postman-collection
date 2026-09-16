@@ -1,0 +1,65 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/public/onboarding/complete"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "token": "{{token}}",
+        "email": "admin@newlab.com",
+        "username": "labadmin",
+        "password": "Admin@12345",
+        "firstName": "John",
+        "lastName": "Doe",
+        "phone": "+91-9876543210",
+        "address": "123 Lab Street",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "zip": "400001",
+        "country": "India",
+        "lab": {
+          "name": "Apollo Diagnostics",
+          "address": "456 Medical Plaza",
+          "city": "Mumbai",
+          "state": "Maharashtra",
+          "description": "Full-service diagnostic laboratory",
+          "labLogo": "",
+          "licenseNumber": "LAB-MH-2024-001",
+          "labType": "DIAGNOSTIC",
+          "labZip": "400001",
+          "labCountry": "India",
+          "labPhone": "+91-2222334455",
+          "labEmail": "info@apollo-diag.com",
+          "directorName": "Dr. Smith",
+          "directorEmail": "dr.smith@apollo-diag.com",
+          "directorPhone": "+91-9999888877",
+          "certificationBody": "NABL",
+          "labCertificate": "",
+          "directorGovtId": "",
+          "labBusinessRegistration": "REG-MH-001",
+          "labLicense": "LIC-001",
+          "taxId": "TAX-001",
+          "labAccreditation": "ISO-15189",
+          "dataPrivacyAgreement": true
+        }
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  body:
+    type: text
+    content: |-
+      {
+        "status": "success",
+        "message": "Onboarding completed successfully",
+        "data": {
+          "userId": 1,
+          "labId": 1,
+          "username": "labadmin",
+          "email": "admin@newlab.com"
+        }
+      }
+order: 1000

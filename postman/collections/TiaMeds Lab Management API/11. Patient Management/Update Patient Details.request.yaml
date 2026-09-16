@@ -1,0 +1,21 @@
+$kind: http-request
+description: Updates patient demographic details only (no visit data). More granular than update-patient.
+url: "{{baseUrl}}/lab/{{labId}}/update-patient-details/{{patientId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "firstName": "Rahul",
+      "lastName": "Sharma",
+      "email": "rahul.new@gmail.com",
+      "phone": "+91-9876543210",
+      "address": "New Address",
+      "bloodGroup": "A+",
+      "dateOfBirth": "1990-05-15",
+      "gender": "MALE"
+    }
+settings: {}
+order: 6000

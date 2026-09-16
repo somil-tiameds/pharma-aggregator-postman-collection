@@ -1,0 +1,7 @@
+$kind: http-request
+description: Returns all billing records for a lab.
+url: "{{baseUrl}}/lab/{{labId}}/billing"
+method: GET
+settings: {}
+examples: ./.resources/Get Billing List.resources/examples
+order: 1000

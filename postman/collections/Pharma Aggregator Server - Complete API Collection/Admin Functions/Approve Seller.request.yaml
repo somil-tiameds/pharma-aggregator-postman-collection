@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/admin-seller-approval/approve/1"
+method: PUT
+headers:
+  Authorization: Bearer {{adminToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerId": 1,
+      "status": "APPROVED",
+      "remarks": "All documents verified"
+    }
+settings: {}
+order: 2000

@@ -1,0 +1,6 @@
+$kind: http-request
+description: Assign a module to a user.
+url: "{{baseUrl}}/admin/users/{{userId}}/modules/{{moduleId}}"
+method: POST
+settings: {}
+order: 6000

@@ -1,0 +1,26 @@
+$kind: http-request
+description: Request seller to correct information and resubmit
+url: "{{baseUrl}}/admin/sellers/review"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "id": {{pendingSellerId}},
+      "status": "CORRECTION",
+      "comments": "Please update business registration number and resubmit"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+          pm.test('Correction request sent', function() {
+              pm.expect(pm.response.status).to.equal('OK');
+          });
+      }
+    language: text/javascript
+settings: {}
+order: 3000

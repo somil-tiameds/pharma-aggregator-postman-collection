@@ -1,0 +1,17 @@
+$kind: http-request
+description: Update user details by ID.
+url: "{{baseUrl}}/admin/users/{{userId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "firstName": "Updated",
+      "lastName": "Name",
+      "email": "updated@example.com",
+      "enabled": true
+    }
+settings: {}
+order: 3000

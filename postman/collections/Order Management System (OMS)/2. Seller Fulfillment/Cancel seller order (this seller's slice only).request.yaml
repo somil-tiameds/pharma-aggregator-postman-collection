@@ -1,0 +1,16 @@
+$kind: http-request
+description: "Note: this endpoint's body is CancelOrderRequestDTO (actorRole/actorId/reason), NOT the simpler SellerOrderActionRequestDTO the other seller-order actions use — only cancel needs to record who initiated it (buyer, seller, or admin). Ownership-checked: SELLER must match this sub-order's real sellerId, BUYER must match the parent order's real buyerId — either gets a 401 otherwise. ADMIN is unrestricted."
+url: "{{baseUrl}}/seller-orders/{{sellerOrderId}}/cancel"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "actorRole": "SELLER",
+      "actorId": "{{sellerId}}",
+      "reason": "Out of stock"
+    }
+settings: {}
+order: 8000

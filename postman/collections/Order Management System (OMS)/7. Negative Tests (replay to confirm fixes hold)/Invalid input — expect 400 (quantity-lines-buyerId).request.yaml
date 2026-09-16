@@ -1,0 +1,19 @@
+$kind: http-request
+name: Invalid input — expect 400 (quantity/lines/buyerId)
+description: "Missing buyerId AND a zero quantity in the same request — expect 400 with both 'buyerId is required' and 'quantity must be positive' in the validation error map. Also try quantity: -5, or lines: [] entirely, for the same class of rejection."
+url: "{{baseUrl}}/orders"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "deliveryPhone": "9998887771",
+      "paymentMethod": "COD",
+      "lines": [
+        { "productId": "{{productId}}", "pricingId": "{{pricingId}}", "quantity": 0 }
+      ]
+    }
+settings: {}
+order: 4000

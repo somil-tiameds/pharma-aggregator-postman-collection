@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/update-visit/{{visitId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "visitType": "IN-PATIENT",
+      "visitStatus": "ACTIVE",
+      "visitDescription": "Updated visit description",
+      "doctorId": 2,
+      "testIds": [1, 2]
+    }
+settings: {}
+order: 5000

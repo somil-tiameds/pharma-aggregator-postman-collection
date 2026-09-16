@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/taluka-master/district/1"
+method: GET
+settings: {}
+order: 3000

@@ -1,0 +1,30 @@
+$kind: http-request
+description: Bulk-imports products for the authenticated seller from an uploaded Excel file, scoped to a given product category.
+url: "{{baseUrl}}/products/import"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: /path/to/products-import.xlsx
+    - type: text
+      key: categoryId
+      value: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 7000

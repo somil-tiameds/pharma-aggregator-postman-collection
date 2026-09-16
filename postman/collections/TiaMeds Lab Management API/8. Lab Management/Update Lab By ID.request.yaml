@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/admin/update-lab-by-id/{{labId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Updated Lab Name",
+      "labPhone": "+91-9876543210",
+      "labEmail": "updated@lab.com",
+      "isActive": true
+    }
+settings: {}
+order: 5000

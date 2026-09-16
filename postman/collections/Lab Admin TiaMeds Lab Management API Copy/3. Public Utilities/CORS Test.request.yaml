@@ -1,0 +1,6 @@
+$kind: http-request
+description: Tests CORS configuration. Public endpoint.
+url: "{{baseUrl}}/public/cors-test"
+method: GET
+settings: {}
+order: 2000

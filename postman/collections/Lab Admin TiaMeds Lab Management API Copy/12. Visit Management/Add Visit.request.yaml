@@ -1,0 +1,27 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/add-visit/{{patientId}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "visitDate": "2024-01-15",
+      "visitType": "OUT-PATIENT",
+      "visitStatus": "ACTIVE",
+      "visitDescription": "Follow-up blood tests",
+      "doctorId": 1,
+      "testIds": [1, 3],
+      "packageIds": [],
+      "insuranceIds": [],
+      "billing": {
+        "totalAmount": 800.00,
+        "paidAmount": 800.00,
+        "dueAmount": 0.00,
+        "paymentMode": "CARD",
+        "discount": 0.00
+      }
+    }
+settings: {}
+order: 1000

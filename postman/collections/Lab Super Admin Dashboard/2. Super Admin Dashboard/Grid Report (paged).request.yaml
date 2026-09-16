@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/lab-super-admin/stats/grid?startDate={{startDate}}&endDate={{endDate}}&page=0&size=20"
+method: GET
+headers:
+  Authorization: Bearer {{token}}
+queryParams:
+  startDate: "{{startDate}}"
+  endDate: "{{endDate}}"
+  page: "0"
+  size: "20"
+settings: {}
+order: 20000

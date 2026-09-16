@@ -1,0 +1,32 @@
+$kind: http-request
+description: Rejects a pending seller profile-update request with a rejection reason.
+url: "{{baseUrl}}/admin/seller-requests/{{pendingSellerId}}/reject"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "pendingSellerId": 1,
+      "action": "REJECT",
+      "rejectionReason": "Bank document illegible, please re-upload.",
+      "approvedBy": "admin_user"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 6000

@@ -1,0 +1,12 @@
+$kind: http-request
+description: Get activity logs for a specific seller
+url: "{{baseUrl}}/admin/logs/seller/{{sellerId}}?page=0&size=20"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+queryParams:
+  page: "0"
+  size: "20"
+settings: {}
+order: 1000

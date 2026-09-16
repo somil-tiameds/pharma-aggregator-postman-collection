@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/lab-admin/stats/{{labId}}/dashboard-kpis"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+settings: {}
+order: 23000

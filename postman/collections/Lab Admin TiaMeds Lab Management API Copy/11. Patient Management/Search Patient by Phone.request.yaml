@@ -1,0 +1,8 @@
+$kind: http-request
+description: Search patients by phone number within a specific lab.
+url: "{{baseUrl}}/lab/{{labId}}/search-patient?phone=+91-9876543210"
+method: GET
+queryParams:
+  phone: +91-9876543210
+settings: {}
+order: 4000

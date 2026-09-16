@@ -1,0 +1,3 @@
+$kind: collection
+description: Client-facing edge. Routes /api/v1/** to domain services (StripPrefix=2), resolved by plain hostname (Docker DNS locally / ECS Service Connect in prod) — see application.yaml.
+order: 2000

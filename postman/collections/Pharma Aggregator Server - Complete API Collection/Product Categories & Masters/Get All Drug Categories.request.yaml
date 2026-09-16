@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/drug-category/getAll"
+method: GET
+settings: {}
+order: 6000

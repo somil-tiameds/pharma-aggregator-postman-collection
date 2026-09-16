@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns all user members belonging to a specific lab.
+url: "{{baseUrl}}/lab/admin/get-all-members-of-a-lab/{{labId}}"
+method: GET
+settings: {}
+order: 8000

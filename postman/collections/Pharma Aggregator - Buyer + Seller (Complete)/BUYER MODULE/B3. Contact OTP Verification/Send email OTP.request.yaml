@@ -1,0 +1,14 @@
+$kind: http-request
+description: Reused across roles - TempSellerEmailOtp is a generic {email,otp,expiryTime,verified} table with no FK to any seller row.
+url: "{{baseUrl}}/temp-seller/email-otp/send"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "buyer.contact@example.com"
+    }
+settings: {}
+order: 1000

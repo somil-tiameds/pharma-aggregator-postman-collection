@@ -1,0 +1,3 @@
+$kind: collection
+description: Public authentication endpoints. No JWT required. Tokens are set as HttpOnly cookies.
+order: 1000

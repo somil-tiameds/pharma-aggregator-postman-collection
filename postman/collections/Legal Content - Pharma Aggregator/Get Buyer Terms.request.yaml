@@ -1,0 +1,9 @@
+$kind: http-request
+description: Fetches the active Buyer Company Pre-Registration Terms & Conditions content, consumed by TermsStep.tsx in the buyer registration wizard.
+url: "{{baseUrl}}/content/BUYER_TERMS"
+method: GET
+headers:
+  Accept: application/json
+settings: {}
+examples: ./.resources/Get Buyer Terms.resources/examples
+order: 1000

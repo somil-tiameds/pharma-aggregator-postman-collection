@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/lab-admin/stats/category-rollup/backfill?labId={{labId}}&startDate={{startDate}}&endDate={{endDate}}"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+queryParams:
+  labId: "{{labId}}"
+  startDate: "{{startDate}}"
+  endDate: "{{endDate}}"
+settings: {}
+order: 1000

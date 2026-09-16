@@ -1,0 +1,6 @@
+$kind: http-request
+description: "Not admin-only, but useful reference: the 6 buyer types and each one's single mandatory document type id."
+url: "{{baseUrl}}/buyer-types"
+method: GET
+settings: {}
+order: 12000

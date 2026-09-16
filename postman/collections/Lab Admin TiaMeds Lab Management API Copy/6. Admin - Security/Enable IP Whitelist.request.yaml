@@ -1,0 +1,6 @@
+$kind: http-request
+description: Enables IP whitelist filtering globally.
+url: "{{baseUrl}}/admin/security/ip-whitelist/enable"
+method: POST
+settings: {}
+order: 2000

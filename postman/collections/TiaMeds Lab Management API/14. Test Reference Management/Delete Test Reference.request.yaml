@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/test-reference/delete"
+method: DELETE
+settings: {}
+order: 5000

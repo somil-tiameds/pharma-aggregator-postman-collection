@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/draft/{{tempSellerId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerName": "Acme Pharma Distributors",
+      "phone": "{{phone}}",
+      "email": "{{email}}",
+      "companyTypeId": 1,
+      "sellerTypeId": 1
+    }
+order: 2000

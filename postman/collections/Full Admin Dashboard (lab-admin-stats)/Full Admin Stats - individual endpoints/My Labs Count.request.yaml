@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/lab-admin/stats/my-labs/count"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+settings: {}
+order: 1000

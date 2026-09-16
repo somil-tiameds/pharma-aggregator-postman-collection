@@ -1,0 +1,27 @@
+$kind: http-request
+description: All parts optional. documentIds[i] must reference a pre-existing TempBuyerDocument row.
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}/documents/upload"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: orgLogo
+      src: ""
+    - type: file
+      key: gstFile
+      src: ""
+    - type: file
+      key: panFile
+      src: ""
+    - type: file
+      key: licenseFiles
+      src: ""
+    - type: text
+      key: licenseNames
+      value: Drug License
+    - type: text
+      key: documentIds
+      value: "{{buyerDocumentId}}"
+settings: {}
+order: 1000

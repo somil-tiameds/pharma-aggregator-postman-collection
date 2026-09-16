@@ -1,0 +1,13 @@
+$kind: http-request
+description: Get sellers filtered by status with pagination
+url: "{{baseUrl}}/admin/sellers/filter?status=ACTIVE&page=0&size=10"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+queryParams:
+  status: ACTIVE
+  page: "0"
+  size: "10"
+settings: {}
+order: 1000

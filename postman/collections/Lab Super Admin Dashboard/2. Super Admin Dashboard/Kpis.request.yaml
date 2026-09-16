@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/lab-super-admin/stats/kpis?startDate={{startDate}}&endDate={{endDate}}"
+method: GET
+headers:
+  Authorization: Bearer {{token}}
+queryParams:
+  - key: startDate
+    value: "{{startDate}}"
+  - key: endDate
+    value: "{{endDate}}"
+  - key: labId
+    value: "{{labId}}"
+    disabled: true
+settings: {}
+order: 2000

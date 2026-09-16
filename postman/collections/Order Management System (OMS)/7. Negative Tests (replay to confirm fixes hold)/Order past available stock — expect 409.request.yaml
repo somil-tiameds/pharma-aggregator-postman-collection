@@ -1,0 +1,25 @@
+$kind: http-request
+description: Pick a quantity you know exceeds real remaining stock but stays under the packaging's max-order-quantity cap (otherwise you'll hit that check first instead). Expect HTTP 409 — remember the response body's outer 'status' field misleadingly says SUCCESS (see the collection-level description); check the HTTP code and the nested data.status instead.
+url: "{{baseUrl}}/orders"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "buyerId": "{{buyerId}}",
+      "deliveryName": "x",
+      "deliveryPhone": "9998887771",
+      "deliveryAddressLine": "x",
+      "deliveryCity": "x",
+      "deliveryDistrict": "x",
+      "deliveryState": "x",
+      "deliveryPinCode": "560001",
+      "paymentMethod": "COD",
+      "lines": [
+        { "productId": "{{productId}}", "pricingId": "{{pricingId}}", "quantity": 999999 }
+      ]
+    }
+settings: {}
+order: 3000

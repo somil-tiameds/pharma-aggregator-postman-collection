@@ -1,0 +1,9 @@
+$kind: http-request
+description: Reactivate a suspended seller account
+url: "{{baseUrl}}/admin/sellers/{{sellerId}}/reactivate"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+settings: {}
+order: 2000

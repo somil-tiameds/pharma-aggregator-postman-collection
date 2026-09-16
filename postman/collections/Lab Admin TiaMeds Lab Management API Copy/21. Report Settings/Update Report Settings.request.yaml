@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/report-settings"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "footerText": "Updated footer text",
+      "showReferenceRange": false
+    }
+settings: {}
+order: 3000

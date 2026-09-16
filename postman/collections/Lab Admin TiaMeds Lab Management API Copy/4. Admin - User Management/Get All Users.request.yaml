@@ -1,0 +1,7 @@
+$kind: http-request
+description: Retrieves all registered users. Requires ROLE_ADMIN.
+url: "{{baseUrl}}/admin/users"
+method: GET
+settings: {}
+examples: ./.resources/Get All Users.resources/examples
+order: 1000

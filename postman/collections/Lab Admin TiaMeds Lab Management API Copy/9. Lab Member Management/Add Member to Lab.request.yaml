@@ -1,0 +1,6 @@
+$kind: http-request
+description: Adds an existing user as a member of a specific lab.
+url: "{{baseUrl}}/lab/admin/add-member/{{labId}}/member/{{userId}}"
+method: POST
+settings: {}
+order: 1000

@@ -1,0 +1,25 @@
+$kind: http-request
+description: Uploads a user-manual PDF/file for a given drug product attribute.
+url: "{{baseUrl}}/userManual/{{productAttributeId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: /path/to/user-manual.pdf
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 12000

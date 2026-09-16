@@ -1,0 +1,3 @@
+$kind: collection
+description: Lab billing management. Requires ROLE_ADMIN, ROLE_DESKROLE, or ROLE_SUPERADMIN.
+order: 18000

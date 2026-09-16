@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/coordinator/check-gstnumber?gstnumber=27ABCDE1234F1Z5"
+method: GET
+queryParams:
+  gstnumber: 27ABCDE1234F1Z5
+settings: {}
+order: 4000

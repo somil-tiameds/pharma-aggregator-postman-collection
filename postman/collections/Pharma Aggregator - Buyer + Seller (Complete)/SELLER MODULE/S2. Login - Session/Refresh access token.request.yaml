@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/authentication/refresh"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "refreshToken": "{{sellerRefreshToken}}"
+    }
+settings: {}
+order: 3000

@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns all available roles in the system.
+url: "{{baseUrl}}/admin/roles"
+method: GET
+settings: {}
+order: 5000

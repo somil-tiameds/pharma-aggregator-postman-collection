@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/seller-requests/{{pendingSellerId}}/approve?approvedBy={{approvedBy}}"
+method: POST
+queryParams:
+  approvedBy: "{{approvedBy}}"
+settings: {}
+order: 4000

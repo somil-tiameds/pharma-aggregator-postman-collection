@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/user-management/update-user/{{labId}}/{{userId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "firstName": "Updated",
+      "lastName": "User",
+      "phone": "+91-9999888877"
+    }
+settings: {}
+order: 3000

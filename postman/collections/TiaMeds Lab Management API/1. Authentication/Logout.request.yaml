@@ -1,0 +1,7 @@
+$kind: http-request
+description: Revokes refresh token, increments token version (invalidates all sessions), and clears HttpOnly cookies. Requires authenticated session.
+url: "{{baseUrl}}/auth/logout"
+method: POST
+settings: {}
+examples: ./.resources/Logout.resources/examples
+order: 6000

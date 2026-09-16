@@ -1,0 +1,15 @@
+$kind: http-request
+description: Returns a pre-signed S3 URL for uploading doctor signature images.
+url: "{{baseUrl}}/lab/{{labId}}/report-settings/signature/upload-url"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "fileName": "doctor-signature.png",
+      "contentType": "image/png"
+    }
+settings: {}
+order: 4000

@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}/verify/pan"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "isPanVerified": true
+    }
+settings: {}
+order: 5000

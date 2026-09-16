@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/independent/email/send-quick?coordinatorEmail=rahul.sharma@acmepharma.example.com&coordinatorName=Rahul Sharma&applicationRequestId=REQ-2024-0001&sellerName=Acme Pharma Distributors"
+method: POST
+queryParams:
+  coordinatorEmail: rahul.sharma@acmepharma.example.com
+  coordinatorName: Rahul Sharma
+  applicationRequestId: REQ-2024-0001
+  sellerName: Acme Pharma Distributors
+settings: {}
+order: 4000

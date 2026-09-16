@@ -1,0 +1,15 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/public/health-check"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: text
+    content: |-
+      {
+        "status": "UP",
+        "message": "Service is running"
+      }
+order: 1000

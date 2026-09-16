@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/lab/{{labId}}/package/{{packageId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "packageName": "Updated Full Body Checkup",
+      "price": 2800.00
+    }
+settings: {}
+order: 4000

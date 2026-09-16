@@ -1,0 +1,14 @@
+$kind: collection
+description: |-
+  Login + all super-admin dashboard/KPI endpoints (SuperAdminStatsController, SuperAdminDashboardController, DashboardRollupAdminController). Run "Login" first — it auto-captures the JWT into {{token}}, which every dashboard request below sends as `Authorization: Bearer {{token}}`.
+
+  Base URL: {{baseUrl}} (context path /api/v1 included in each request path below).
+variables:
+  baseUrl: http://localhost:8080
+  username: ""
+  password: ""
+  token: ""
+  labId: ""
+  startDate: 2026-04-01
+  endDate: 2026-09-03
+  limit: "10"

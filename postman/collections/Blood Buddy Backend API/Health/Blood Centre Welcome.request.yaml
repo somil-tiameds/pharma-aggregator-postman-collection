@@ -1,0 +1,18 @@
+$kind: http-request
+description: |-
+  Welcome/health-check endpoint scoped under the blood centre module.
+
+  **Controller:** `BloodCentreController`
+  **Method:** GET
+  **Auth:** None
+url: "{{baseUrl}}/blood-centres/bloodbuddy"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+    language: text/javascript
+settings: {}
+order: 2000

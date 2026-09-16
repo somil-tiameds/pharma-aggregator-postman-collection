@@ -1,0 +1,3 @@
+$kind: collection
+description: CRUD for patients within a lab. Requires ROLE_ADMIN, ROLE_DESKROLE, or ROLE_SUPERADMIN.
+order: 11000

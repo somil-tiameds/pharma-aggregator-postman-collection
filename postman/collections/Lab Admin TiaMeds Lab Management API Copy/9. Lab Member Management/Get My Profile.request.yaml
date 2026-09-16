@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns authenticated user's own profile. Available to all lab roles.
+url: "{{baseUrl}}/lab/admin/me"
+method: GET
+settings: {}
+order: 10000

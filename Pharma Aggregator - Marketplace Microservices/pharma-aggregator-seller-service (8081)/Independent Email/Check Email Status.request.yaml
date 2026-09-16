@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/independent/email/status/REQ-2024-0001"
+method: GET
+order: 3000

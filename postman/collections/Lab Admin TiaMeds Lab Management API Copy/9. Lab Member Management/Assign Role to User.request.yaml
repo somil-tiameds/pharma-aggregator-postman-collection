@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/admin/assign-role/{{userId}}/role/{{roleId}}"
+method: PUT
+settings: {}
+order: 5000

@@ -1,0 +1,27 @@
+$kind: http-request
+description: Uploads a nutritional-information label image for a given product attribute, scoped to a product category.
+url: "{{baseUrl}}/nutritionalInformationImage/{{productAttributeId}}?categoryId=1"
+method: POST
+queryParams:
+  categoryId: "1"
+body:
+  type: formdata
+  content:
+    - type: file
+      key: images
+      src: /path/to/nutrition-label.jpg
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 13000

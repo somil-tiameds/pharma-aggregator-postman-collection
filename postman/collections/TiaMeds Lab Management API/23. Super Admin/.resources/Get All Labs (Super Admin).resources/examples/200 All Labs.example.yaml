@@ -1,0 +1,21 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/api/v1/lab-super-admin/labs"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: text
+    content: |-
+      {
+        "status": "success",
+        "message": "Labs retrieved successfully",
+        "data": [{
+          "id": 1,
+          "name": "Apollo Diagnostics",
+          "city": "Mumbai",
+          "isActive": true
+        }]
+      }
+order: 1000

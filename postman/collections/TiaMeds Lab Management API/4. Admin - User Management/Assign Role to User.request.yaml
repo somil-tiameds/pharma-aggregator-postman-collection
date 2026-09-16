@@ -1,0 +1,6 @@
+$kind: http-request
+description: Assign an existing role to a specific user.
+url: "{{baseUrl}}/admin/users/{{userId}}/roles/{{roleId}}"
+method: POST
+settings: {}
+order: 7000

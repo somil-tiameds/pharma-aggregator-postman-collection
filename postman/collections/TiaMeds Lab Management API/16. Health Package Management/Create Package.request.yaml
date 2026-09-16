@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/lab/{{labId}}/package"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "packageName": "Full Body Checkup",
+      "description": "Comprehensive health screening package",
+      "price": 2500.00,
+      "testIds": [1, 2, 3, 4, 5],
+      "isActive": true
+    }
+settings: {}
+order: 2000

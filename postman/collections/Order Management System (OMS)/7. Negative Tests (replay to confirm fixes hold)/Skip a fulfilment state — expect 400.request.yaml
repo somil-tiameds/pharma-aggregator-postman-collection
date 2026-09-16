@@ -1,0 +1,16 @@
+$kind: http-request
+description: Call this on a SellerOrder that's still PLACED (never confirmed/packed). Expect 400 'must be PACKED to move to SHIPPED, but is currently PLACED'.
+url: "{{baseUrl}}/seller-orders/{{sellerOrderId}}/ship"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerId": "{{sellerId}}",
+      "courierName": "X",
+      "trackingNumber": "Y"
+    }
+settings: {}
+order: 2000

@@ -1,0 +1,24 @@
+$kind: http-request
+description: Only allowed once the parent SellerOrder is DELIVERED and within the 7-day return window (placeholder constant, not yet a real business decision).
+url: "{{baseUrl}}/returns"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "orderItemId": {{orderItemId}},
+      "buyerId": "{{buyerId}}",
+      "reason": "Wrong item shipped"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 201) {
+        const body = pm.response.json().data;
+        if (body.returnId) pm.collectionVariables.set('returnId', String(body.returnId));
+      }
+    language: text/javascript
+settings: {}
+order: 1000

@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/super-admin/referance-and-test/test-referance/{{testReferenceId}}/reference-ranges"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "maleMin": 70,
+      "maleMax": 100,
+      "femaleMin": 70,
+      "femaleMax": 100
+    }
+settings: {}
+order: 11000

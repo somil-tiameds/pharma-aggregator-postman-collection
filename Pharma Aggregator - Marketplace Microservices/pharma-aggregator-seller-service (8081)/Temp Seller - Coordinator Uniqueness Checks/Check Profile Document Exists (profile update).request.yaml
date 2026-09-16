@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/coordinator/check-profiledocument?documentnumber=DL-MH-2024-000123"
+method: GET
+queryParams:
+  documentnumber: DL-MH-2024-000123
+order: 7000

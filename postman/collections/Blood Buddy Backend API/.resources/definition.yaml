@@ -1,0 +1,31 @@
+$kind: collection
+description: |-
+  Complete API collection for the Blood Buddy backend (Spring Boot).
+
+  Base path: `{{baseUrl}}` -> `http://localhost:8080/api/v1`
+
+  ### Modules covered
+  - Health / Welcome
+  - Blood Centre Registration
+  - OTP (Twilio) — send & verify
+  - Login (email + password)
+  - Password Reset
+
+  ### Notes
+  - All endpoints are currently open (no JWT/auth filter wired in this service as of the reviewed code).
+  - `blood-centres/send-code` registers a blood centre and (in code, currently commented out) would trigger an OTP send via Twilio.
+  - `BloodAvailabilityController` (`/bloodavailability`) exists in the codebase but currently declares no endpoints — it is a placeholder for future dashboard APIs and is not included here.
+  - Collection uses Postman collection-level and per-request test scripts to assert status codes and capture useful response values into collection variables (e.g. `registeredEmail`).
+variables:
+  baseUrl: http://localhost:8080/api/v1
+  mobileNumber: "9876543210"
+  email: testcentre@bloodbuddy.com
+  password: Test@1234
+  otp: "123456"
+scripts:
+  - type: http:afterResponse
+    code: |-
+      pm.test("Response time is acceptable", function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript

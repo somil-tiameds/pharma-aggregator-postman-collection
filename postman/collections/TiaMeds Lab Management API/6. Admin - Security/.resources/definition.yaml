@@ -1,0 +1,3 @@
+$kind: collection
+description: IP whitelist and rate limiting management. Requires ROLE_ADMIN.
+order: 6000

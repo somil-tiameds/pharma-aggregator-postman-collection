@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/sellers/review"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "id": {{tempSellerId}},
+      "status": "CORRECTION",
+      "comments": "please re-upload GST document"
+    }
+settings: {}
+order: 3000

@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/actuator/gateway/routes"
+method: GET
+order: 2000

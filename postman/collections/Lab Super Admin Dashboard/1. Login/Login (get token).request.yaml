@@ -1,0 +1,30 @@
+$kind: http-request
+description: POST /public/login — returns { status, message, token, data }. The test script above stores `token` into the collection variable {{token}} automatically.
+url: "{{baseUrl}}/api/v1/public/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is 200', function () {
+          pm.response.to.have.status(200);
+      });
+
+      const body = pm.response.json();
+      if (body && body.token) {
+          pm.collectionVariables.set('token', body.token);
+          console.log('token captured:', body.token);
+      } else {
+          console.warn('No token in login response body:', body);
+      }
+    language: text/javascript
+settings: {}
+order: 1000

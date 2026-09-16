@@ -1,0 +1,33 @@
+$kind: http-request
+description: "STEP 1: Validates username + password, and sends an OTP to the seller's registered email. On success, returns username to be used in the verify-otp step. Public endpoint."
+url: "{{baseUrl}}/authentication/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "seller_admin",
+      "password": "P@ssw0rd123"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+
+      pm.test('OTP sent response received', function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData).to.have.property('username');
+      });
+    language: text/javascript
+settings: {}
+order: 1000

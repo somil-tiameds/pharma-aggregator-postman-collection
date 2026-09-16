@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/report"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    [{
+      "reportId": 1,
+      "result": "15.0",
+      "remarks": "Updated value"
+    }]
+settings: {}
+order: 3000

@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/lab-admin/stats/{{labId}}/package-performance?startDate={{startDate}}&endDate={{endDate}}&limit={{limit}}"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+queryParams:
+  startDate: "{{startDate}}"
+  endDate: "{{endDate}}"
+  limit: "{{limit}}"
+settings: {}
+order: 20000

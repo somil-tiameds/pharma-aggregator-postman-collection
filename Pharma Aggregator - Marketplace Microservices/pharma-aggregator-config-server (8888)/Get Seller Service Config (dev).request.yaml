@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/pharma-aggregator-seller-service/dev"
+method: GET
+order: 2000

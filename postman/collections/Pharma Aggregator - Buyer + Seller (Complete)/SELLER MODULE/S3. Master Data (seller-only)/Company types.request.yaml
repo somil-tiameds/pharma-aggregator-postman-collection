@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/company-types"
+method: GET
+settings: {}
+order: 1000

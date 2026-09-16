@@ -1,0 +1,34 @@
+$kind: http-request
+description: Creates a new lab and assigns the authenticated user as creator. Requires ROLE_ADMIN or ROLE_SUPERADMIN.
+url: "{{baseUrl}}/lab/admin/add-lab"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "City Diagnostics Center",
+      "address": "789 Health Avenue",
+      "city": "Delhi",
+      "state": "Delhi",
+      "isActive": true,
+      "description": "Multi-specialty diagnostic center",
+      "labLogo": "",
+      "licenseNumber": "LAB-DL-2024-002",
+      "labType": "PATHOLOGY",
+      "labZip": "110001",
+      "labCountry": "India",
+      "labPhone": "+91-1122334455",
+      "labEmail": "info@citydiag.com",
+      "directorName": "Dr. Kumar",
+      "directorEmail": "dr.kumar@citydiag.com",
+      "directorPhone": "+91-9988776655",
+      "certificationBody": "NABL",
+      "taxId": "TAX-DL-001",
+      "labAccreditation": "ISO-15189",
+      "dataPrivacyAgreement": true
+    }
+settings: {}
+examples: ./.resources/Add Lab.resources/examples
+order: 1000

@@ -1,0 +1,10 @@
+$kind: http-request
+description: Paginated list of all tests. labId is required as query param.
+url: "{{baseUrl}}/admin/lab/tests?labId={{labId}}&page=0&size=10"
+method: GET
+queryParams:
+  labId: "{{labId}}"
+  page: "0"
+  size: "10"
+settings: {}
+order: 1000

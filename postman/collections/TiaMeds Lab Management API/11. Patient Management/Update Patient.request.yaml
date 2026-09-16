@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/update-patient/{{patientId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "firstName": "Rahul",
+      "lastName": "Sharma Updated",
+      "phone": "+91-9876543210",
+      "address": "New Address",
+      "bloodGroup": "O+"
+    }
+settings: {}
+order: 5000

@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/test-reference/{{labId}}/download"
+method: GET
+settings: {}
+order: 8000

@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/sample"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sampleType": "BLOOD",
+      "sampleCode": "BLD-2024-001",
+      "collectedBy": "Tech01",
+      "collectedAt": "2024-01-15T10:30:00",
+      "visitId": 101
+    }
+settings: {}
+order: 2000

@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/lab/{{labId}}/update/{{testId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "testName": "Updated CBC",
+      "price": 300.00,
+      "description": "Updated description"
+    }
+settings: {}
+order: 5000

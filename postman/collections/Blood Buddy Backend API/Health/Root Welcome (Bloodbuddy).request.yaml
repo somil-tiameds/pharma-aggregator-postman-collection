@@ -1,0 +1,21 @@
+$kind: http-request
+description: |-
+  Simple welcome/health-check endpoint served directly at the root mapping.
+
+  **Controller:** `BloodbuddyController`
+  **Method:** GET
+  **Auth:** None
+url: "{{baseUrl}}/bloodbuddy"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Body contains welcome text", function () {
+          pm.expect(pm.response.text()).to.include("Welcome to Bloodbuddy Centre");
+      });
+    language: text/javascript
+settings: {}
+order: 1000

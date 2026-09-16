@@ -1,0 +1,6 @@
+$kind: http-request
+description: Payment is created as COD/SUCCESS at order placement — nothing else writes to it. No webhook exists.
+url: "{{baseUrl}}/payments/{{paymentId}}"
+method: GET
+settings: {}
+order: 1000

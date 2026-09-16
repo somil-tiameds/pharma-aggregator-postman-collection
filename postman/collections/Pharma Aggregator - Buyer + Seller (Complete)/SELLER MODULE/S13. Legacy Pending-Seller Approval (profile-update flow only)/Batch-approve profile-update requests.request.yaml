@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/seller-requests/batch-approve?approvedBy=admin@tiameds.ai"
+method: POST
+headers:
+  Content-Type: application/json
+queryParams:
+  approvedBy: admin@tiameds.ai
+body:
+  type: text
+  content: "[1, 2, 3]"
+settings: {}
+order: 6000

@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/admin/remove-member/{{labId}}/member/{{userId}}"
+method: DELETE
+settings: {}
+order: 2000

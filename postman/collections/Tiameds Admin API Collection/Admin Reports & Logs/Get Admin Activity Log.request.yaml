@@ -1,0 +1,14 @@
+$kind: http-request
+description: Get admin activity logs with date range filter
+url: "{{baseUrl}}/admin/logs/activity?page=0&size=20&dateFrom=2024-01-01&dateTo=2024-12-31"
+method: GET
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+queryParams:
+  page: "0"
+  size: "20"
+  dateFrom: 2024-01-01
+  dateTo: 2024-12-31
+settings: {}
+order: 2000

@@ -1,0 +1,28 @@
+$kind: http-request
+description: "Negative test: submits a deliberately invalid payload to exercise Bean Validation (`@Valid`) and confirm a 400 with field errors is returned."
+url: "{{baseUrl}}/blood-centres/send-code"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "bloodCentreName": "",
+      "licenseNumber": "AB",
+      "mobileNumber": "12345",
+      "email": "not-an-email",
+      "password": "123",
+      "confirmPassword": "456",
+      "address": "",
+      "pincode": "12A456"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status code is 400 (validation failure)", function () {
+          pm.response.to.have.status(400);
+      });
+    language: text/javascript
+settings: {}
+order: 2000

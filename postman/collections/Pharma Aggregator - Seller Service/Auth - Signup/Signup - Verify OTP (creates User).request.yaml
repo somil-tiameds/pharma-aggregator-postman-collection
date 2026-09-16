@@ -1,0 +1,15 @@
+$kind: http-request
+description: Verifies the signup OTP and creates the tbl_user row. No token is issued here — log in separately via Authentication - Login.
+url: "{{baseUrl}}/auth/signup/verify-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "{{email}}",
+      "otp": "123456"
+    }
+settings: {}
+order: 2000

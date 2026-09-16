@@ -1,0 +1,18 @@
+$kind: http-request
+description: Generate seller status report in PDF or Excel format
+url: "{{baseUrl}}/admin/reports/generate"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "reportType": "SELLER_STATUS",
+      "format": "PDF",
+      "dateFrom": "2024-01-01",
+      "dateTo": "2024-12-31"
+    }
+settings: {}
+order: 3000

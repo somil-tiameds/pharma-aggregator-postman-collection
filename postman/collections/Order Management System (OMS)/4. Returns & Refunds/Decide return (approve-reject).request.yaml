@@ -1,0 +1,25 @@
+$kind: http-request
+name: Decide return (approve/reject)
+description: On approve, opens a Refund in REQUESTED against the order's Payment and moves the SellerOrder to RETURN_APPROVED (or RETURN_REJECTED on decline).
+url: "{{baseUrl}}/returns/{{returnId}}/decision"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerId": "{{sellerId}}",
+      "approve": true,
+      "comment": "Approved, pickup arranged"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+        const body = pm.response.json().data;
+        if (body.refundId) pm.collectionVariables.set('refundId', String(body.refundId));
+      }
+    language: text/javascript
+settings: {}
+order: 2000

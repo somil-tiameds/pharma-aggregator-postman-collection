@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/buyer/authentication/logout"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "refreshToken": "{{buyerRefreshToken}}"
+    }
+settings: {}
+order: 6000

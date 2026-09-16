@@ -1,0 +1,25 @@
+workspace:
+  id: 0a43a06d-3d77-43de-8fec-86df77975ae1
+localResources:
+  collections:
+    - ../Pharma Aggregator - Marketplace Microservices
+cloudResources:
+  collections:
+    ../postman/collections/Pharma Aggregator – Marketplace Microservices Postman Collecti: 56247289-26426677-b3c4-4ec8-bcbd-3c48b1bc96e0
+    ../postman/collections/Pharma Aggregator - Seller Service: 56247289-12cd0eb9-5a51-4336-9155-786aaa5f9777
+    ../postman/collections/Full Admin Dashboard (lab-admin-stats): 56247289-423fee89-e1af-4fd1-8261-a9fee7b35e3a
+    ../postman/collections/Lab Admin TiaMeds Lab Management API Copy: 56247289-3c252876-ec15-45ef-a0e9-a731e5b22026
+    ../postman/collections/Lab Super Admin Dashboard: 56247289-6540a742-9c92-497c-9d45-90269237d763
+    ../postman/collections/Blood Buddy Backend API: 56247289-050814c8-6961-4b31-98d8-2438c7c31828
+    ../postman/collections/Legal Content - Pharma Aggregator: 56247289-08594084-7b9c-4613-8f42-7cef3447fb2f
+    ../postman/collections/Order Management System (OMS): 56247289-24ae4cc1-974c-4688-9603-31d6909be501
+    ../postman/collections/Pharma Aggregator - Buyer + Seller (Complete): 56247289-e6d18186-1231-4633-aad2-4b91e9a5d544
+    ../postman/collections/Buyer Admin - Pharma Aggregator: 56247289-994a3a8c-4845-4ea3-a0a5-b22ae3e844d4
+    ../postman/collections/Admin Seller Approval (Manual Test): 56247289-784495a7-15aa-4cac-b36b-a1b8934c4838
+    ../postman/collections/Pharma Aggregator Server API: 56247289-fcf8b998-dcfc-40e6-bed4-b72a6432c4e4
+    ../postman/collections/Product - Batch Delete: 56247289-77f5ca75-4039-4f3f-89e5-9d51082c9497
+    ../postman/collections/Pharma Aggregator Server API-1: 56247289-c14a887e-3184-404a-97e1-ae6d6606bf34
+    ../postman/collections/Tiameds Admin API Collection: 56247289-b6f029bd-122a-4b8e-babf-f52cb8359e7d
+    ../postman/collections/Pharma Aggregator Server - Complete API Collection: 56247289-f62d6e41-1270-4eb9-9f8a-6356fc0b582b
+    ../postman/collections/TiaMeds Lab Management API: 56247289-5eb2f01b-0e71-4f8b-aa2e-14b97654aef6
+    ../postman/collections/My Collection: 56247289-a5255ae7-ad2f-4172-8808-61cab65586aa

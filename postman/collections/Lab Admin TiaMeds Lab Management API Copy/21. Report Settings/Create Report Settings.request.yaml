@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/{{labId}}/report-settings"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "headerText": "Apollo Diagnostics Report",
+      "footerText": "Report valid for 30 days",
+      "logoUrl": "https://s3.amazonaws.com/bucket/logo.png",
+      "showReferenceRange": true,
+      "showDoctorSignature": true,
+      "reportTemplate": "DEFAULT",
+      "roleSettings": {
+        "showPricing": false,
+        "allowPrint": true
+      }
+    }
+settings: {}
+order: 2000

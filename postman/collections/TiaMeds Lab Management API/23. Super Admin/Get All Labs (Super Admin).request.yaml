@@ -1,0 +1,7 @@
+$kind: http-request
+description: Returns all labs in the system. ROLE_SUPERADMIN only.
+url: "{{baseUrl}}/api/v1/lab-super-admin/labs"
+method: GET
+settings: {}
+examples: ./.resources/Get All Labs (Super Admin).resources/examples
+order: 1000

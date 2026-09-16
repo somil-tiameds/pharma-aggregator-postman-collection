@@ -1,0 +1,14 @@
+$kind: http-request
+description: Enable or disable a lab globally. ROLE_SUPERADMIN only. isActive field is required.
+url: "{{baseUrl}}/api/v1/lab-super-admin/lab/{{labId}}/isActive"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "isActive": false
+    }
+settings: {}
+order: 2000

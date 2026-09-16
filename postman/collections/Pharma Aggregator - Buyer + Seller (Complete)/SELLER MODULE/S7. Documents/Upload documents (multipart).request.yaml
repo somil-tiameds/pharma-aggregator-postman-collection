@@ -1,0 +1,33 @@
+$kind: http-request
+description: All parts optional. licenseFiles/licenseNames/documentIds are parallel arrays covering both per-product-type licenses and seller-type agreement documents.
+url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}/documents/upload"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: sellerImage
+      src: ""
+    - type: file
+      key: gstFile
+      src: ""
+    - type: file
+      key: bankFile
+      src: ""
+    - type: file
+      key: companyRegistrationCertificate
+      src: ""
+    - type: file
+      key: authorizationLetter
+      src: ""
+    - type: file
+      key: licenseFiles
+      src: ""
+    - type: text
+      key: licenseNames
+      value: Drug License
+    - type: text
+      key: documentIds
+      value: "{{sellerDocumentId}}"
+settings: {}
+order: 1000

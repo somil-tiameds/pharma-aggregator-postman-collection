@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/talukas"
+method: GET
+settings: {}
+order: 5000

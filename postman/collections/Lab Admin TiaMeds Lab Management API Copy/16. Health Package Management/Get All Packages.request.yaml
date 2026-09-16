@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/lab/{{labId}}/packages"
+method: GET
+settings: {}
+order: 1000

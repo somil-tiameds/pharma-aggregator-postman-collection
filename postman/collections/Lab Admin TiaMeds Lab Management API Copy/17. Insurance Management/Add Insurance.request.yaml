@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/lab/admin/insurance/{{labId}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "insuranceName": "Star Health Insurance",
+      "providerCode": "STAR-001",
+      "contactPerson": "Amit Kumar",
+      "contactPhone": "+91-9876543210",
+      "discountPercentage": 10.0,
+      "isActive": true
+    }
+settings: {}
+order: 1000

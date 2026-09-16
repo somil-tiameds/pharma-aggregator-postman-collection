@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/super-admin/referance-and-test/upload-test-referance"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: ""
+settings: {}
+order: 3000

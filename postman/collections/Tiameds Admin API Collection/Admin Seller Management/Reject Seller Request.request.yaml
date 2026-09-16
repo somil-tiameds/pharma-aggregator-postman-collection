@@ -1,0 +1,26 @@
+$kind: http-request
+description: Reject a pending seller request with rejection reason
+url: "{{baseUrl}}/admin/seller-requests/{{pendingSellerId}}/reject"
+method: POST
+headers:
+  Authorization: Bearer {{authToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "rejectionReason": "Missing required documents",
+      "approvedBy": "{{adminId}}"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      if (pm.response.code === 200) {
+          pm.test('Rejection processed', function() {
+              var jsonData = pm.response.json();
+              pm.expect(jsonData.status).to.equal('SUCCESS');
+          });
+      }
+    language: text/javascript
+settings: {}
+order: 5000

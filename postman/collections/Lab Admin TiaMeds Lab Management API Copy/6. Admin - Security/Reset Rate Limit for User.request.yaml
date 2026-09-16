@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/security/rate-limit/reset?username=johndoe"
+method: POST
+queryParams:
+  username: johndoe
+settings: {}
+order: 7000

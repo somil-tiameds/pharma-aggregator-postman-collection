@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/super-admin/referance-and-test/test-referance/download"
+method: GET
+settings: {}
+order: 4000

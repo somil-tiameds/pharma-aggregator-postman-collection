@@ -1,0 +1,6 @@
+$kind: http-request
+description: GET /public/health-check — located in `UserController.java`
+url: "{{baseUrl}}/public/health-check"
+method: GET
+settings: {}
+order: 1000

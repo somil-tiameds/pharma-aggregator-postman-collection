@@ -1,0 +1,37 @@
+$kind: http-request
+url: "{{baseUrl}}/independent/email/send-confirmation"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "applicationRequestId": "REQ-2024-0001",
+      "submissionDate": "2026-09-11",
+      "applicationStatus": "SUBMITTED",
+      "sellerName": "Acme Pharma Distributors",
+      "sellerEmail": "{{email}}",
+      "sellerPhone": "{{phone}}",
+      "coordinatorName": "Rahul Sharma",
+      "coordinatorEmail": "rahul.sharma@acmepharma.example.com",
+      "coordinatorMobile": "9876500000",
+      "coordinatorDesignation": "Operations Manager",
+      "addressCity": "Mumbai",
+      "addressStreet": "MG Road",
+      "addressBuildingNo": "12-A",
+      "addressLandmark": "Near City Mall",
+      "addressPinCode": "400001",
+      "addressState": "Maharashtra",
+      "addressDistrict": "Mumbai",
+      "addressTaluka": "Andheri",
+      "bankName": "HDFC Bank",
+      "bankBranch": "Andheri West",
+      "bankIfscCode": "HDFC0000123",
+      "bankAccountNumber": "123456789012",
+      "bankAccountHolderName": "Acme Pharma Distributors",
+      "gstNumber": "27ABCDE1234F1Z5",
+      "documentNumber": "DL-MH-2024-000123"
+    }
+settings: {}
+order: 1000

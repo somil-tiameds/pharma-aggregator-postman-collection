@@ -1,0 +1,54 @@
+$kind: http-request
+description: Adds/restocks multiple batch lines for one product in a single call. Each line goes through the same restock-or-create logic as Add Stock, and each line may independently set packagingId (reference existing) or packagingDetails (reuse-or-create), or omit both for an unlinked/single-variant product.
+url: "{{baseUrl}}/stock/add-batches"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "batches": [
+        {
+          "packagingId": null,
+          "batchLotNumber": "BATCH-2026-005",
+          "manufacturingDate": "2026-03-01T00:00:00",
+          "expiryDate": "2028-03-01T00:00:00",
+          "quantity": 100,
+          "mrp": 30.0,
+          "sellingPrice": 25.5,
+          "referenceId": "PO-2026-0420",
+          "referenceType": "PURCHASE"
+        },
+        {
+          "packagingId": "{{packagingId}}",
+          "batchLotNumber": "BATCH-2026-006",
+          "manufacturingDate": "2026-03-02T00:00:00",
+          "expiryDate": "2028-03-02T00:00:00",
+          "quantity": 150,
+          "mrp": 42.0,
+          "sellingPrice": 36.0,
+          "referenceId": "PO-2026-0420",
+          "referenceType": "PURCHASE"
+        }
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('One ledger row returned per batch line', function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData).to.be.an('array').with.length(2);
+      });
+    language: text/javascript
+settings: {}
+order: 4000

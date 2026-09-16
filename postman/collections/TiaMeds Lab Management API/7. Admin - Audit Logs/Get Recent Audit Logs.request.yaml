@@ -1,0 +1,11 @@
+$kind: http-request
+description: Returns most recent audit log entries. Sorted by timestamp DESC.
+url: "{{baseUrl}}/admin/audit/recent?limit=50"
+method: GET
+queryParams:
+  - key: limit
+    value: "50"
+    description: Number of records (1-500, default 50)
+settings: {}
+examples: ./.resources/Get Recent Audit Logs.resources/examples
+order: 1000

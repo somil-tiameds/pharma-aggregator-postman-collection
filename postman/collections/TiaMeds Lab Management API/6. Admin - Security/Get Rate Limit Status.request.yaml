@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/security/rate-limit/status?username=johndoe"
+method: GET
+queryParams:
+  username: johndoe
+settings: {}
+order: 6000

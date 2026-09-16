@@ -1,0 +1,9 @@
+$kind: http-request
+description: Fetches the active Seller Company Pre-Registration Declarations content, consumed by SellerDeclaration.tsx in the seller registration wizard.
+url: "{{baseUrl}}/content/SELLER_TERMS"
+method: GET
+headers:
+  Accept: application/json
+settings: {}
+examples: ./.resources/Get Seller Terms.resources/examples
+order: 2000

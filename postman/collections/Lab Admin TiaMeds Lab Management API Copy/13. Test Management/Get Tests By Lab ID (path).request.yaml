@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns all tests for a specific lab. No pagination.
+url: "{{baseUrl}}/admin/lab/{{labId}}/tests"
+method: GET
+settings: {}
+order: 2000

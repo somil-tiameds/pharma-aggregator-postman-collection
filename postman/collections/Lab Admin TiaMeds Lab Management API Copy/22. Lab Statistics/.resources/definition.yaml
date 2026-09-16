@@ -1,0 +1,3 @@
+$kind: collection
+description: Lab analytics and reporting. Requires ROLE_ADMIN or ROLE_SUPERADMIN.
+order: 22000

@@ -1,0 +1,24 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/lab/{{labId}}/billing"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: text
+    content: |-
+      {
+        "status": "success",
+        "message": "Billing list fetched successfully",
+        "data": [{
+          "id": 1,
+          "totalAmount": 1500.00,
+          "paidAmount": 1000.00,
+          "dueAmount": 500.00,
+          "paymentMode": "CASH",
+          "discount": 0.00,
+          "visitId": 101
+        }]
+      }
+order: 1000

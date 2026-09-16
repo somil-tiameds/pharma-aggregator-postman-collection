@@ -1,0 +1,6 @@
+$kind: http-request
+description: Returns all labs created by or associated with the authenticated user.
+url: "{{baseUrl}}/lab/admin/get-labs"
+method: GET
+settings: {}
+order: 2000

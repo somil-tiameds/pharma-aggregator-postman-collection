@@ -1,0 +1,16 @@
+$kind: http-request
+description: Step 2 of login. Validates OTP and issues JWT tokens as HttpOnly cookies (access_token, refresh_token). Both are set automatically by the server.
+url: "{{baseUrl}}/auth/verify-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "admin@example.com",
+      "otp": "123456"
+    }
+settings: {}
+examples: ./.resources/Verify OTP (Step 2 - Complete Login).resources/examples
+order: 3000

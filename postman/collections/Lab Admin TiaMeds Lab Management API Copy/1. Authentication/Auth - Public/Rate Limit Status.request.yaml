@@ -1,0 +1,8 @@
+$kind: http-request
+description: GET /public/rate-limit-status?username=... — check login rate-limit details (see `UserController.java`).
+url: "{{baseUrl}}/public/rate-limit-status?username={{username}}"
+method: GET
+queryParams:
+  username: "{{username}}"
+settings: {}
+order: 4000

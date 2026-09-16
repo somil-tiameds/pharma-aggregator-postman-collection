@@ -1,0 +1,3 @@
+$kind: collection
+description: Category-specific certificate and brochure upload endpoints for the 5 product categories (Non-Consumable / Consumable Medical Devices, Supplements, Cosmetics, Food & Infant). All require an authenticated seller JWT.
+order: 9000

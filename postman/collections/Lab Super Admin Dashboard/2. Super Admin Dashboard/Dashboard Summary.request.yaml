@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/lab-super-admin/stats/dashboard-summary?startDate={{startDate}}&endDate={{endDate}}"
+method: GET
+headers:
+  Authorization: Bearer {{token}}
+queryParams:
+  startDate: "{{startDate}}"
+  endDate: "{{endDate}}"
+settings: {}
+order: 3000

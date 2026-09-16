@@ -1,0 +1,42 @@
+$kind: http-request
+description: "STEP 2 of profile-update flow: uploads GST file, bank file, company registration certificate, and/or license files for the pending seller update created in Step 1. If this fails, the frontend should call the cancel-pending-seller endpoint to roll back Step 1."
+url: "{{baseUrl}}/sellers/{{pendingSellerId}}/documents/upload"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: gstFile
+      src: /path/to/gst-certificate.pdf
+    - type: file
+      key: bankFile
+      src: /path/to/cancelled-cheque.pdf
+    - type: file
+      key: companyRegistrationCertificate
+      src: /path/to/company-reg-cert.pdf
+    - type: file
+      key: licenseFiles
+      src: /path/to/drug-license.pdf
+    - type: text
+      key: licenseNames
+      value: Drug
+    - type: text
+      key: documentIds
+      value: "1"
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+settings: {}
+order: 2000

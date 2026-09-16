@@ -1,0 +1,25 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/auth/login"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "username": "deep",
+        "password": "Seller@123"
+      }
+response:
+  statusCode: 429
+  statusText: Too Many Requests
+  body:
+    type: text
+    content: |-
+      {
+        "status": "error",
+        "message": "Too many login attempts for this user. Please try again after 10 minutes.",
+        "data": null
+      }
+order: 3000

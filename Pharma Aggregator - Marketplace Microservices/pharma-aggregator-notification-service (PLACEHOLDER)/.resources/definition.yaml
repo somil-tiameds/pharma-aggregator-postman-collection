@@ -1,0 +1,3 @@
+$kind: collection
+description: No controllers yet — empty spring-boot-microservice-template scaffold. Add real requests here once endpoints exist.
+order: 11000

@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}/verify/document"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "documentId": {{buyerDocumentId}},
+      "isDocumentVerified": true
+    }
+settings: {}
+order: 3000

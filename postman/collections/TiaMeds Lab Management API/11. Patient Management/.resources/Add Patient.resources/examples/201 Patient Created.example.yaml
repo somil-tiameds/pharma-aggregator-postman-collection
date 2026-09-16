@@ -1,0 +1,58 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/lab/{{labId}}/add-patient"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: text
+    content: |-
+      {
+        "firstName": "Rahul",
+        "lastName": "Sharma",
+        "email": "rahul.sharma@gmail.com",
+        "phone": "+91-9876543210",
+        "address": "45 Park Road",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "zip": "400002",
+        "bloodGroup": "B+",
+        "dateOfBirth": "1990-05-15",
+        "gender": "MALE",
+        "visit": {
+          "visitDate": "2024-01-15",
+          "visitType": "OUT-PATIENT",
+          "visitStatus": "ACTIVE",
+          "visitDescription": "Routine blood work",
+          "doctorId": 1,
+          "testIds": [1, 2, 3],
+          "packageIds": [],
+          "insuranceIds": [],
+          "billing": {
+            "totalAmount": 1500.00,
+            "paidAmount": 1500.00,
+            "dueAmount": 0.00,
+            "paymentMode": "CASH",
+            "discount": 0.00
+          }
+        }
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  body:
+    type: text
+    content: |-
+      {
+        "status": "success",
+        "message": "New patient added successfully",
+        "data": {
+          "id": 42,
+          "firstName": "Rahul",
+          "lastName": "Sharma",
+          "phone": "+91-9876543210",
+          "gender": "MALE",
+          "visit": { "visitId": 101, "visitStatus": "ACTIVE" }
+        }
+      }
+order: 1000

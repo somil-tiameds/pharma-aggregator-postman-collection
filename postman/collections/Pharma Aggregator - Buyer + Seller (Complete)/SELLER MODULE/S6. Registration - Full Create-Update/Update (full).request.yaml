@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{baseUrl}}/temp-sellers/{{tempSellerId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "sellerName": "Test Pharma Distributors Updated",
+      "companyTypeId": 1,
+      "sellerTypeId": 1,
+      "productTypeId": [1],
+      "phone": "9876543210",
+      "email": "seller@example.com",
+      "termsAccepted": true,
+      "companyRegistrationCertificateUrl": "PENDING",
+      "gstNumber": "27AAECS1234A1Z5",
+      "gstFileUrl": "PENDING"
+    }
+settings: {}
+order: 2000

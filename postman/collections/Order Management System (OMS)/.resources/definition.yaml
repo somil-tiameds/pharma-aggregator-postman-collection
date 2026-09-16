@@ -1,0 +1,29 @@
+$kind: collection
+description: |-
+  Every backend endpoint for the Order Management System — placement, fulfillment, cancellation, returns/refunds, invoicing, and admin oversight. Every path, field name, and request body below was verified against the actual running backend by placing and walking real orders end-to-end (not reconstructed from spec alone), across two rounds of testing. Base path already includes the app's /api/v1 context-path.
+
+  Real bugs found live and fixed in that process:
+  1. OrderItem.itemStatus wasn't syncing during fulfillment/cancellation/return — fixed in all three services.
+  2. The stock-reversal call on cancel/return was missing the batch's expiry date, causing it to fail outright — fixed by sourcing it from the item's own linked batch.
+  3. POST /orders/{id}/cancel and PATCH /seller-orders/{id}/cancel had ZERO ownership checks — any buyer could cancel any other buyer's order, any seller any other seller's sub-order, just by passing a different actorId. Fixed: BUYER/SELLER actorRole is now checked against the real owner; ADMIN remains unrestricted; a SELLER can no longer call the whole-order cancel endpoint at all (must use the seller-order-specific one).
+
+  Edge cases separately verified (no code changes needed): multi-seller cart splitting into independent SellerOrders, seller/buyer cross-ownership rejection on fulfillment and cancel, illegal status-transition rejection (e.g. shipping before packing), return-before-delivery and return-window-expiry rejection, duplicate-return-request rejection, refund-processing idempotency, invalid-input validation (zero/negative quantity, empty cart, missing buyerId), true insufficient-stock rejection, and a real concurrency test (two simultaneous orders racing the same low-stock batch — one succeeded, one correctly rejected, no overselling).
+
+  Known non-OMS finding, NOT fixed here (out of scope, systemic): error responses come back shaped like {"status":"SUCCESS",...,"data":{"status":409,"message":"the real error"}} — the outer envelope claims success while the real error is nested in `data`. Confirmed this is pre-existing and affects the whole app (reproduced on GET /temp-sellers/999999 too), not something introduced by OMS — check the HTTP status code and data.status, not the outer status field, when testing any error path here.
+
+  No payment gateway is integrated — every order is COD, Payment.status is set to SUCCESS immediately at placement. PaymentController is read-only (no webhook).
+
+  Known gaps, not built: BuyerDeliveryAddress CRUD (raw address fields are passed directly in the placement request instead), multi-package shipments per SellerOrder, seller payout/settlement, and admin override does not reverse stock or sync itemStatus the way normal cancellation does (flagged, not fixed — a policy decision, not a mechanical bug).
+variables:
+  baseUrl: http://localhost:8080/api/v1
+  buyerId: OMHOS0001
+  sellerId: PRMFG0037
+  productId: PRIMM00868
+  pricingId: PRBTCH01604
+  orderId: ORD-20260814-00001
+  sellerOrderId: SORD-20260814-00001-1
+  orderItemId: "1"
+  paymentId: PAY-20260814-00001
+  returnId: "1"
+  refundId: "1"
+  invoiceId: "1"

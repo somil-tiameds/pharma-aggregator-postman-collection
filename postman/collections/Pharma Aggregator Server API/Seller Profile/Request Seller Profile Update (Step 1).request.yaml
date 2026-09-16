@@ -1,0 +1,87 @@
+$kind: http-request
+description: "STEP 1 of profile-update flow: submits updated seller profile metadata (no files) for admin approval. Response includes a pendingSellerId to be used in Step 2 (document upload). Requires a valid JWT."
+url: "{{baseUrl}}/sellers/{{sellerId}}/request-update?requestedBy=seller_admin"
+method: PUT
+headers:
+  Content-Type: application/json
+queryParams:
+  requestedBy: seller_admin
+body:
+  type: json
+  content: |-
+    {
+      "sellerName": "Sunrise Pharma Distributors",
+      "companyTypeId": 1,
+      "sellerTypeId": 2,
+      "phone": "9876543210",
+      "email": "contact@sunrisepharma.example.com",
+      "website": "https://sunrisepharma.example.com",
+      "termsAccepted": true,
+      "address": {
+        "stateId": 1,
+        "districtId": 1,
+        "talukaId": 1,
+        "city": "Mumbai",
+        "street": "MG Road",
+        "buildingNo": "12-A",
+        "landmark": "Near City Hospital",
+        "pinCode": "400001"
+      },
+      "coordinator": {
+        "name": "Rahul Sharma",
+        "designation": "Operations Manager",
+        "email": "rahul.sharma@sunrisepharma.example.com",
+        "mobile": "9876500000"
+      },
+      "bankDetails": {
+        "bankName": "State Bank of India",
+        "branch": "MG Road Branch",
+        "ifscCode": "SBIN0001234",
+        "accountNumber": "123456789012",
+        "accountHolderName": "Sunrise Pharma Distributors",
+        "bankDocumentFileUrl": "https://cdn.example.com/docs/cancelled-cheque.pdf"
+      },
+      "gstNumber": "27AAAPL1234C1ZV",
+      "gstFileUrl": "https://cdn.example.com/docs/gst-certificate.pdf",
+      "companyRegistrationCertificateUrl": "https://cdn.example.com/docs/company-reg-cert.pdf",
+      "documents": [
+        {
+          "documentId": null,
+          "productTypeId": 1,
+          "documentNumber": "DL-MH-2024-00123",
+          "documentFileUrl": "https://cdn.example.com/docs/drug-license.pdf",
+          "licenseIssueDate": "2024-01-15",
+          "licenseExpiryDate": "2027-01-14",
+          "licenseIssuingAuthority": "FDA Maharashtra",
+          "licenseStatus": "ACTIVE"
+        }
+      ],
+      "productTypeId": [
+        1,
+        2
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{access_token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is successful', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);
+      });
+
+      pm.test('Response time is acceptable', function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+
+      pm.test('Pending seller ID saved', function () {
+          var jsonData = pm.response.json();
+          if (jsonData.pendingSellerId) {
+              pm.collectionVariables.set('pendingSellerId', jsonData.pendingSellerId);
+          }
+      });
+    language: text/javascript
+settings: {}
+order: 1000

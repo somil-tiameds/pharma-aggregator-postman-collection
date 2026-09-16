@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/modules/{{moduleId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "Updated Module Name"
+    }
+settings: {}
+order: 4000

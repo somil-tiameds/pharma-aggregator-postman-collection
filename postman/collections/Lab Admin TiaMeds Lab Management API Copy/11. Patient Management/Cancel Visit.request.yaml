@@ -1,0 +1,14 @@
+$kind: http-request
+description: Cancels a patient visit. Logs cancellation reason and audits the action.
+url: "{{baseUrl}}/lab/{{labId}}/visit/{{visitId}}/cancel"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "visitCancellationReason": "Patient requested cancellation"
+    }
+settings: {}
+order: 8000
