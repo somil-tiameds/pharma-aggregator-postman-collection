@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/masters/hair-types"
+method: GET
+order: 13000

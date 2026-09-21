@@ -1,0 +1,22 @@
+$kind: http-request
+description: Updates an existing product's core catalog fields.
+url: "{{baseUrl}}/products/update/{{productId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productName": "Paracetamol 650mg Tablet",
+      "warningsPrecautions": "Do not exceed recommended dosage.",
+      "productDescription": "Updated pain relief and fever reducer tablet strip.",
+      "manufacturerName": "Cipla Ltd",
+      "modifiedBy": "{{sellerId}}",
+      "categoryId": 1,
+      "sellerId": "{{sellerId}}",
+      "gstPercentage": 12,
+      "hsnCode": 30049099,
+      "status": "ACTIVE"
+    }
+order: 5000

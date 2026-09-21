@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/serving-size"
+method: GET
+order: 1000

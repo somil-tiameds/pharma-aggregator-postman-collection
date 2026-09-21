@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/categories/{{categoryId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "categoryId": 1,
+      "categoryName": "Drugs",
+      "categoryDescription": "Updated description for prescription and OTC drugs"
+    }
+order: 4000

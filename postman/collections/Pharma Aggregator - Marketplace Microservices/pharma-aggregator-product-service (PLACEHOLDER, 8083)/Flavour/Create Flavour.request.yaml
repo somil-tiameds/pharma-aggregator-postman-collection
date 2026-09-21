@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/flavours"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "flavourId": null,
+      "flavourName": "Orange",
+      "isActive": true
+    }
+order: 3000

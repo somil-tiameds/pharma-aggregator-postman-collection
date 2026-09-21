@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/masters/power-sources"
+method: GET
+order: 12000

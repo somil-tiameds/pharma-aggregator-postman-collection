@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/molecules/getMoleculeById?moleculeId={{moleculeId}}&productAttributeId={{productAttributeId}}"
+method: GET
+order: 3000

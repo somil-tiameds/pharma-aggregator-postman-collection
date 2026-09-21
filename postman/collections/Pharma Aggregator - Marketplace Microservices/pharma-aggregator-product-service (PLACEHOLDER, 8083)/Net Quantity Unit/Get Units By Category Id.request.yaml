@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/net-quantity-units/{{categoryId}}"
+method: GET
+order: 1000

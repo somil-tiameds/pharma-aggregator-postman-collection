@@ -1,0 +1,3 @@
+$kind: collection
+description: Serving size unit lookups, including by dosage form and product form.
+order: 16000

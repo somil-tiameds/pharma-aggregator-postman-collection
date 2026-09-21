@@ -1,0 +1,3 @@
+$kind: collection
+description: Top-level product category CRUD (drugs, consumables, supplements, cosmetics, food/infant, non-consumables, medical devices).
+order: 2000

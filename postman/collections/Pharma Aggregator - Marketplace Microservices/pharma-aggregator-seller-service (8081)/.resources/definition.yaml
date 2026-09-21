@@ -1,9 +1,14 @@
 $kind: collection
 description: Seller User domain — registration, onboarding docs, bank/GST verification, seller/coordinator auth, admin approval, live seller profile.
 auth:
-  - id: a67b3050-accb-4dee-9cd0-9612c9918741
+  - id: 611b2d89-5d9f-4268-9d06-a580e89d29c4
     type: bearer
     name: bearer auth
     credentials:
       token: "{{accessToken}}"
+variables:
+  - key: baseUrl
+    value: http://localhost:8081
+    disabled: false
+    secret: false
 order: 1000

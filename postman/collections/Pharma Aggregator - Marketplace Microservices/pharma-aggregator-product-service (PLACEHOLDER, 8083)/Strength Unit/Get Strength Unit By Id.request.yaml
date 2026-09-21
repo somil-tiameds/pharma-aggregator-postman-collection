@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/strengthUnit/{{strengthUnitId}}"
+method: GET
+order: 2000

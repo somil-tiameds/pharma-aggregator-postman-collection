@@ -1,9 +1,0 @@
-$kind: http-request
-description: Example of a key with no active row yet — returns 404 via ResourceNotFoundException / GlobalExceptionHandler until a PRIVACY_POLICY row is seeded.
-url: "{{baseUrl}}/content/PRIVACY_POLICY"
-method: GET
-headers:
-  Accept: application/json
-settings: {}
-examples: ./.resources/Get Content By Key - Not Found.resources/examples
-order: 3000

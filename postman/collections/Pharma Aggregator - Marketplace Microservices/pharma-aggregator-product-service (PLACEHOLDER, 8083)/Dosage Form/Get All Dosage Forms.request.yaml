@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/dosage/allDosage"
+method: GET
+order: 1000

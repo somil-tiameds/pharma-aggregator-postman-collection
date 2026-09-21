@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/gst-percentages"
+method: GET
+order: 1000

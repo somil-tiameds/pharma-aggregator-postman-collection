@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/masters/device-categories/{{deviceCategoryType}}"
+method: GET
+order: 5000

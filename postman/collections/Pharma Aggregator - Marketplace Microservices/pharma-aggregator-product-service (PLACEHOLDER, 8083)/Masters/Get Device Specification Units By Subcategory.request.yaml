@@ -1,0 +1,5 @@
+$kind: http-request
+description: Device specification units (name/unit) for medical devices, scoped to a device sub-category.
+url: "{{baseUrl}}/masters/by-subcategory/{{subCatId}}"
+method: GET
+order: 15000

@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/therapeutic/therapeuticSubcategoriesById/{{therapeuticSubCategorieId}}"
+method: GET
+order: 5000

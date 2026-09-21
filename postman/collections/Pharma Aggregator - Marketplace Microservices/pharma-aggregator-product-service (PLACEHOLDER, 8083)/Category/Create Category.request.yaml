@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/categories"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "categoryId": 1,
+      "categoryName": "Drugs",
+      "categoryDescription": "Prescription and over-the-counter drugs"
+    }
+order: 1000

@@ -1,0 +1,3 @@
+$kind: collection
+description: Storage condition master data lookups by category and by id.
+order: 17000

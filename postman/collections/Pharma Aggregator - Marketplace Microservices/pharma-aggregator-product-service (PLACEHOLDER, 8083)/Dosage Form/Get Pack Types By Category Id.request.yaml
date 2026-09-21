@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/dosage/packType/category/{{categoryId}}"
+method: GET
+order: 4000

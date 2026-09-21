@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/molecules/getAllMolecules"
+method: GET
+order: 1000

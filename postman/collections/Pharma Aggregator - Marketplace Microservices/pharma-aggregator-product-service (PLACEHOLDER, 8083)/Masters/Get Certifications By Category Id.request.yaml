@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/masters/certifications/categoryId/{{categoryId}}"
+method: GET
+order: 11000

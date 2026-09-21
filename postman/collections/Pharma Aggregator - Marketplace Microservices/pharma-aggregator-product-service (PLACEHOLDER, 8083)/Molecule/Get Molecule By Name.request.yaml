@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/molecules/byName?name=Paracetamol"
+method: GET
+order: 2000

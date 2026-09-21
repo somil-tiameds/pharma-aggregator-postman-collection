@@ -1,0 +1,174 @@
+name: Pharma Aggregator - Product Service
+values:
+  - key: baseUrl
+    value: http://localhost:8080
+    disabled: false
+    secret: false
+  - key: gatewayBaseUrl
+    value: http://localhost:8080
+    disabled: false
+    secret: false
+  - key: sellerServiceBaseUrl
+    value: http://localhost:8081
+    disabled: false
+    secret: false
+  - key: buyerServiceBaseUrl
+    value: http://localhost:8082
+    disabled: false
+    secret: false
+  - key: productServiceBaseUrl
+    value: http://localhost:8083
+    disabled: false
+    secret: false
+  - key: orderServiceBaseUrl
+    value: http://localhost:8084
+    disabled: false
+    secret: false
+  - key: quotationServiceBaseUrl
+    value: http://localhost:8085
+    disabled: false
+    secret: false
+  - key: searchServiceBaseUrl
+    value: http://localhost:8086
+    disabled: false
+    secret: false
+  - key: billingServiceBaseUrl
+    value: http://localhost:8087
+    disabled: false
+    secret: false
+  - key: notificationServiceBaseUrl
+    value: http://localhost:8088
+    disabled: false
+    secret: false
+  - key: configServerBaseUrl
+    value: http://localhost:8888
+    disabled: false
+    secret: false
+  - key: serviceRegistryBaseUrl
+    value: http://localhost:8761
+    disabled: false
+    secret: false
+  - key: accessToken
+    value: ""
+    disabled: false
+    secret: true
+  - key: refreshToken
+    value: ""
+    disabled: false
+    secret: true
+  - key: passwordResetToken
+    value: ""
+    disabled: false
+    secret: true
+  - key: email
+    value: seller@example.com
+    disabled: false
+    secret: false
+  - key: username
+    value: seller@example.com
+    disabled: false
+    secret: false
+  - key: password
+    value: ""
+    disabled: false
+    secret: true
+  - key: phone
+    value: "9876543210"
+    disabled: false
+    secret: false
+  - key: userId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: sellerId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: tempSellerId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: pendingSellerId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: approvedBy
+    value: "1"
+    disabled: false
+    secret: false
+  - key: ifscCode
+    value: SBIN0001234
+    disabled: false
+    secret: false
+  - key: productId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: categoryId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: productCategoryId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: productFormId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: productAttributeId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: dosageId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: dosageFormId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: packTypeId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: moleculeId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: flavourId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: strengthUnitId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: servingSizeUnitId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: storageConditionId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: therapeuticCategorieId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: therapeuticSubCategorieId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: therapeuticSubcategoryId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: subCatId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: deviceCategoryType
+    value: MEDICAL_DEVICE
+    disabled: false
+    secret: false

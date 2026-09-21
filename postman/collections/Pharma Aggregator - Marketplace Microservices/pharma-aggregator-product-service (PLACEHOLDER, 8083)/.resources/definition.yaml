@@ -1,2 +1,8 @@
 $kind: collection
+description: Product Service domain — product catalog CRUD, category/product-category taxonomy, and all pharma product master/lookup data (dosage, pack type, molecule, therapeutic, storage, GST, etc.).
+variables:
+  - key: baseUrl
+    value: http://localhost:8083
+    disabled: false
+    secret: false
 order: 6000

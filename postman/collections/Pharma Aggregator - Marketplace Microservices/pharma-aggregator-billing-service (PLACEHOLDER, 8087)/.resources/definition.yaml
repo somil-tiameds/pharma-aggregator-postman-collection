@@ -1,2 +1,7 @@
 $kind: collection
+variables:
+  - key: baseUrl
+    value: http://localhost:8087
+    disabled: false
+    secret: false
 order: 10000

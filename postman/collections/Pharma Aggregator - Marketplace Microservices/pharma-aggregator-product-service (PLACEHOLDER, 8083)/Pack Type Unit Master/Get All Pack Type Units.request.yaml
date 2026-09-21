@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/pack-type-units"
+method: GET
+order: 1000

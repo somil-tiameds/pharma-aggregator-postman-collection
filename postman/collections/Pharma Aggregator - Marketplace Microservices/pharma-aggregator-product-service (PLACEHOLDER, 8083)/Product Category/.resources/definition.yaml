@@ -1,0 +1,3 @@
+$kind: collection
+description: Product category and product subcategory lookups scoped to a top-level category.
+order: 3000

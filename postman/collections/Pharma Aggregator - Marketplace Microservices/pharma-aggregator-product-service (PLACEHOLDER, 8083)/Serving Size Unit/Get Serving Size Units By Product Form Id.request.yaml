@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/serving-size/productForm/{{productFormId}}"
+method: GET
+order: 4000
