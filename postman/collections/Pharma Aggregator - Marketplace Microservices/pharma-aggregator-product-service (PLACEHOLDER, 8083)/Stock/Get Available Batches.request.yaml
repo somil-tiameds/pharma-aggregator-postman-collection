@@ -1,0 +1,5 @@
+$kind: http-request
+description: Per-batch availability for a product, oldest manufacturingDate first (FIFO order). Pass packagingId to scope to one pack-size variant.
+url: "{{baseUrl}}/stock/{{productId}}/batches?packagingId={{packagingId}}"
+method: GET
+order: 5000

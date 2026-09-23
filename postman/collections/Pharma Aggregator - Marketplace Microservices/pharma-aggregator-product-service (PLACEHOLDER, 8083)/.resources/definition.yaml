@@ -1,5 +1,5 @@
 $kind: collection
-description: Product Service domain — product catalog CRUD, category/product-category taxonomy, and all pharma product master/lookup data (dosage, pack type, molecule, therapeutic, storage, GST, etc.).
+description: Product Service domain — product catalog CRUD, bulk Excel/CSV import, stock ledger, pricing/batch validation, S3-backed media (images/documents/manuals), category/product-category taxonomy, and all pharma product master/lookup data (dosage, pack type, molecule, therapeutic, storage, GST, etc.).
 variables:
   - key: baseUrl
     value: http://localhost:8083

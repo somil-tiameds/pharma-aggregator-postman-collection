@@ -1,0 +1,12 @@
+$kind: http-request
+description: Uploads one or more images for a product to S3 and attaches them to the product.
+url: "{{baseUrl}}/product-images/{{productId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: images
+      src: ""
+      description: Image file(s) to upload
+order: 1000

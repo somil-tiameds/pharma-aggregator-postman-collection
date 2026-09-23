@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/stock/{{productId}}/debited-total"
+method: GET
+order: 6000

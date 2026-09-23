@@ -1,0 +1,3 @@
+$kind: collection
+description: Nutritional information image upload (S3-backed) for Food/Infant and Supplements/Nutraceuticals attributes.
+order: 26000

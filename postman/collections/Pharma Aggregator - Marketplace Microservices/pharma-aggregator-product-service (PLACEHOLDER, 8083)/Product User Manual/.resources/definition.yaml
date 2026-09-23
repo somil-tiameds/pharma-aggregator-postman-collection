@@ -1,0 +1,3 @@
+$kind: collection
+description: Product user manual upload (S3-backed) for Drug and Food/Infant attributes.
+order: 25000

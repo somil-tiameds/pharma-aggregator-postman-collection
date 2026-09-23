@@ -1,0 +1,6 @@
+$kind: http-request
+description: |-
+  Status-change hook for an external approval/moderation flow to call once a decision has been made — product-service does not own an approval workflow itself.
+url: "{{baseUrl}}/products/{{productId}}/status?status=PUBLISHED&updatedBy={{sellerId}}"
+method: PATCH
+order: 5500

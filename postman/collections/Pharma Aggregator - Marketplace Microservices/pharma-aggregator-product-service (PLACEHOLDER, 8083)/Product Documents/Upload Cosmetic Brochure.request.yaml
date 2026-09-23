@@ -1,0 +1,12 @@
+$kind: http-request
+description: Replaces the brochurePath on an existing cosmetic attribute.
+url: "{{baseUrl}}/product-documents/cosmetic/{{productAttributeId}}/brochure?uploadedBy={{sellerId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: brochureFile
+      src: ""
+      description: Brochure document (PDF)
+order: 8000

@@ -1,0 +1,16 @@
+$kind: http-request
+description: Replaces the certificateUrl on existing ProductCertificateDocument rows (created during product creation) for a cosmetic attribute. documentIds must be provided in the same order as certificateFiles.
+url: "{{baseUrl}}/product-documents/cosmetic/{{productAttributeId}}/certificates?uploadedBy={{sellerId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: certificateFiles
+      src: ""
+      description: Certificate file(s), same order as documentIds
+    - type: text
+      key: documentIds
+      value: "1"
+      description: productCertificateDocumentId values, same order as certificateFiles
+order: 7000

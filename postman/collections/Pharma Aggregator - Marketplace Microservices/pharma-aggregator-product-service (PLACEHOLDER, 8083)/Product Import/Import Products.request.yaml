@@ -1,0 +1,15 @@
+$kind: http-request
+description: |-
+  Bulk-imports products from an uploaded .xlsx/.xls/.csv file, dispatched to the category-matched import strategy. sellerId is passed explicitly since this service has no JWT enforcement yet. Optional Idempotency-Key header replays the first response on a retried request instead of re-importing.
+url: "{{baseUrl}}/products/import?categoryId={{categoryId}}&sellerId={{sellerId}}"
+method: POST
+headers:
+  Idempotency-Key: "{{idempotencyKey}}"
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: ""
+      description: Product listing template (.xlsx, .xls, or .csv)
+order: 1000

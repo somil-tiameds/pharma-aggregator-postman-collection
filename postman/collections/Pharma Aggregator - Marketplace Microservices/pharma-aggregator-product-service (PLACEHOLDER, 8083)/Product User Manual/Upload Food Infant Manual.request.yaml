@@ -1,0 +1,12 @@
+$kind: http-request
+description: Uploads a user manual for a Food/Infant attribute (plain URL column) to S3.
+url: "{{baseUrl}}/userManual/new/{{productAttributeId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: ""
+      description: User manual document
+order: 2000

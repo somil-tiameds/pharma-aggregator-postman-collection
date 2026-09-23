@@ -1,0 +1,18 @@
+$kind: http-request
+description: |-
+  Debits stock using FIFO (oldest manufacturingDate first), spanning as many batches as needed. Throws 409 if requested quantity exceeds total available. Optional Idempotency-Key header replays the first response on a retried request instead of double-debiting.
+url: "{{baseUrl}}/stock/debit?sellerId={{sellerId}}"
+method: POST
+headers:
+  Content-Type: application/json
+  Idempotency-Key: "{{idempotencyKey}}"
+body:
+  type: text
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "quantity": 10,
+      "referenceId": "{{referenceId}}",
+      "referenceType": "{{referenceType}}"
+    }
+order: 3000

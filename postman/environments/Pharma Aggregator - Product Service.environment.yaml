@@ -172,3 +172,27 @@ values:
     value: MEDICAL_DEVICE
     disabled: false
     secret: false
+  - key: pricingId
+    value: ""
+    disabled: false
+    secret: false
+  - key: packagingId
+    value: ""
+    disabled: false
+    secret: false
+  - key: batchLotNumber
+    value: BATCH0001
+    disabled: false
+    secret: false
+  - key: idempotencyKey
+    value: ""
+    disabled: false
+    secret: false
+  - key: referenceId
+    value: ""
+    disabled: false
+    secret: false
+  - key: referenceType
+    value: ""
+    disabled: false
+    secret: false

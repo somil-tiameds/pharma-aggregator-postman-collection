@@ -1,0 +1,3 @@
+$kind: collection
+description: Pricing/batch validation helpers.
+order: 22000

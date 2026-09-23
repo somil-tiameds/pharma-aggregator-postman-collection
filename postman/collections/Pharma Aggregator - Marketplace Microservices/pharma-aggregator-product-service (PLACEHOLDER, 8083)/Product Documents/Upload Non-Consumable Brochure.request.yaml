@@ -1,0 +1,12 @@
+$kind: http-request
+description: Replaces the brochurePath on an existing non-consumable medical device attribute.
+url: "{{baseUrl}}/product-documents/non-consumable/{{productAttributeId}}/brochure?uploadedBy={{sellerId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: brochureFile
+      src: ""
+      description: Brochure document (PDF)
+order: 2000

@@ -1,0 +1,3 @@
+$kind: collection
+description: Category-specific certificate and brochure uploads (S3-backed) — replaces the certificateUrl/brochurePath placeholders set at product-create time.
+order: 24000

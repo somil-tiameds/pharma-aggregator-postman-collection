@@ -1,0 +1,35 @@
+$kind: http-request
+description: Adds multiple batches for a single product in one call — each batch line follows the same create-batch logic as Add Stock.
+url: "{{baseUrl}}/stock/add-batches?sellerId={{sellerId}}"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "batches": [
+        {
+          "batchLotNumber": "BATCH-A",
+          "manufacturingDate": "2025-01-01T00:00:00",
+          "expiryDate": "2027-01-01T23:59:59",
+          "quantity": 50,
+          "mrp": 50.00,
+          "sellingPrice": 45.00,
+          "referenceId": "{{referenceId}}",
+          "referenceType": "{{referenceType}}"
+        },
+        {
+          "batchLotNumber": "BATCH-B",
+          "manufacturingDate": "2025-02-01T00:00:00",
+          "expiryDate": "2027-02-01T23:59:59",
+          "quantity": 75,
+          "mrp": 50.00,
+          "sellingPrice": 45.00,
+          "referenceId": "{{referenceId}}",
+          "referenceType": "{{referenceType}}"
+        }
+      ]
+    }
+order: 2000

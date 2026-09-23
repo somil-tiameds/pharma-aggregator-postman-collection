@@ -1,0 +1,5 @@
+$kind: http-request
+description: Soft-deletes a batch (marks deletedAt/deletedBy) — excluded from stock/availability totals afterward, but its ledger history is preserved.
+url: "{{baseUrl}}/stock/{{productId}}/batches/{{pricingId}}?sellerId={{sellerId}}"
+method: DELETE
+order: 8000

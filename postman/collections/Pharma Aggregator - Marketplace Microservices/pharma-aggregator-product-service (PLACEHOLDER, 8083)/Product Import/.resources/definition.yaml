@@ -1,0 +1,3 @@
+$kind: collection
+description: Bulk seller product listing via Excel/CSV upload — one category-matched import strategy per request, per-row validation errors returned without failing the whole batch.
+order: 20000

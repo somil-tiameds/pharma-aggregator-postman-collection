@@ -1,0 +1,26 @@
+$kind: http-request
+description: |-
+  Credits stock for a product by creating a new batch (PricingDetails row) and a STOCK_IN ledger entry. Optional Idempotency-Key header replays the first response on a retried request instead of double-crediting.
+url: "{{baseUrl}}/stock/add?sellerId={{sellerId}}"
+method: POST
+headers:
+  Content-Type: application/json
+  Idempotency-Key: "{{idempotencyKey}}"
+body:
+  type: text
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "batchLotNumber": "{{batchLotNumber}}",
+      "manufacturingDate": "2025-01-01T00:00:00",
+      "expiryDate": "2027-01-01T23:59:59",
+      "quantity": 100,
+      "mrp": 50.00,
+      "sellingPrice": 45.00,
+      "discountPercentage": 10,
+      "shelfLifeMonths": 24,
+      "dateOfStockEntry": "2025-01-01",
+      "referenceId": "{{referenceId}}",
+      "referenceType": "{{referenceType}}"
+    }
+order: 1000

@@ -1,0 +1,12 @@
+$kind: http-request
+description: Uploads the nutritional-information image for a Food/Infant or Supplements/Nutraceuticals attribute, resolved by categoryId's category name.
+url: "{{baseUrl}}/nutritionalInformationImage/{{productAttributeId}}?categoryId={{categoryId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: images
+      src: ""
+      description: Nutritional information image
+order: 1000

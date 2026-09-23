@@ -1,0 +1,12 @@
+$kind: http-request
+description: Uploads a user manual for a Drug attribute (dedicated ProductUserManual entity) to S3.
+url: "{{baseUrl}}/userManual/{{productAttributeId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: ""
+      description: User manual document
+order: 1000
