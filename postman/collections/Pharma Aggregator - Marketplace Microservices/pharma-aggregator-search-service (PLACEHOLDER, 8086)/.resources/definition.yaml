@@ -1,7 +1,0 @@
-$kind: collection
-variables:
-  - key: baseUrl
-    value: http://localhost:8086
-    disabled: false
-    secret: false
-order: 9000

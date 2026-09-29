@@ -1,0 +1,3 @@
+$kind: collection
+description: Buyer-facing product search — keyword search with facet filters, standalone facet counts, and trending search terms. Mandatory server-side filters (status=PUBLISHED, sellerApproved=true) apply on every call regardless of the parameters sent here.
+order: 1000

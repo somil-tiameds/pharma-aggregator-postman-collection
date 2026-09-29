@@ -1,0 +1,12 @@
+$kind: http-request
+description: 'GET /search/trending — top searched terms computed live from search_query_log over a rolling 7-day window (interim implementation; will switch to the precomputed popular_search_term table once a refresh job exists). categoryId is optional.'
+url: '{{baseUrl}}/search/trending?categoryId={{categoryId}}&limit={{trendingLimit}}'
+method: GET
+order: 1200
+queryParams:
+  - key: categoryId
+    value: '{{categoryId}}'
+    disabled: true
+  - key: limit
+    value: '{{trendingLimit}}'
+examples: './.resources/Get Trending Searches.resources/examples'

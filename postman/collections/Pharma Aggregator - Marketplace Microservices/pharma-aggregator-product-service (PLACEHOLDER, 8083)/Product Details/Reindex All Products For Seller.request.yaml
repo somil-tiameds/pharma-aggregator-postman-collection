@@ -1,0 +1,8 @@
+$kind: http-request
+description: 'POST /products/seller/{sellerId}/reindex-all — internal endpoint called by seller-service when a seller''s approval status changes (approve/suspend/reactivate). Queues an outbox UPSERT row for every product owned by that seller so search-service''s index reflects the new sellerApproved state. Currently unauthenticated by design for this pass (see search-service-security.md for the internal-secret rollout plan).'
+url: '{{baseUrl}}/products/seller/{{sellerId}}/reindex-all'
+method: POST
+order: 6600
+pathVariables:
+  - key: sellerId
+    value: '{{sellerId}}'

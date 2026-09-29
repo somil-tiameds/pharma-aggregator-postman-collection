@@ -196,3 +196,103 @@ values:
     value: ""
     disabled: false
     secret: false
+  - key: buyerId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: orderId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: sellerOrderId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: paymentId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: invoiceId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: returnId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: refundId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: quoteRequestId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: deliveryAddressId
+    value: "1"
+    disabled: false
+    secret: false
+  - key: otp
+    value: "123456"
+    disabled: false
+    secret: false
+  - key: searchQuery
+    value: paracetamol
+    disabled: false
+    secret: false
+  - key: searchPage
+    value: "0"
+    disabled: false
+    secret: false
+  - key: searchSize
+    value: "20"
+    disabled: false
+    secret: false
+  - key: searchSort
+    value: relevance
+    disabled: false
+    secret: false
+  - key: therapeuticCategory
+    value: Analgesic
+    disabled: false
+    secret: false
+  - key: dosageForm
+    value: Tablet
+    disabled: false
+    secret: false
+  - key: packType
+    value: Strip
+    disabled: false
+    secret: false
+  - key: priceMin
+    value: "0"
+    disabled: false
+    secret: false
+  - key: priceMax
+    value: "1000"
+    disabled: false
+    secret: false
+  - key: inStockOnly
+    value: "true"
+    disabled: false
+    secret: false
+  - key: autocompleteQuery
+    value: para
+    disabled: false
+    secret: false
+  - key: autocompleteLimit
+    value: "10"
+    disabled: false
+    secret: false
+  - key: trendingLimit
+    value: "10"
+    disabled: false
+    secret: false
+  - key: sinceTimestamp
+    value: ""
+    disabled: false
+    secret: false
+  - key: internalApiKey
+    value: ""
+    disabled: false
+    secret: true

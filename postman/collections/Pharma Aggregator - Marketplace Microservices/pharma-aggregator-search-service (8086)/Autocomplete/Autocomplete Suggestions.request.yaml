@@ -1,0 +1,12 @@
+$kind: http-request
+description: 'GET /search/autocomplete — completion-suggester prefix match on the `suggest` field. q must be at least 2 characters (enforced by AutocompleteController) or the request returns 400 Bad Request.'
+url: '{{baseUrl}}/search/autocomplete?q={{autocompleteQuery}}&limit={{autocompleteLimit}}'
+method: GET
+order: 2000
+queryParams:
+  - key: q
+    value: '{{autocompleteQuery}}'
+    description: Prefix typed so far, minimum 2 characters
+  - key: limit
+    value: '{{autocompleteLimit}}'
+examples: './.resources/Autocomplete Suggestions.resources/examples'

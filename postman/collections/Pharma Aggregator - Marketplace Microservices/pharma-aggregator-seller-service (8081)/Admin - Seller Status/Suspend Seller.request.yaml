@@ -1,0 +1,8 @@
+$kind: http-request
+description: 'POST /admin/sellers/{sellerId}/suspend — sets an already-live Seller.status to SUSPENDED and asynchronously notifies product-service to reindex-all that seller''s products (so they drop out of buyer search).'
+url: '{{baseUrl}}/admin/sellers/{{sellerId}}/suspend'
+method: POST
+order: 1000
+pathVariables:
+  - key: sellerId
+    value: '{{sellerId}}'

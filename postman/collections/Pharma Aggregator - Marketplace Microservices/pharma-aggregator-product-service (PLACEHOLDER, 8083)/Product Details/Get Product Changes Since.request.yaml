@@ -1,0 +1,13 @@
+$kind: http-request
+description: 'GET /products/changes?since=&page=&size= — paginated feed of products created/modified after `since` (ISO-8601 instant). Polled by search-service''s ProductSyncJob as the reconciliation backstop to the push-based outbox sync.'
+url: '{{baseUrl}}/products/changes?since={{sinceTimestamp}}&page=0&size=20'
+method: GET
+order: 6500
+queryParams:
+  - key: since
+    value: '{{sinceTimestamp}}'
+    description: 'ISO-8601 instant, e.g. 2026-09-01T00:00:00Z'
+  - key: page
+    value: '0'
+  - key: size
+    value: '20'

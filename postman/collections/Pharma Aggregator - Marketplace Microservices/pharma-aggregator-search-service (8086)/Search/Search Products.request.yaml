@@ -1,0 +1,41 @@
+$kind: http-request
+description: 'GET /search — multi_match on productName/manufacturerName/productDescription, plus optional facet filters, pagination, and sort. size is capped at 100 and page*size at 10000 (search-service-security.md §3).'
+url: '{{baseUrl}}/search?q={{searchQuery}}&categoryId={{categoryId}}&therapeuticCategory={{therapeuticCategory}}&dosageForm={{dosageForm}}&packType={{packType}}&priceMin={{priceMin}}&priceMax={{priceMax}}&inStockOnly={{inStockOnly}}&sellerId={{sellerId}}&page={{searchPage}}&size={{searchSize}}&sort={{searchSort}}'
+method: GET
+order: 1000
+queryParams:
+  - key: q
+    value: '{{searchQuery}}'
+    description: Free-text search term (required)
+  - key: categoryId
+    value: '{{categoryId}}'
+    disabled: true
+  - key: therapeuticCategory
+    value: '{{therapeuticCategory}}'
+    disabled: true
+  - key: dosageForm
+    value: '{{dosageForm}}'
+    disabled: true
+  - key: packType
+    value: '{{packType}}'
+    disabled: true
+  - key: priceMin
+    value: '{{priceMin}}'
+    disabled: true
+  - key: priceMax
+    value: '{{priceMax}}'
+    disabled: true
+  - key: inStockOnly
+    value: '{{inStockOnly}}'
+    disabled: true
+  - key: sellerId
+    value: '{{sellerId}}'
+    disabled: true
+  - key: page
+    value: '{{searchPage}}'
+  - key: size
+    value: '{{searchSize}}'
+  - key: sort
+    value: '{{searchSort}}'
+    description: relevance | price_asc | price_desc | newest
+examples: './.resources/Search Products.resources/examples'

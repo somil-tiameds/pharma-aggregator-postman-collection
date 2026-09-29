@@ -1,0 +1,16 @@
+$kind: http-request
+description: 'POST /search/index/reconcile — manually triggers ProductSyncJob.runManualReconciliation(), the same drift-correction path the scheduled poll uses. sinceTimestamp is optional (ISO-8601 instant); omit to reconcile from the last recorded sync point. product-service now exposes GET /products/changes?since= (search-service-hld.md §5) — this path has not yet been verified end-to-end against a running stack.'
+url: '{{baseUrl}}/search/index/reconcile?sinceTimestamp={{sinceTimestamp}}'
+method: POST
+order: 3200
+headers:
+  - key: X-Internal-Api-Key
+    value: '{{internalApiKey}}'
+    disabled: true
+    description: Required once app.internal.api-key is configured (search-service-security.md) — enable and set internalApiKey to test the locked-down path.
+queryParams:
+  - key: sinceTimestamp
+    value: '{{sinceTimestamp}}'
+    disabled: true
+    description: 'Optional ISO-8601 instant, e.g. 2026-09-01T00:00:00Z'
+examples: './.resources/Trigger Reconciliation.resources/examples'

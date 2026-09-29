@@ -1,0 +1,8 @@
+$kind: http-request
+description: 'POST /admin/sellers/{sellerId}/reactivate — sets an already-live Seller.status back to ACTIVE and asynchronously notifies product-service to reindex-all that seller''s products (so they reappear in buyer search).'
+url: '{{baseUrl}}/admin/sellers/{{sellerId}}/reactivate'
+method: POST
+order: 2000
+pathVariables:
+  - key: sellerId
+    value: '{{sellerId}}'
