@@ -1,0 +1,9 @@
+$kind: collection
+description: Quotation/RFQ domain — buyer price requests and RFQs, seller quote responses, buyer accept/reject, plus the internal claim/confirm-order/release saga that order-service uses to atomically convert an accepted quote into an order. Extracted out of pharma-aggregator-order-service; quote-request paths are no longer served there.
+auth:
+  - id: 17af21b1-769b-400e-8f30-59e6e4fb36df
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{accessToken}}"
+order: 8000

@@ -1,0 +1,33 @@
+$kind: http-request
+description: Filter by recipient, event type, status and/or created-at window (ISO local date-time).
+url: "{{baseUrl}}/admin/notifications/logs"
+method: GET
+headers:
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+queryParams:
+  - key: recipientId
+    value: "{{recipientId}}"
+    disabled: true
+  - key: eventType
+    value: "{{eventType}}"
+    disabled: true
+  - key: status
+    value: FAILED
+    disabled: true
+    description: PENDING | SENT | FAILED | RETRYING | SKIPPED | DEAD_LETTERED
+  - key: from
+    value: 2026-10-01T00:00:00
+    disabled: true
+  - key: to
+    value: 2026-10-31T23:59:59
+    disabled: true
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

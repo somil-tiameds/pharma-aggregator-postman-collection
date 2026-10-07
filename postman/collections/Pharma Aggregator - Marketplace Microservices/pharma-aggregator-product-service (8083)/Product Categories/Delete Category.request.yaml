@@ -1,0 +1,11 @@
+$kind: http-request
+description: Deletes a category by id (204 No Content). Cascades to child masters/products mapped to it - only use on categories you created for testing.
+url: "{{baseUrl}}/categories/{{productCategoryId}}"
+method: DELETE
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [204]', function () { pm.expect([204]).to.include(pm.response.code); });
+    language: text/javascript
+order: 5000

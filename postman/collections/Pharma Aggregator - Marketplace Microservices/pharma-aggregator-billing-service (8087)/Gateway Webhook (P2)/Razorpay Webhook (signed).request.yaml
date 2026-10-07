@@ -1,0 +1,47 @@
+$kind: http-request
+description: "**No JWT.** Authenticated by `X-Razorpay-Signature` = HMAC-SHA256 of the exact raw body with the webhook secret; `X-Razorpay-Event-Id` is the idempotency id. The pre-request script signs the body with `{{razorpayWebhookSecret}}` (must equal `BILLING_RAZORPAY_WEBHOOK_SECRET`). Replies 200 `{status: PROCESSED|IGNORED|DUPLICATE|FAILED_WILL_RETRY}`, 401 bad signature, 400 empty/oversized/unreadable."
+url: "{{baseUrl}}/billing/webhooks/razorpay"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+  - key: X-Razorpay-Signature
+    value: "{{webhookSignature}}"
+  - key: X-Razorpay-Event-Id
+    value: evt_{{$guid}}
+body:
+  type: json
+  content: |-
+    {
+      "event": "payment.captured",
+      "payload": {
+        "payment": {
+          "entity": {
+            "id": "pay_test_{{$randomAlphaNumeric}}",
+            "order_id": "{{providerOrderId}}",
+            "amount": 11200,
+            "currency": "INR",
+            "status": "captured"
+          }
+        }
+      }
+    }
+auth:
+  type: noauth
+scripts:
+  - type: beforeRequest
+    code: |-
+      // Sign the exact bytes that will be sent. Variables in the body must be resolved first.
+      var raw = pm.variables.replaceIn(pm.request.body.raw);
+      pm.request.body.update({ mode: 'raw', raw: raw, options: { raw: { language: 'json' } } });
+      var secret = pm.variables.get('razorpayWebhookSecret') || '';
+      pm.variables.set('webhookSignature', CryptoJS.HmacSHA256(raw, secret).toString(CryptoJS.enc.Hex));
+    language: text/javascript
+  - type: afterResponse
+    code: pm.test('Status is one of [200, 401]', function () { pm.expect([200, 401]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

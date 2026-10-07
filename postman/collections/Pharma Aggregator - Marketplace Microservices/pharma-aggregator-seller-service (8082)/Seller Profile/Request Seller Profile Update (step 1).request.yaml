@@ -1,0 +1,73 @@
+$kind: http-request
+description: "SELLER. Step 1 of profile edit: submits metadata (no files) and creates a pending request. Response contains pendingSellerId, captured for the upload step. 400 on validation errors (phone 10 digits, pin 6 digits, IFSC format)."
+url: "{{baseUrl}}/sellers/{{sellerId}}/request-update?requestedBy={{username}}"
+method: PUT
+headers:
+  Content-Type: application/json
+queryParams:
+  - key: requestedBy
+    value: "{{username}}"
+    description: User submitting the change
+body:
+  type: json
+  content: |-
+    {
+      "sellerName": "Acme Pharma Distributors Pvt Ltd",
+      "companyTypeId": 1,
+      "sellerTypeId": 1,
+      "phone": "9876543210",
+      "email": "accounts@acmepharma.example.com",
+      "website": "https://www.acmepharma.example.com",
+      "termsAccepted": true,
+      "address": {
+        "stateId": 1,
+        "districtId": 1,
+        "talukaId": 1,
+        "city": "Mumbai",
+        "street": "MG Road",
+        "buildingNo": "12-A",
+        "landmark": "Near Andheri Station",
+        "pinCode": "400001"
+      },
+      "coordinator": {
+        "name": "Rahul Sharma",
+        "designation": "Operations Manager",
+        "email": "rahul.sharma@acmepharma.example.com",
+        "mobile": "9876500000"
+      },
+      "bankDetails": {
+        "bankName": "HDFC Bank",
+        "branch": "Andheri West",
+        "ifscCode": "HDFC0000123",
+        "accountNumber": "123456789012",
+        "accountHolderName": "Acme Pharma Distributors Pvt Ltd",
+        "bankDocumentFileUrl": "https://s3.example.com/docs/bank-doc.pdf"
+      },
+      "gstNumber": "27ABCDE1234F1Z5",
+      "gstFileUrl": "https://s3.example.com/docs/gst.pdf",
+      "companyRegistrationCertificateUrl": "https://s3.example.com/docs/reg-cert.pdf",
+      "documents": [
+        {
+          "documentId": null,
+          "productTypeId": 1,
+          "documentNumber": "MH-MZ1-123456",
+          "documentFileUrl": "https://s3.example.com/docs/drug-licence.pdf",
+          "licenseIssueDate": "2022-04-01",
+          "licenseExpiryDate": "2027-03-31",
+          "licenseIssuingAuthority": "Maharashtra FDA",
+          "licenseStatus": "ACTIVE"
+        }
+      ],
+      "productTypeId": [
+        1,
+        2
+      ]
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = ((body.data || body).pendingSellerId || body.id); if (v !== undefined && v !== null) { pm.collectionVariables.set('pendingSellerId', v); } } catch (e) {}
+    language: text/javascript
+order: 3000

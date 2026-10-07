@@ -1,0 +1,3 @@
+$kind: collection
+description: Dosage form, pack type, pack type unit and molecule strength-format lookups.
+order: 2000

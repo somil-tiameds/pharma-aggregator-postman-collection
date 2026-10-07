@@ -1,0 +1,3 @@
+$kind: collection
+description: Anonymous buyer-facing search endpoints.
+order: 1000

@@ -1,0 +1,35 @@
+$kind: http-request
+description: "Uploads a document (e.g. drug licence, GST certificate). multipart/form-data: file plus metadata form fields (documentTypeId, documentNumber, licenseIssueDate/licenseExpiryDate as yyyy-MM-dd, licenseIssuingAuthority). Stores documentId. Response: BuyerDocumentDTO."
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}/documents"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src:
+        - ""
+      description: PDF/JPG/PNG
+    - type: text
+      key: documentTypeId
+      value: "1"
+    - type: text
+      key: documentNumber
+      value: MH-PUN-123456
+    - type: text
+      key: licenseIssueDate
+      value: 2023-04-01
+    - type: text
+      key: licenseExpiryDate
+      value: 2028-03-31
+    - type: text
+      key: licenseIssuingAuthority
+      value: Maharashtra FDA
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.data.documentId || body.data.id || body.documentId); if (v !== undefined && v !== null) { pm.collectionVariables.set('documentId', v); } } catch (e) {}
+    language: text/javascript
+order: 10000

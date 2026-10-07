@@ -1,0 +1,21 @@
+$kind: http-request
+description: "Checks whether a batch number is still free for a seller within a category. Returns a bare JSON boolean: true = batch number NOT used yet (safe to use), false = already exists for this seller. All three params are required."
+url: "{{baseUrl}}/pricing/validateBatchNumber?batchNumber=BATCH-2026-0042&sellerId={{sellerId}}&categoryId={{categoryId}}"
+method: GET
+queryParams:
+  - key: batchNumber
+    value: BATCH-2026-0042
+    description: Required. Batch/lot number printed on the pack
+  - key: sellerId
+    value: "{{sellerId}}"
+    description: Required. Seller id (string)
+  - key: categoryId
+    value: "{{categoryId}}"
+    description: Required. Product category id
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

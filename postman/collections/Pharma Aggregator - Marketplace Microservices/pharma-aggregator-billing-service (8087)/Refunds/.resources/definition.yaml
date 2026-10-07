@@ -1,0 +1,3 @@
+$kind: collection
+description: "Lifecycle: REQUESTED → APPROVED → PROCESSING → COMPLETED | FAILED, → CANCELLED. SERVICE-created refunds are auto-approved; ADMIN-created ones wait for a **different** admin to approve. COD refunds are paid by hand and confirmed with a reference."
+order: 5000

@@ -1,0 +1,4 @@
+$kind: collection
+name: Payments (P1 COD / P2 Online)
+description: The amount is always read from order-service, never from the request. An order has at most one live payment. Sellers never see payments.
+order: 3000

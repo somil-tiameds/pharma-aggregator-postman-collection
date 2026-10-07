@@ -1,0 +1,23 @@
+$kind: http-request
+description: "UNCHECKED bypass: force-sets every seller order under the order to newStatus without validating the transition (writes status history with changedByRole=ADMIN). Use with care. Errors: 400 blank newStatus/reason, 404 order not found or has no seller orders. Returns 200 ApiResponse<OrderResponseDTO>. Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/admin/orders/{{orderId}}/override"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "newStatus": "CANCELLED",
+      "reason": "Manual correction after seller escalation",
+      "adminId": "{{adminId}}"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

@@ -1,0 +1,9 @@
+$kind: http-request
+description: Removes an uploaded document from the registration.
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}/documents/{{documentId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200, 204]', function () { pm.expect([200, 204]).to.include(pm.response.code); });
+    language: text/javascript
+order: 11000

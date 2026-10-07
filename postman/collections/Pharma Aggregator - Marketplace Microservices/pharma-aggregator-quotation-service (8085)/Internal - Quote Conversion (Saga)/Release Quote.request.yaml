@@ -1,0 +1,5 @@
+$kind: http-request
+description: Compensating action — CONVERTING -> ACCEPTED. Called by order-service when order creation fails after a successful claim. 400 if the quote is not currently in CONVERTING state.
+url: "{{baseUrl}}/internal/quote-requests/{{quoteRequestId}}/release"
+method: POST
+order: 3000

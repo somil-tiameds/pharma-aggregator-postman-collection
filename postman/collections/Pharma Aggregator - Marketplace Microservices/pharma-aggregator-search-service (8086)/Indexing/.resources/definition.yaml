@@ -1,3 +1,0 @@
-$kind: collection
-description: 'Internal, service-to-service indexing endpoints. Called by product-service on product create/update/delete/status-change (push path), or manually here for testing since search-service is not yet wired end-to-end. Not enforced by SecurityConfig (permitAll() posture platform-wide) — treated as internal by convention only, not by auth.'
-order: 3000

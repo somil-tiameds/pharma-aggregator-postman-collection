@@ -1,0 +1,47 @@
+$kind: http-request
+description: 2–20 lines; debits must equal credits (422 otherwise). The Idempotency-Key is the posting's source id, so a retry never posts twice.
+url: "{{baseUrl}}/billing/admin/ledger/adjustments"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Idempotency-Key
+    value: "{{idempotencyKey}}"
+    description: Mandatory/used for money-moving calls. A fresh GUID is generated per send; reuse the same value to test replay.
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "reason": "Correct mis-posted COD cash",
+      "lines": [
+        {
+          "accountCode": "{{accountCode}}",
+          "direction": "DEBIT",
+          "amount": 10.0
+        },
+        {
+          "accountCode": "{{counterAccountCode}}",
+          "direction": "CREDIT",
+          "amount": 10.0
+        }
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: beforeRequest
+    code: pm.variables.set('idempotencyKey', pm.variables.get('fixedIdempotencyKey') || pm.variables.replaceIn('{{$guid}}'));
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.txnRef); if (v !== undefined && v !== null) { pm.collectionVariables.set('txnRef', v); } }
+    language: text/javascript
+order: 4000

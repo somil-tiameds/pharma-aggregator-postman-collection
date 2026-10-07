@@ -1,0 +1,13 @@
+$kind: http-request
+description: "Processes a refund for an approved return. Caller: admin/back-office. Precondition: refund pending from an approved return. This only flips status and restocks; no money moves via a gateway here. Errors: 404 refund not found, 409 already processed. Returns 200 ApiResponse<ReturnResponseDTO>. Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/returns/refunds/{{refundId}}/process"
+method: POST
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

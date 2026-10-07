@@ -1,0 +1,5 @@
+$kind: http-request
+description: QUOTED -> ACCEPTED. Rejected with 409 on an optimistic-lock conflict; rejected (and the quote auto-expired) if quoteValidUntil has already passed.
+url: "{{baseUrl}}/buyer/quote-requests/{{quoteRequestId}}/accept"
+method: PATCH
+order: 3000

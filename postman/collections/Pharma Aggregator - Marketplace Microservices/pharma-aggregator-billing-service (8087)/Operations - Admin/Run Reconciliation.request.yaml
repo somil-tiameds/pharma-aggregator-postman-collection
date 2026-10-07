@@ -1,0 +1,30 @@
+$kind: http-request
+description: "`from`/`to` ≤ 62 days. Runs synchronously (202). Heals a payment captured at the gateway but never recorded, expires abandoned checkouts, **reports** everything else."
+url: "{{baseUrl}}/billing/admin/reconciliation/runs"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "from": "2026-10-01",
+      "to": "2026-10-06"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 202]', function () { pm.expect([200, 202]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.runId); if (v !== undefined && v !== null) { pm.collectionVariables.set('runId', v); } }
+    language: text/javascript
+order: 1000

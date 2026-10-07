@@ -1,0 +1,18 @@
+$kind: http-request
+description: Hook for an external moderation/approval flow (e.g. seller-service admin) to change status. status must be DRAFT, PUBLISHED or UNPUBLISHED (anything else -> 400 'Invalid status'). Sets modifiedBy to updatedBy. 404 if product not found. Returns the updated ProductDetailsDto.
+url: "{{baseUrl}}/products/{{productServiceProductId}}/status?status=PUBLISHED&updatedBy=admin-001"
+method: PATCH
+queryParams:
+  - key: status
+    value: PUBLISHED
+    description: DRAFT | PUBLISHED | UNPUBLISHED
+  - key: updatedBy
+    value: admin-001
+    description: Id of the actor making the change
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 6000

@@ -1,0 +1,3 @@
+$kind: collection
+description: Computed from the immutable invoice/credit-note documents. GSTR-1 style **filing support**, not a filed return; rates, thresholds and the exact filing format are finance's call.
+order: 10000

@@ -1,0 +1,3 @@
+$kind: collection
+description: "Read-only dropdown/reference data: product category/subcategory, product form, serving size unit, storage condition, strength unit, therapeutic categories. All public (no auth). Ids in the paths are examples - use ids returned by the list endpoints. Some return ApiResponse {status, message, count, data}, others bare arrays/objects."
+order: 15000

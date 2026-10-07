@@ -1,0 +1,3 @@
+$kind: collection
+description: "One example per gateway route (port 8089). Prefix /api/v1 is stripped (StripPrefix=2). Gateway auth rule (GatewayJwtAuthFilter): public (no token) = /actuator/**, /api/v1/auth/**, /api/v1/authentication/**, /api/v1/billing/webhooks/**, and all product-service/master-data paths. Paths under /api/v1/buyers/**, /temp-buyers/**, /buyer-types/**, /admin/buyer-requests/** need a JWT signed with the BUYER secret (BUYER_JWT_SECRET) - use {{buyerToken}}. Every other path (orders, search, quote-requests, billing, sellers...) is checked against the SELLER secret (SELLER_JWT_SECRET) - use {{sellerToken}}; a buyer token is rejected with 401 there. Missing secret config = 401 (fail closed). Rate limit: GATEWAY_RATE_LIMIT_RPS (default 20)."
+order: 1000

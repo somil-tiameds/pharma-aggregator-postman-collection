@@ -1,0 +1,3 @@
+$kind: collection
+description: Public OTP endpoints used during seller registration.
+order: 11000

@@ -1,11 +1,7 @@
 workspace:
   id: 0a43a06d-3d77-43de-8fec-86df77975ae1
-
 localResources:
   collections: []
-
-# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
-
 cloudResources:
   collections:
     ../postman/collections/Full Admin Dashboard (lab-admin-stats): 56247289-423fee89-e1af-4fd1-8261-a9fee7b35e3a
@@ -14,4 +10,9 @@ cloudResources:
     ../postman/collections/Blood Buddy Backend API: 56247289-050814c8-6961-4b31-98d8-2438c7c31828
     ../postman/collections/Tiameds Admin API Collection: 56247289-b6f029bd-122a-4b8e-babf-f52cb8359e7d
     ../postman/collections/TiaMeds Lab Management API: 56247289-5eb2f01b-0e71-4f8b-aa2e-14b97654aef6
-    ../postman/collections/Pharma Aggregator - Marketplace Microservices: 78531b03-0c2e-4857-8201-93435abcf599
+    ../postman/collections/Pharma Aggregator - Marketplace Microservices: 56247289-26426677-b3c4-4ec8-bcbd-3c48b1bc96e0
+  environments:
+    ../postman/environments/New Environment.environment.yaml: 56247289-c6d2cffb-3f25-4cfd-9cd5-6943c47b98fe
+    ../postman/environments/Pharma Aggregator - Product Service.environment.yaml: 56247289-b0bec6d3-d124-40c1-975c-8cb11f61f676
+  globals:
+    ../postman/globals/workspace.globals.yaml: c0d81c3e-afac-450e-8ffb-7ac8a7b23d0c

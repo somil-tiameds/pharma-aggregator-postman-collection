@@ -1,0 +1,11 @@
+$kind: http-request
+description: "Internal hook (seller-service suspend/reactivate): queues every product of the seller for a full search-index refresh via the outbox. Not protected by an internal API key. Response ApiResponse with message 'Queued products for reindex' and count = number of products queued."
+url: "{{baseUrl}}/products/seller/{{productServiceSellerId}}/reindex-all"
+method: POST
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 9000

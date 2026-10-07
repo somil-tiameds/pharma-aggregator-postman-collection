@@ -1,0 +1,31 @@
+$kind: http-request
+description: "Adds a saved delivery address. Stores deliveryAddressId. Response: BuyerDeliveryAddressResponseDTO."
+url: "{{baseUrl}}/buyers/{{buyerId}}/delivery-addresses"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "label": "Main Store",
+      "stateId": 27,
+      "districtId": 521,
+      "talukaId": 3401,
+      "city": "Pune",
+      "street": "FC Road",
+      "buildingNo": "Shop 12, Laxmi Chambers",
+      "landmark": "Near Fergusson College",
+      "pinCode": "411004",
+      "contactName": "Rohan Deshmukh",
+      "contactPhone": "9822012345",
+      "isDefault": true
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.data.deliveryAddressId || body.data.id); if (v !== undefined && v !== null) { pm.collectionVariables.set('deliveryAddressId', v); } } catch (e) {}
+    language: text/javascript
+order: 7000

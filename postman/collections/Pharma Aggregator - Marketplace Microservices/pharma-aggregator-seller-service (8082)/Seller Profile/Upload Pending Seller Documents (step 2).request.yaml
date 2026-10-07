@@ -1,0 +1,36 @@
+$kind: http-request
+description: "SELLER. Step 2: multipart upload of files for a pending update. All parts optional. licenseFiles/licenseNames/documentIds are parallel lists. On failure call 'Cancel Pending Seller'. 200 ApiResponse{data: PendingSellerDocumentUploadResponse}."
+url: "{{baseUrl}}/sellers/{{pendingSellerId}}/documents/upload"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: gstFile
+      src: []
+      description: GST certificate (pdf/jpg)
+    - type: file
+      key: bankFile
+      src: []
+      description: Cancelled cheque / bank letter
+    - type: file
+      key: companyRegistrationCertificate
+      src: []
+      description: Company registration certificate
+    - type: file
+      key: licenseFiles
+      src: []
+      description: Licence file(s); repeat key for multiple
+    - type: text
+      key: licenseNames
+      value: Drug License
+      description: Parallel to licenseFiles
+    - type: text
+      key: documentIds
+      value: "{{documentId}}"
+      description: Existing documentIds to replace (parallel)
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 5000

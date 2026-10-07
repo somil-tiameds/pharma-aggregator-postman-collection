@@ -1,0 +1,59 @@
+$kind: http-request
+description: "Full-text product search over the `products` index alias with optional filters, paging and sort. Response data: results[], facets[], page, size, totalResults, totalPages. Every call also logs the query for trending. Auth: none (permitAll; public so buyers can search anonymously). Errors: 400 if q is missing. Unsupported `sort` -> 400 (allowed: relevance, price_asc, price_desc, newest)."
+url: "{{baseUrl}}/search?q=paracetamol&page=0&size=20&sort=relevance"
+method: GET
+queryParams:
+  - key: q
+    value: paracetamol
+    description: Search text (required)
+  - key: categoryId
+    value: "1"
+    disabled: true
+    description: Filter by product category id
+  - key: therapeuticCategory
+    value: Analgesic
+    disabled: true
+    description: Filter by therapeutic category
+  - key: dosageForm
+    value: Tablet
+    disabled: true
+    description: Filter by dosage form
+  - key: packType
+    value: Strip
+    disabled: true
+    description: Filter by pack type
+  - key: priceMin
+    value: "10"
+    disabled: true
+    description: Minimum price
+  - key: priceMax
+    value: "500"
+    disabled: true
+    description: Maximum price
+  - key: inStockOnly
+    value: "true"
+    disabled: true
+    description: Only products with stockAvailable=true
+  - key: sellerId
+    value: "1"
+    disabled: true
+    description: Restrict to one seller
+  - key: page
+    value: "0"
+    description: Zero-based page index (default 0)
+  - key: size
+    value: "20"
+    description: Page size (default 20)
+  - key: sort
+    value: relevance
+    description: relevance | price_asc | price_desc | newest (default relevance)
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.data.results[0].productId); if (v !== undefined && v !== null) { pm.collectionVariables.set('searchProductId', v); } } catch (e) {}
+    language: text/javascript
+order: 1000

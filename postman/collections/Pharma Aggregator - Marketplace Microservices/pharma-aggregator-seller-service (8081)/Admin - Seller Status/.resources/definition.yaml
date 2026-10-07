@@ -1,3 +1,0 @@
-$kind: collection
-description: 'Suspend/reactivate an already-live, approved seller (AdminSellerStatusController, base path /admin/sellers) — distinct from the pending-seller approval queue in "Admin - Seller Update Approval" (/admin/seller-requests). Fires an async, fail-open notification to product-service''s /products/seller/{sellerId}/reindex-all so that seller''s products get reindexed with the new sellerApproved state in search-service.'
-order: 1500

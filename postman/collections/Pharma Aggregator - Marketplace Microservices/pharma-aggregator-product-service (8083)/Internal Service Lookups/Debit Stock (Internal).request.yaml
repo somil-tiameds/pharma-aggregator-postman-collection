@@ -1,0 +1,22 @@
+$kind: http-request
+description: FIFO-debits stock for an order. sellerId is resolved from the product; referenceType is forced to ORDER. Returns [{pricingId, quantity}] per batch debited (keep for restock). Insufficient stock -> 4xx.
+url: "{{baseUrl}}/internal/stock/debit"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productId": "{{productServiceProductId}}",
+      "packagingId": "{{productServicePackagingId}}",
+      "quantity": 10,
+      "referenceId": "ORD-2026-0001"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 5000

@@ -1,0 +1,26 @@
+$kind: http-request
+description: "Buyer requests a return for one order item. Precondition: the item's seller order is DELIVERED and the item is not already under return. Errors: 400 validation, 404 item not found, 409 duplicate/ineligible. Returns 201 ApiResponse<ReturnResponseDTO> (status REQUESTED). Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/returns"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "orderItemId": "{{orderItemId}}",
+      "buyerId": "{{buyerId}}",
+      "reason": "Received damaged strips - blister packs torn"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{buyerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [201]', function () { pm.expect([201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.data.returnId); if (v !== undefined && v !== null) { pm.collectionVariables.set('returnId', v); } } catch (e) {}
+    language: text/javascript
+order: 1000

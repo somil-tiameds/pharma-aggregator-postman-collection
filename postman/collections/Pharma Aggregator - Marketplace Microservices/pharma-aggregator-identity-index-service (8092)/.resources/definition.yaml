@@ -1,0 +1,3 @@
+$kind: collection
+description: "Identity index service (port 8092). A fast email -> owning-service lookup (DynamoDB table identity_email_index) kept in sync asynchronously from identity events (SNS topic identity-events -> SQS queue identity-index-queue). buyer-service and seller-service signup flows call it to detect an email already registered with the other service. Internal only: NOT routed through the API gateway and has no authentication."
+order: 12000

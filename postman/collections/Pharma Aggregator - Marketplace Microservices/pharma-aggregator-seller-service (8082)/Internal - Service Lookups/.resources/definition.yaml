@@ -1,0 +1,3 @@
+$kind: collection
+description: Service-to-service endpoints (not exposed via the gateway). Lookups are open; billing-profile needs X-Service-Token.
+order: 13000

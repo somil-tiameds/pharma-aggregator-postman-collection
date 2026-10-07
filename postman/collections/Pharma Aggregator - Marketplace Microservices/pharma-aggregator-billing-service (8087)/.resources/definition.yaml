@@ -1,0 +1,12 @@
+$kind: collection
+description: |-
+  Invoicing, credit notes, payments (COD now; Razorpay behind a gateway adapter), refunds, double-entry ledger, commission, settlements/payouts and GST reports. Through the API gateway every path here is prefixed `/api/v1` (e.g. `{{gatewayUrl}}/api/v1/billing/invoices`); this folder talks to the service directly on its own port.
+
+  **Auth per request** (identity always comes from the credential, never from a body/path id): BUYER = buyer-service token (`buyerToken`), SELLER = seller-service token (`sellerToken`), ADMIN = seller-service token without a sellerId whose username is on the admin list (`adminToken`), SERVICE = `X-Service-Token` header (`serviceToken`). Fill the folder variables once.
+
+  **Idempotency**: money-moving POSTs send `Idempotency-Key` (a fresh GUID per send by default). To test replay, set the collection variable `fixedIdempotencyKey` and resend: same key + same body replays the original response, same key + different body → 409.
+
+  **Envelope**: `{status, message, data}`; lists return `data: {content[], page, size, totalElements}`. Errors: 400 validation · 401 · 403 · 404 (also 'not yours') · 409 conflict · 422 business rule · 503 upstream unavailable (`Retry-After`).
+
+  Requests capture ids (`invoiceId`, `paymentRef`, `refundRef`, `settlementId`, `payoutId`, …) into variables so the folders can be run top to bottom. Prerequisite data (a delivered seller order, an order id) comes from the order flow; the invoice itself is created by the `SellerOrderDelivered` event, not by a request.
+order: 10000

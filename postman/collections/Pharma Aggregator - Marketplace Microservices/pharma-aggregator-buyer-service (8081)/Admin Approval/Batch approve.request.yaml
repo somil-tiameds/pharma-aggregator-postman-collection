@@ -1,0 +1,24 @@
+$kind: http-request
+description: "Admin. Approves several temp buyers at once. Body is a JSON array of temp buyer ids; optional query comments. Response: array of BuyerApprovalResultDTO."
+url: "{{baseUrl}}/admin/buyer-requests/batch-approve"
+method: POST
+headers:
+  Content-Type: application/json
+queryParams:
+  - key: comments
+    value: Bulk approved
+    disabled: true
+    description: Optional comment applied to all
+body:
+  type: json
+  content: |-
+    [
+      1,
+      2,
+      3
+    ]
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 6000

@@ -1,0 +1,11 @@
+$kind: http-request
+description: "Lists every dosage form master row, e.g. Tablet, Capsule, Syrup, Injection: [{dosageId, dosageName}]. Returns a plain JSON array (not wrapped in ApiResponse). Public, no auth."
+url: "{{baseUrl}}/dosage/allDosage"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

@@ -1,0 +1,7 @@
+$kind: collection
+description: Service-to-service only — called by order-service's OrderPlacementService.placeOrderFromQuote, never by a client through the Gateway (there is no route for /internal/** here). No JWT required, matching the same posture as seller-service's/buyer-service's own internal lookup controllers.
+auth:
+  - id: ""
+    type: noauth
+    name: No Auth
+order: 3000

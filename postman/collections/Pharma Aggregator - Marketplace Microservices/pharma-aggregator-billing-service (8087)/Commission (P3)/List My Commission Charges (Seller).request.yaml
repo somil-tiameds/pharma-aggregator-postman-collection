@@ -1,0 +1,31 @@
+$kind: http-request
+description: Accruals and reversals. Admin may pass `sellerId`.
+url: "{{baseUrl}}/billing/seller/commissions?page=0&size=20"
+method: GET
+headers:
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+queryParams:
+  - key: sellerId
+    value: "{{sellerId}}"
+    disabled: true
+    description: Admin only.
+  - key: page
+    value: "0"
+  - key: size
+    value: "20"
+  - key: sort
+    value: createdAt,desc
+    disabled: true
+    description: Whitelisted sort fields only; unknown fields are ignored. size is capped at 100.
+auth:
+  type: bearer
+  credentials:
+    token: "{{sellerToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

@@ -1,0 +1,13 @@
+$kind: http-request
+description: CONVERTING -> ORDER_PLACED, sets order_id. 400 if the quote is not currently in CONVERTING state.
+url: "{{baseUrl}}/internal/quote-requests/{{quoteRequestId}}/confirm-order"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "orderId": "{{orderId}}"
+    }
+order: 2000

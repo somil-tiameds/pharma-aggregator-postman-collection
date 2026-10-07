@@ -1,0 +1,18 @@
+$kind: http-request
+description: Uploads the user-manual PDF for a product attribute (multipart, single `file` part). Response ApiResponse<String> whose data is the stored manual URL.
+url: "{{baseUrl}}/userManual/{{productServiceAttributeId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: []
+      description: User manual PDF
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

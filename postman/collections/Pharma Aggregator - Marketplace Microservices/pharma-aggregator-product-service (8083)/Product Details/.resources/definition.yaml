@@ -1,0 +1,3 @@
+$kind: collection
+description: Product catalog CRUD (/products). No auth enforced - SecurityConfig is permitAll and the optional JWT filter only parses a Bearer token if sent. sellerId is a plain client-supplied field (not derived from a token). Responses are bare DTOs (no ApiResponse wrapper) except /changes and /reindex-all.
+order: 8000

@@ -1,0 +1,27 @@
+$kind: http-request
+description: "Cursor-based catch-up feed for downstream consumers (search-service): products created/modified after `since` (ISO-8601 instant, required - missing/invalid -> 400). Pageable via page/size/sort. Response is ApiResponse: {status, message, count (total elements), data: [ProductDetailsDto]}."
+url: "{{baseUrl}}/products/changes?since=2026-01-01T00:00:00Z"
+method: GET
+queryParams:
+  - key: since
+    value: 2026-01-01T00:00:00Z
+    description: Required. ISO-8601 date-time instant
+  - key: page
+    value: "0"
+    disabled: true
+    description: Zero-based page
+  - key: size
+    value: "50"
+    disabled: true
+    description: Page size
+  - key: sort
+    value: modifiedDate,asc
+    disabled: true
+    description: Optional sort
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 8000

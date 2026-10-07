@@ -1,0 +1,3 @@
+$kind: collection
+description: Service-to-service endpoints under /internal (used by order-service, billing-service). Called via Eureka, not through the Gateway; no JWT and no internal API key check is enforced.
+order: 10000

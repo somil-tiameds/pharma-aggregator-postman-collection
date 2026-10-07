@@ -1,0 +1,3 @@
+$kind: collection
+description: Live (approved) buyer profile and saved delivery addresses (gateway /api/v1/buyers/**). Requires buyer JWT.
+order: 6000

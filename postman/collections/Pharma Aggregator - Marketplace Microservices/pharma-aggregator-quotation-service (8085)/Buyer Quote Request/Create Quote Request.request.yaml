@@ -1,0 +1,32 @@
+$kind: http-request
+description: requestType is "PRICE_REQUEST" or "RFQ". targetPrice/pincode apply to PRICE_REQUEST; deliveryLocation/expectedDeliveryDate/paymentTerms/companyName/gstNumber apply to RFQ. idempotencyKey is optional — pass a client-generated UUID to make retried submissions safe.
+url: "{{baseUrl}}/buyer/quote-requests"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Idempotency-Key
+    value: "{{idempotencyKey}}"
+    description: Optional. Also accepted as a body field; header takes precedence if both are sent.
+body:
+  type: text
+  content: |-
+    {
+      "productId": "{{productId}}",
+      "requestType": "RFQ",
+      "quantity": 100,
+      "unit": "boxes",
+      "targetPrice": 500.00,
+      "pincode": "560001",
+      "deliveryLocation": "Bengaluru, Karnataka",
+      "expectedDeliveryDate": "2026-10-15",
+      "paymentTerms": "Net 30",
+      "companyName": "Acme Pharmacy",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "contactPerson": "Jane Buyer",
+      "phone": "{{phone}}",
+      "email": "{{email}}",
+      "message": "Please share your best price for a bulk order.",
+      "idempotencyKey": "{{idempotencyKey}}"
+    }
+order: 1000

@@ -1,0 +1,9 @@
+$kind: http-request
+description: Deletes the staging registration. 404 if missing.
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200, 204]', function () { pm.expect([200, 204]).to.include(pm.response.code); });
+    language: text/javascript
+order: 9000

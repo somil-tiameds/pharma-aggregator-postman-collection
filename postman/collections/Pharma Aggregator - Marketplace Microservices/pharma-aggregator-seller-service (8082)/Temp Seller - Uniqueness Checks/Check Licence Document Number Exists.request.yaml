@@ -1,0 +1,11 @@
+$kind: http-request
+description: Registration flow. Returns a bare boolean (true = already exists).
+url: "{{baseUrl}}/temp-sellers/coordinator/check-document?documentnumber=MH-MZ1-123456"
+method: GET
+queryParams:
+  documentnumber: MH-MZ1-123456
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 3000

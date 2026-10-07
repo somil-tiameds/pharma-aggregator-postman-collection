@@ -1,0 +1,3 @@
+$kind: collection
+description: Admin-only review of buyer registrations (gateway /api/v1/admin/buyer-requests/**). Approval promotes the temp buyer to a live Buyer and returns the new buyerId. Use an admin token in accessToken.
+order: 5000

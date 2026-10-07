@@ -1,0 +1,3 @@
+$kind: collection
+description: Service-to-service reads for billing-service. Not routed by the gateway (/internal/**); call the service directly. Require header X-Service-Token = BILLING_SERVICE_TOKEN; with no token configured they are always closed (403).
+order: 9000

@@ -1,0 +1,18 @@
+$kind: http-request
+description: Returns a molecule in the context of a product attribute (drug attribute record). Both params are required (400 if missing); 404 if the molecule is not found.
+url: "{{baseUrl}}/molecules/getMoleculeById?moleculeId={{moleculeId}}&productAttributeId={{productAttributeId}}"
+method: GET
+queryParams:
+  - key: moleculeId
+    value: "{{moleculeId}}"
+    description: Required. Molecule id
+  - key: productAttributeId
+    value: "{{productAttributeId}}"
+    description: Required. Product attribute id (string) the molecule is linked to
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 3000

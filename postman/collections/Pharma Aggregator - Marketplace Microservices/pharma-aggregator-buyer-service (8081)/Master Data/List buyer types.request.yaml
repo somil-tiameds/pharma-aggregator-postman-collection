@@ -1,0 +1,9 @@
+$kind: http-request
+description: "Lists buyer types (pharmacy, hospital, clinic, distributor ...) used as buyerTypeId. Gateway: /api/v1/buyer-types/** needs buyer JWT."
+url: "{{baseUrl}}/buyer-types"
+method: GET
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

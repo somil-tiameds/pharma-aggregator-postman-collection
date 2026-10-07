@@ -1,0 +1,24 @@
+$kind: http-request
+description: "Paged order history of a buyer. Caller: buyer. Spring Pageable params page/size/sort. Returns 200 ApiResponse<Page<OrderResponseDTO>> with count = total elements. Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/orders/buyer/{{buyerId}}?page=0&size=20"
+method: GET
+queryParams:
+  - key: page
+    value: "0"
+    description: Zero-based page index
+  - key: size
+    value: "20"
+    description: Page size
+  - key: sort
+    value: createdAt,desc
+    disabled: true
+    description: Sort, e.g. createdAt,desc
+auth:
+  type: bearer
+  credentials:
+    token: "{{buyerToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

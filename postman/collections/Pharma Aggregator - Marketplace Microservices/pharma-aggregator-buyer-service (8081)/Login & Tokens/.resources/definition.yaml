@@ -1,0 +1,3 @@
+$kind: collection
+description: Two-step login (password then OTP), refresh and logout. Public; routed via gateway /api/v1/authentication/**.
+order: 2000

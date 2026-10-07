@@ -1,0 +1,16 @@
+$kind: http-request
+description: Available batches in FIFO order (earliest expiry first) as BatchAvailabilityDto[] {pricingId, packagingId, batchLotNumber, manufacturingDate, expiryDate, stockQuantity, discountPercentage, shelfLifeMonths, shelfLifeDays, dateOfStockEntry}.
+url: "{{baseUrl}}/stock/{{productServiceProductId}}/batches"
+method: GET
+queryParams:
+  - key: packagingId
+    value: "{{productServicePackagingId}}"
+    disabled: true
+    description: "Optional: restrict to one packaging"
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 5000

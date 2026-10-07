@@ -1,0 +1,23 @@
+$kind: http-request
+description: Creates a flavour. flavourName is the real input; isActive defaults to true when omitted; any flavourId in the body is ignored (generated). Returns FlavourMasterDto.
+url: "{{baseUrl}}/flavours"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "flavourName": "Orange",
+      "isActive": true
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.flavourId); if (v !== undefined && v !== null) { pm.collectionVariables.set('flavourId', v); } } catch (e) {}
+    language: text/javascript
+order: 8000

@@ -1,0 +1,30 @@
+$kind: http-request
+name: Issue Invoice (manual / retry)
+description: Normally event-driven. Idempotent per seller order. 404 unknown order, 422 not delivered or totals do not reconcile, 503 upstream down, 409 when issuing is switched off (`BILLING_ISSUE_INVOICES=false`).
+url: "{{baseUrl}}/billing/invoices/issue"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "sellerOrderId": "{{sellerOrderId}}"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.invoiceId); if (v !== undefined && v !== null) { pm.collectionVariables.set('invoiceId', v); } }
+    language: text/javascript
+order: 1000

@@ -1,0 +1,21 @@
+$kind: http-request
+description: Uploads the product brochure for a Cosmetic attribute (multipart, single file in `brochureFile`). Returns ApiResponse<CertificateUploadResponse> with brochureUrl set. 404 if the attribute id is unknown.
+url: "{{baseUrl}}/product-documents/cosmetic/{{productServiceAttributeId}}/brochure"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: brochureFile
+      src: []
+      description: Brochure PDF
+    - type: text
+      key: uploadedBy
+      value: "{{productServiceSellerId}}"
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 8000

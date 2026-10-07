@@ -1,0 +1,3 @@
+$kind: collection
+description: Product image upload and retrieval (/product-images).
+order: 13000

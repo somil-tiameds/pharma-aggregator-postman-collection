@@ -1,0 +1,3 @@
+$kind: collection
+description: Molecule (generic/salt) lookups.
+order: 3000

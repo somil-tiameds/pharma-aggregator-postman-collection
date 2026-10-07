@@ -1,0 +1,3 @@
+$kind: collection
+description: Not routed through the gateway. Called by order-, notification- and billing-service. Responses are plain DTOs (NOT wrapped in the envelope). Summary/contact/address/guest endpoints are unauthenticated; billing-profile requires X-Service-Token.
+order: 8000

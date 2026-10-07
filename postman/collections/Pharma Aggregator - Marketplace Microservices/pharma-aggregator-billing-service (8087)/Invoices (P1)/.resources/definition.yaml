@@ -1,0 +1,3 @@
+$kind: collection
+description: Immutable GST tax invoices, issued automatically when order-service publishes `SellerOrderDelivered`. Buyers and sellers only ever see their own documents (404, not 403, for someone else's). Invoice numbers are gap-free per seller per financial year.
+order: 1000

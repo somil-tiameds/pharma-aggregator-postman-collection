@@ -1,0 +1,3 @@
+$kind: collection
+description: "Forgot/reset password flows. Public via gateway /api/v1/auth/**. New password rule: min 8 chars, one digit, lower, upper, special from @#$%^&+=!, no whitespace."
+order: 3000

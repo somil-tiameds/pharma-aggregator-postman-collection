@@ -1,0 +1,28 @@
+$kind: http-request
+description: "Paged list of all orders with optional status filter. Caller: admin (role is not enforced by this service; the gateway requires a valid JWT). Returns 200 ApiResponse<Page<OrderResponseDTO>> with count. Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/admin/orders?page=0&size=20"
+method: GET
+queryParams:
+  - key: status
+    value: PLACED
+    disabled: true
+    description: Optional order status filter
+  - key: page
+    value: "0"
+    description: Zero-based page index
+  - key: size
+    value: "20"
+    description: Page size
+  - key: sort
+    value: createdAt,desc
+    disabled: true
+    description: Sort, e.g. createdAt,desc
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

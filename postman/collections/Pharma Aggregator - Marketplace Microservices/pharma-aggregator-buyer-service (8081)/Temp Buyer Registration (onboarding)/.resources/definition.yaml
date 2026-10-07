@@ -1,0 +1,3 @@
+$kind: collection
+description: Buyer onboarding staging (tbl_temp_buyer*). Buyer fills the form (optionally as drafts), uploads documents, finalizes; admin then approves. Requires the buyer JWT (gateway /api/v1/temp-buyers/**).
+order: 4000

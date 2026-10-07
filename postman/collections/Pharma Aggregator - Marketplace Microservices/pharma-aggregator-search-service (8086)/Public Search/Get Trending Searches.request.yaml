@@ -1,0 +1,19 @@
+$kind: http-request
+description: "Most-searched terms (term, searchCount, rank) from the search query log. Auth: none."
+url: "{{baseUrl}}/search/trending?limit=10"
+method: GET
+queryParams:
+  - key: categoryId
+    value: "1"
+    disabled: true
+    description: Restrict to a category
+  - key: limit
+    value: "10"
+    description: Max terms (default 10)
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 3000

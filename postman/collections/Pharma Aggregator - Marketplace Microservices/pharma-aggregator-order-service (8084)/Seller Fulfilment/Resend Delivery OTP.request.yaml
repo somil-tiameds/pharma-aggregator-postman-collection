@@ -1,0 +1,21 @@
+$kind: http-request
+description: "Re-sends the delivery OTP to the buyer. Only while OUT_FOR_DELIVERY. Caller: owning seller. Errors: 400 wrong state, 401 not your order, 404. Returns 200 ApiResponse<Void> (data null). Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/seller-orders/{{sellerOrderId}}/resend-delivery-otp"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "sellerId": "{{sellerId}}"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{sellerToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 6000

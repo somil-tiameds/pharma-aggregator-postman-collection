@@ -1,0 +1,15 @@
+$kind: http-request
+description: "Snapshot of a seller order for invoicing (buyer delivery details, lines with tax). Caller: billing-service only. Errors: 403 missing/wrong X-Service-Token, 404 unknown seller order. Returns 200 SellerOrderBillingView (plain JSON, not wrapped in ApiResponse)."
+url: "{{baseUrl}}/internal/seller-orders/{{sellerOrderId}}/billing-view"
+method: GET
+headers:
+  - key: X-Service-Token
+    value: "{{serviceToken}}"
+    description: Must equal BILLING_SERVICE_TOKEN configured on order-service
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

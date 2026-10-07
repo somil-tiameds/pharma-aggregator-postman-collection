@@ -1,0 +1,24 @@
+$kind: http-request
+description: "Creates a top-level product category (e.g. Drugs, Consumables). NOTE: the Category entity id is NOT auto-generated, so categoryId must be supplied in the body; reusing an existing id overwrites that row (save = upsert). Returns the saved Category (200). Public, no auth."
+url: "{{baseUrl}}/categories"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "categoryId": 99,
+      "categoryName": "Ayush Products",
+      "categoryDescription": "Ayurvedic, Unani and Siddha formulations"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.categoryId); if (v !== undefined && v !== null) { pm.collectionVariables.set('productCategoryId', v); } } catch (e) {}
+    language: text/javascript
+order: 1000

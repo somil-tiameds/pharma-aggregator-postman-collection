@@ -1,0 +1,3 @@
+$kind: collection
+description: "Orders domain: placement (cart or accepted quote), seller fulfilment lifecycle with delivery OTP, cancellation, returns/refunds, legacy invoices/payments, admin override, and internal billing views. Called directly on 8084 (no context path); via the gateway use /api/v1 + path. The service permits all requests but reads an optional JWT (seller-orders endpoints need the seller JWT sellerId claim). NOTE: the gateway verifies every non-buyer-service path (including /orders) with the SELLER secret, so a buyer token only works through the gateway if secrets match. /internal/** uses X-Service-Token."
+order: 7000

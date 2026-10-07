@@ -1,0 +1,9 @@
+$kind: collection
+description: "Buyer domain - signup/login with OTP, password reset, buyer onboarding (temp buyer + documents), admin approval, live buyer profile and delivery addresses, buyer types, and internal lookups for other services. Default port 8081 (SERVER_PORT); through the gateway use the /api/v1 prefix. Flow: Signup -> verify OTP -> Login -> verify OTP (stores accessToken) -> Temp buyer -> admin approve (stores buyerId). Note: standalone it shares port 8081 with seller-service; override SERVER_PORT or change baseUrl."
+auth:
+  - id: 69a72cda-4c23-4980-b183-03c1cc512578
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{accessToken}}"
+order: 5000

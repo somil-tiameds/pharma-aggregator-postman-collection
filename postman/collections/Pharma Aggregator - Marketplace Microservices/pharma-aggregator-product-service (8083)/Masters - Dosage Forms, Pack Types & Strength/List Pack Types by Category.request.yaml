@@ -1,0 +1,11 @@
+$kind: http-request
+description: Pack types valid for a whole product category. Returns a plain JSON array (not wrapped in ApiResponse). Public, no auth.
+url: "{{baseUrl}}/dosage/packType/category/{{categoryId}}"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

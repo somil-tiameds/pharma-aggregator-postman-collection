@@ -1,0 +1,11 @@
+$kind: http-request
+description: Specification units (e.g. mmHg, bpm, cm) applicable to a medical-device sub-category. Returns a plain JSON array (not wrapped in ApiResponse). Public, no auth.
+url: "{{baseUrl}}/masters/by-subcategory/{{deviceSubCategoryId}}"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 10000

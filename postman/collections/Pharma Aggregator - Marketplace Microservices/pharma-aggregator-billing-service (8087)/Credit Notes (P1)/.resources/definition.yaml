@@ -1,0 +1,3 @@
+$kind: collection
+description: Credit notes against an issued invoice (returns, cancellations after invoicing, price correction, quality claims). Refund-driven credit notes are issued automatically when a refund completes; the manual endpoint is for corrections.
+order: 2000

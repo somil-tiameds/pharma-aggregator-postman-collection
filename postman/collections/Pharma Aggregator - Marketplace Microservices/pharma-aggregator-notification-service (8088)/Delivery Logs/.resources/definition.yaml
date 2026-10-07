@@ -1,0 +1,3 @@
+$kind: collection
+description: Audit trail of every dispatch attempt (idempotent on eventId + channel + recipient).
+order: 2000

@@ -1,0 +1,3 @@
+$kind: collection
+description: Legacy in-service invoice generation (billing-service supersedes this when BILLING_DELEGATE=true).
+order: 6000

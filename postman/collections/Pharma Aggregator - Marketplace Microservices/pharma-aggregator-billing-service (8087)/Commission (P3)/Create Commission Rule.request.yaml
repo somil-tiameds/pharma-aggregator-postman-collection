@@ -1,0 +1,38 @@
+$kind: http-request
+description: "`scopeType` GLOBAL (scopeRef `*`) | SELLER (scopeRef = sellerId) | CATEGORY (stored, not yet applied)."
+url: "{{baseUrl}}/billing/admin/commission-rules"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "scopeType": "GLOBAL",
+      "scopeRef": "*",
+      "ratePercent": 5.0,
+      "flatAmount": 0.0,
+      "minFee": 1.0,
+      "maxFee": 500.0,
+      "effectiveFrom": "2026-10-01",
+      "effectiveTo": null,
+      "priority": 0,
+      "active": true
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201, 409]', function () { pm.expect([200, 201, 409]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.ruleId); if (v !== undefined && v !== null) { pm.collectionVariables.set('ruleId', v); } }
+    language: text/javascript
+order: 1000

@@ -1,0 +1,31 @@
+$kind: http-request
+name: Import Products (Excel/CSV)
+description: "Multipart import. Accepts .xlsx, .xls or .csv (other types rejected). categoryId selects the category-specific parsing strategy (column layout depends on the category); master values referenced by name (therapeutic category, pack type, molecule, storage condition, dosage form) must already exist. Optional Idempotency-Key replays the cached result. Response ExcelImportResultDto: {totalRows, successCount, failureCount, errors:[{rowNumber, productName, errorMessage}]}. Pick a real file in the `file` field before sending."
+url: "{{baseUrl}}/products/import"
+method: POST
+headers:
+  - key: Idempotency-Key
+    value: "{{productServiceIdempotencyKey}}"
+    description: Optional. Same key + same operation replays the cached result instead of re-executing.
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: []
+      description: Excel (.xlsx/.xls) or CSV file
+    - type: text
+      key: categoryId
+      value: "1"
+      description: Product category id (e.g. 1 = Drugs)
+    - type: text
+      key: sellerId
+      value: "{{productServiceSellerId}}"
+      description: Owning seller id
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

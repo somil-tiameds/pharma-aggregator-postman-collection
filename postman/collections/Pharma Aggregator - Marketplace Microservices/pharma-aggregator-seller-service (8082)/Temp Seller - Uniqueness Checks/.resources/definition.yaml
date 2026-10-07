@@ -1,0 +1,3 @@
+$kind: collection
+description: Boolean existence checks used by the registration and profile-update forms.
+order: 10000

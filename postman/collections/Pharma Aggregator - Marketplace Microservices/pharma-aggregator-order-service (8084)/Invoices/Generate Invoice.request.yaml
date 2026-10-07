@@ -1,0 +1,16 @@
+$kind: http-request
+description: "Generates the invoice for a seller order; idempotent - repeat calls return the existing invoice. Caller: seller (or admin). Errors: 404 seller order not found. Returns 201 ApiResponse<InvoiceResponseDTO> (invoiceNumber, invoiceFileUrl). Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/invoices/generate/{{sellerOrderId}}"
+method: POST
+auth:
+  type: bearer
+  credentials:
+    token: "{{sellerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.data.invoiceId); if (v !== undefined && v !== null) { pm.collectionVariables.set('orderInvoiceId', v); } } catch (e) {}
+    language: text/javascript
+order: 1000

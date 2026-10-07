@@ -1,0 +1,13 @@
+$kind: http-request
+description: "Response data: { quoteRequestId, productId, sellerId, quantity, quotedPricingId, quotedPackagingId, quotedPrice, taxPercentageSnapshot, discountPercentageSnapshot, sellingPriceSnapshot, currencyCode }, wrapped in the standard { status, message, data } envelope. 409 if not ACCEPTED, already claimed, expired, or the seller is no longer approved."
+url: "{{baseUrl}}/internal/quote-requests/{{quoteRequestId}}/claim"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "orderIdempotencyKey": "{{idempotencyKey}}"
+    }
+order: 1000

@@ -1,0 +1,20 @@
+$kind: http-request
+description: Requires an authenticated buyer bearer token — the buyer is resolved from the JWT, not a path/query param. Paginated; status/date-range filters are optional.
+url: "{{baseUrl}}/buyer/quote-requests?page=0&size=20"
+method: GET
+queryParams:
+  - key: page
+    value: "0"
+  - key: size
+    value: "20"
+  - key: status
+    value: QUOTED
+    disabled: true
+    description: One of PENDING, QUOTED, ACCEPTED, REJECTED, EXPIRED, CONVERTING, ORDER_PLACED
+  - key: createdFrom
+    value: 2026-09-01
+    disabled: true
+  - key: createdTo
+    value: 2026-09-30
+    disabled: true
+order: 2000

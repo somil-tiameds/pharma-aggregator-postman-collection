@@ -1,0 +1,11 @@
+$kind: http-request
+description: "Smoke test of the edge JWT filter: a non-public route without Authorization must return 401 {status,error,message,path}."
+url: "{{baseUrl}}/api/v1/orders/buyer/1"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Rejected at the edge', function () { pm.expect(pm.response.code).to.equal(401); });
+    language: text/javascript
+order: 4000

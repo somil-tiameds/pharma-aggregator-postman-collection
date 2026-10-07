@@ -1,0 +1,3 @@
+$kind: collection
+description: Buyer-facing quote/RFQ submission and lifecycle actions. Works both authenticated (bearer token) and anonymous (guest checkout — buyer account is auto-provisioned/reused from the submitted email; an email already belonging to a registered account is rejected with 409, not silently reused).
+order: 1000

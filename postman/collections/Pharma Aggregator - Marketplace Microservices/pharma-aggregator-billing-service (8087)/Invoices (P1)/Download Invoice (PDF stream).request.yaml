@@ -1,0 +1,18 @@
+$kind: http-request
+description: "Streams `application/pdf` (`Cache-Control: private, no-store`)."
+url: "{{baseUrl}}/billing/invoices/{{invoiceId}}/file"
+method: GET
+headers:
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+auth:
+  type: bearer
+  credentials:
+    token: "{{buyerToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200, 409]', function () { pm.expect([200, 409]).to.include(pm.response.code); });
+    language: text/javascript
+order: 6000

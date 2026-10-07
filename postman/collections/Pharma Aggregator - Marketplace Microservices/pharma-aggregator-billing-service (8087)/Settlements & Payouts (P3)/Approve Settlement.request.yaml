@@ -1,0 +1,18 @@
+$kind: http-request
+description: Must be a different admin from the one who generated it (403). Books TCS/TDS and the COD cash the seller keeps; becomes PAID immediately when net ≤ 0 (debt carries forward).
+url: "{{baseUrl}}/billing/admin/settlements/{{settlementId}}/approve"
+method: POST
+headers:
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

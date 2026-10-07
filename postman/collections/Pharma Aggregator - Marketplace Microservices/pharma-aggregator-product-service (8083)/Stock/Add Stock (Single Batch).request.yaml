@@ -1,0 +1,71 @@
+$kind: http-request
+description: "Stock-in for one batch: creates the packaging + pricing batch row (packagingDetails creates the packaging when packagingId is null) and a STOCK_IN ledger entry. Returns StockLedgerResponseDto {ledgerId, pricingId, packagingId, batchLotNumber, productId, transactionType, quantity, balanceAfter, referenceId, referenceType, createdDate}. Captures pricingId and packagingId. 404 if product unknown. Idempotency-Key optional (replay returns cached result)."
+url: "{{baseUrl}}/stock/add?sellerId={{productServiceSellerId}}"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Idempotency-Key
+    value: "{{productServiceIdempotencyKey}}"
+    description: Optional. Same key + same operation replays the cached result instead of re-executing.
+queryParams:
+  - key: sellerId
+    value: "{{productServiceSellerId}}"
+    description: Seller performing the stock-in
+body:
+  type: json
+  content: |-
+    {
+      "packagingId": null,
+      "packagingDetails": {
+        "packSize": 10,
+        "unitPerPack": 10,
+        "numberOfPacks": 10,
+        "minOrderQty": 5,
+        "maxOrderQty": 500,
+        "packTypeId": 1
+      },
+      "batchLotNumber": "BATCH-PARA-2026-001",
+      "manufacturingDate": "2026-01-15T00:00:00",
+      "expiryDate": "2028-01-14T00:00:00",
+      "quantity": 1000,
+      "mrp": 30.0,
+      "sellingPrice": 24.5,
+      "discountPercentage": 18.33,
+      "specialDiscounts": [
+        {
+          "minQty": 100,
+          "discountPercentage": 2.5,
+          "startDate": "2026-10-01",
+          "endDate": "2026-12-31"
+        }
+      ],
+      "specialSchemes": [
+        {
+          "schemeName": "Buy 100 Get 5 Free",
+          "buyQuantity": 100,
+          "freeQuantity": 5,
+          "effectiveStartDate": "2026-10-01",
+          "effectiveStartTime": "00:00:00",
+          "effectiveEndDate": "2026-12-31",
+          "effectiveEndTime": "23:59:59",
+          "displayOfferScheme": true
+        }
+      ],
+      "shelfLifeMonths": 24,
+      "shelfLifeDays": 730,
+      "dateOfStockEntry": "2026-10-06",
+      "referenceId": "PO-2026-0001",
+      "referenceType": "PURCHASE_ORDER",
+      "productId": "{{productServiceProductId}}"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { if (body && body.pricingId) pm.collectionVariables.set('productServicePricingId', body.pricingId); if (body && body.packagingId) pm.collectionVariables.set('productServicePackagingId', body.packagingId); } catch (e) {}
+    language: text/javascript
+order: 1000

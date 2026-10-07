@@ -1,0 +1,13 @@
+$kind: http-request
+description: "Fetches the Payment record created at order placement (provider COD, status SUCCESS). paymentId is the string id from the order response. Errors: 404. Returns 200 ApiResponse<PaymentResponseDTO>. Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/payments/{{paymentId}}"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{buyerToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

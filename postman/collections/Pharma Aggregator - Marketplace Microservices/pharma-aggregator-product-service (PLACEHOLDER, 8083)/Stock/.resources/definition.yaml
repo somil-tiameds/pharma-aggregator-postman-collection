@@ -1,3 +1,0 @@
-$kind: collection
-description: Batch/lot stock ledger — credit (add), FIFO debit, running totals, per-batch availability, and batch soft-delete.
-order: 21000

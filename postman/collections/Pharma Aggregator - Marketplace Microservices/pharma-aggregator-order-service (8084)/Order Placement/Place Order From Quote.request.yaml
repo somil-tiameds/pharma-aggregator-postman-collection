@@ -1,0 +1,27 @@
+$kind: http-request
+description: "Converts an already ACCEPTED quote (owned by quotation-service) into an order via the claim/confirm/release saga. Caller: buyer who owns the quote. Precondition: quote status ACCEPTED. idempotencyKey optional (reuse across retries). Errors: 400 validation (buyerId/quoteRequestId), 404 quote not found, 409 quote not ACCEPTED or already claimed. Returns 201 ApiResponse<OrderResponseDTO> (quoteRequestId populated). Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/orders/from-quote"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "buyerId": "{{buyerId}}",
+      "quoteRequestId": "{{quoteRequestId}}",
+      "idempotencyKey": "{{idempotencyKey}}"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{buyerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [201]', function () { pm.expect([201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.data.orderId); if (v !== undefined && v !== null) { pm.collectionVariables.set('orderId', v); } } catch (e) {}
+      try { var so = body.data.sellerOrders[0]; pm.collectionVariables.set('sellerOrderId', so.sellerOrderId); if (so.items && so.items[0]) pm.collectionVariables.set('orderItemId', so.items[0].orderItemId); } catch (e) {}
+    language: text/javascript
+order: 2000

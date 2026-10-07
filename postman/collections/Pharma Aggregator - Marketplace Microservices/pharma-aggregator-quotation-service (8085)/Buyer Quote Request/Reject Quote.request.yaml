@@ -1,0 +1,5 @@
+$kind: http-request
+description: QUOTED -> REJECTED (terminal).
+url: "{{baseUrl}}/buyer/quote-requests/{{quoteRequestId}}/reject"
+method: PATCH
+order: 4000

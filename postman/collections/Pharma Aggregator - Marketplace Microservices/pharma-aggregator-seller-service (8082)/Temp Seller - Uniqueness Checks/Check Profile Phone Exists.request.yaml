@@ -1,0 +1,11 @@
+$kind: http-request
+description: Profile-update flow. Returns a bare boolean (true = already exists).
+url: "{{baseUrl}}/temp-sellers/coordinator/check-profilephone?mobile=9876500000"
+method: GET
+queryParams:
+  mobile: "9876500000"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 6000

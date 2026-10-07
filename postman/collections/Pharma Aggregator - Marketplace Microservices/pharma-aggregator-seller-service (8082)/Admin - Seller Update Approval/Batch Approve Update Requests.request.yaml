@@ -1,0 +1,18 @@
+$kind: http-request
+description: ADMIN. Approve several pending requests; body is a JSON array of pendingSellerIds. 200 plain text 'All requests approved successfully'.
+url: "{{baseUrl}}/admin/seller-requests/batch-approve?approvedBy={{approvedBy}}"
+method: POST
+headers:
+  Content-Type: application/json
+queryParams:
+  - key: approvedBy
+    value: "{{approvedBy}}"
+    description: Admin identifier recorded as approver
+body:
+  type: json
+  content: "[{{pendingSellerId}}]"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 6000

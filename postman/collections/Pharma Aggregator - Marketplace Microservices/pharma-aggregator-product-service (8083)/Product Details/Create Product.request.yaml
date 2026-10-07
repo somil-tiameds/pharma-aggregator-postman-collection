@@ -1,0 +1,55 @@
+$kind: http-request
+description: "Creates a product. Mandatory: categoryId, sellerId (bean validation -> 400 with field errors). Populate only the productAttribute* set matching the category (here drug attributes, category 1 = Drugs). Packaging/pricing are NOT created here - use Stock > Add Stock. Response: the saved ProductDetailsDto with generated productId and productAttributeId values (captured into productServiceProductId / productServiceAttributeId)."
+url: "{{baseUrl}}/products/create"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productName": "Paracetamol 500mg Tablets",
+      "productDescription": "Analgesic and antipyretic tablets for fever and mild to moderate pain.",
+      "warningsPrecautions": "Do not exceed 4 g per day. Avoid with alcohol. Consult a doctor in case of liver disease.",
+      "manufacturerName": "Sun Pharmaceutical Industries Ltd",
+      "createdBy": "{{productServiceSellerId}}",
+      "categoryId": 1,
+      "sellerId": "{{productServiceSellerId}}",
+      "gstPercentage": 12,
+      "hsnCode": 30049099,
+      "status": "DRAFT",
+      "productAttributeDrugs": [
+        {
+          "therapeuticCategoryId": "1",
+          "therapeuticSubcategoryId": "1",
+          "dosageForm": "Tablet",
+          "molecules": [
+            {
+              "moleculeId": 1,
+              "strength": "500 mg"
+            }
+          ],
+          "storageConditionIds": [
+            1
+          ],
+          "userManualUrl": null
+        }
+      ],
+      "productAttributeConsumableMedicals": [],
+      "productAttributeNonConsumableMedicals": [],
+      "productAttributeSupplementsOrNutraceuticals": [],
+      "productAttributeCosmeticAndPersonalUse": [],
+      "productAttributeFoodInfants": [],
+      "retainedImageUrls": []
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { if (body && body.productId) pm.collectionVariables.set('productServiceProductId', body.productId); } catch (e) {}
+      try { var a = body.productAttributeDrugs || body.productAttributeConsumableMedicals || body.productAttributeNonConsumableMedicals || body.productAttributeSupplementsOrNutraceuticals || body.productAttributeCosmeticAndPersonalUse || body.productAttributeFoodInfants; if (a && a.length) pm.collectionVariables.set('productServiceAttributeId', a[0].productAttributeId); } catch (e) {}
+    language: text/javascript
+order: 1000

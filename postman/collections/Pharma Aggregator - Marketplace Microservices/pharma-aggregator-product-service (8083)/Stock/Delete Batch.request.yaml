@@ -1,0 +1,15 @@
+$kind: http-request
+description: Deletes one pricing/batch row. sellerId is required and recorded as deletedBy. Returns BatchDeleteResponseDto {pricingId, batchLotNumber, productId, deletedBy, deletedAt}. 404 if the batch/product does not exist.
+url: "{{baseUrl}}/stock/{{productServiceProductId}}/batches/{{productServicePricingId}}?sellerId={{productServiceSellerId}}"
+method: DELETE
+queryParams:
+  - key: sellerId
+    value: "{{productServiceSellerId}}"
+    description: Seller deleting the batch
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 8000

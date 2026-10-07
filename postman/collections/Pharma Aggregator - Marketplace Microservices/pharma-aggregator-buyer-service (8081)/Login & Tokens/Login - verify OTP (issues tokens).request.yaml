@@ -1,0 +1,24 @@
+$kind: http-request
+description: "Step 2. Verifies the 6-digit OTP and returns tokens; the test script stores accessToken, refreshToken and userId. Errors: 401 invalid OTP, 410 OTP expired, 429 OTP locked, 403 account locked/inactive. Response: LoginResponse {accessToken, refreshToken, type, buyerUserId, username, role, passwordTemporary, message}."
+url: "{{baseUrl}}/authentication/verify-otp"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "{{username}}",
+      "otp": "123456"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      var d = body && (body.data || body);
+      if (d && d.accessToken) { pm.collectionVariables.set('accessToken', d.accessToken); pm.collectionVariables.set('refreshToken', d.refreshToken); if (d.buyerUserId) pm.collectionVariables.set('userId', d.buyerUserId); }
+    language: text/javascript
+order: 2000

@@ -1,0 +1,53 @@
+$kind: http-request
+description: Full update of a product (same body shape and validation as Create; categoryId and sellerId still mandatory). Include productAttributeId inside attribute sets to update an existing attribute row. retainedImageUrls lists existing image URLs to keep. 404 if the product does not exist. Returns the updated ProductDetailsDto.
+url: "{{baseUrl}}/products/update/{{productServiceProductId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "productName": "Paracetamol 650mg Tablets",
+      "productDescription": "Updated: 650 mg strength analgesic and antipyretic tablets.",
+      "warningsPrecautions": "Do not exceed 4 g per day. Avoid with alcohol. Consult a doctor in case of liver disease.",
+      "manufacturerName": "Sun Pharmaceutical Industries Ltd",
+      "createdBy": "{{productServiceSellerId}}",
+      "categoryId": 1,
+      "sellerId": "{{productServiceSellerId}}",
+      "gstPercentage": 12,
+      "hsnCode": 30049099,
+      "status": "DRAFT",
+      "productAttributeDrugs": [
+        {
+          "therapeuticCategoryId": "1",
+          "therapeuticSubcategoryId": "1",
+          "dosageForm": "Tablet",
+          "molecules": [
+            {
+              "moleculeId": 1,
+              "strength": "650 mg"
+            }
+          ],
+          "storageConditionIds": [
+            1
+          ],
+          "userManualUrl": null,
+          "productAttributeId": "{{productServiceAttributeId}}"
+        }
+      ],
+      "productAttributeConsumableMedicals": [],
+      "productAttributeNonConsumableMedicals": [],
+      "productAttributeSupplementsOrNutraceuticals": [],
+      "productAttributeCosmeticAndPersonalUse": [],
+      "productAttributeFoodInfants": [],
+      "retainedImageUrls": [],
+      "modifiedBy": "{{productServiceSellerId}}"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 5000

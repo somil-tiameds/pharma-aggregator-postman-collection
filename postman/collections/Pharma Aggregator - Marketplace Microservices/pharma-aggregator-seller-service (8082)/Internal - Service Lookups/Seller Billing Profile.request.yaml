@@ -1,0 +1,15 @@
+$kind: http-request
+description: Internal, guarded by X-Service-Token. 200 {party{...}, bank{...}|null}; 403 when token missing/wrong or not configured.
+url: "{{baseUrl}}/internal/sellers/{{sellerId}}/billing-profile"
+method: GET
+headers:
+  - key: X-Service-Token
+    value: "{{serviceToken}}"
+    description: Shared token (BILLING_SERVICE_TOKEN / app.internal.billing-service-token)
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

@@ -1,0 +1,3 @@
+$kind: collection
+description: Buyer order lookups, and seller views of their own seller orders.
+order: 2000

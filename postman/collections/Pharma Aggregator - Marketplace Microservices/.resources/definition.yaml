@@ -1,7 +1,40 @@
 $kind: collection
 description: |-
-  Master collection for the pharma-aggregator-marketplace-micro monorepo. One top-level folder per service/module — each folder carries its own `baseUrl` folder variable so it can be run standalone (hit the service directly on its own port) or repointed at the API Gateway.
+  Master collection for the pharma-aggregator-marketplace-micro monorepo. One top-level folder per service/module; each folder carries its own `baseUrl` folder variable (the service's real default port) so it can be run standalone or repointed at the API Gateway (8089, prefix `/api/v1`, StripPrefix=2).
 
-  `pharma-aggregator-seller-service`, `pharma-aggregator-order-service`, `pharma-aggregator-search-service`, and the three platform pieces (api-gateway, config-server, service-registry) have real, working endpoints today. `pharma-aggregator-product-service` is still marked PLACEHOLDER in its folder name for historical reasons but also has real, working endpoints (`Product Details`, `Category`, master-data folders, etc.) plus the new `GET /products/changes` and `POST /products/seller/{sellerId}/reindex-all` requests that back search-service's sync — rename that folder to drop the PLACEHOLDER suffix whenever convenient. `pharma-aggregator-search-service`'s indexing/search/autocomplete/trending endpoints are implemented and compile/test clean, but nothing has been verified end-to-end against a live docker-compose stack yet (no Docker daemon was available when this was last touched) — treat it as implemented-but-unverified-at-runtime. Every other service folder is a genuine placeholder — those modules are still empty scaffolds from spring-boot-microservice-template (no controllers yet); update this file's folder as each one gets built out.
+  Every HTTP endpoint of every service is covered. Requests capture ids into collection variables so flows can be run top to bottom; fill the token variables (`accessToken` / `buyerToken` / `sellerToken` / `adminToken`) and the shared `serviceToken` (BILLING_SERVICE_TOKEN) in the relevant folder variables first. The Git-synced v3 copy under postman/ may be ahead or behind this file - re-export when request sets change.
 
-  Import this file classically (File > Import) for normal request-builder testing with Send buttons and response panes. The Git-synced copy under postman/ (Git-native v3 format) is for version control, not day-to-day testing.
+  Import this file classically (File > Import) for normal request-builder testing.
+variables:
+  invoiceId: ""
+  creditNoteId: ""
+  paymentRef: ""
+  providerOrderId: ""
+  refundRef: ""
+  txnRef: ""
+  runId: ""
+  deadLetterId: ""
+  ruleId: ""
+  settlementId: ""
+  payoutId: ""
+  templateId: ""
+  dlqId: ""
+  tempBuyerId: ""
+  buyerId: ""
+  documentId: ""
+  deliveryAddressId: ""
+  productCategoryId: ""
+  flavourId: ""
+  orderId: ""
+  sellerOrderId: ""
+  orderItemId: ""
+  paymentId: ""
+  returnId: ""
+  refundId: ""
+  orderInvoiceId: ""
+  searchProductId: ""
+  productServiceProductId: ""
+  productServiceAttributeId: ""
+  productServicePricingId: ""
+  productServicePackagingId: ""
+  buyerToken: ""

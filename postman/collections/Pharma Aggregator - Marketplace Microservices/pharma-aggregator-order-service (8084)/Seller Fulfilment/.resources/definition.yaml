@@ -1,0 +1,3 @@
+$kind: collection
+description: "Seller order lifecycle: PLACED -> CONFIRMED -> PACKED -> SHIPPED -> OUT_FOR_DELIVERY -> DELIVERED (OTP). Run in order."
+order: 3000

@@ -1,0 +1,3 @@
+$kind: collection
+description: "Per-event, per-channel, per-locale templates (Thymeleaf text inlining, e.g. `[[${orderId}]]`). Versioned: a new template starts **inactive** and must be activated; activating deactivates the previously active version for the same (eventType, channel, locale). Billing events seeded by migration V3: InvoicePdfReady, CreditNoteIssued, PaymentCaptured, PaymentFailed, RefundCompleted, RefundFailed, SettlementApproved, PayoutCompleted, PayoutFailed."
+order: 1000

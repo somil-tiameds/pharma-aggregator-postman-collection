@@ -1,0 +1,3 @@
+$kind: collection
+description: Append-only double-entry ledger (DB triggers enforce immutability and balance). Admin only. Adjustments must balance and are audited with the reason.
+order: 6000

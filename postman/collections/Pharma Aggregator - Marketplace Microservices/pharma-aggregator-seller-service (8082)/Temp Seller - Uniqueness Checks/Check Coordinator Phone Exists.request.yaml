@@ -1,0 +1,16 @@
+$kind: http-request
+description: Registration flow. Returns a bare boolean (true = already exists).
+url: "{{baseUrl}}/temp-sellers/coordinator/check-phone?mobile=9876500000"
+method: GET
+queryParams:
+  - key: mobile
+    value: "9876500000"
+  - key: tempSellerId
+    value: "{{tempSellerId}}"
+    disabled: true
+    description: Exclude this registration
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

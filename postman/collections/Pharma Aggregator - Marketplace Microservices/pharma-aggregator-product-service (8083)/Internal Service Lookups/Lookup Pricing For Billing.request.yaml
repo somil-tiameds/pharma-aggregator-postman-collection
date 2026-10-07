@@ -1,0 +1,11 @@
+$kind: http-request
+description: "Invoice data for a batch: {pricingId, hsnCode, expiryDate, mrp, unit, gstPercentage}. 404 if the batch does not exist."
+url: "{{baseUrl}}/internal/pricing/{{productServicePricingId}}/billing-lookup"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 3000

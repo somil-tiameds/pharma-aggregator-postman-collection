@@ -1,0 +1,3 @@
+$kind: collection
+description: Bulk product import from Excel/CSV.
+order: 11000

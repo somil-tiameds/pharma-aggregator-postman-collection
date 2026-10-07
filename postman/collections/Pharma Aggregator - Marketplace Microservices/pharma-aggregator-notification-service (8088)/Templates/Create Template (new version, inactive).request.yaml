@@ -1,0 +1,32 @@
+$kind: http-request
+description: "`category`: TRANSACTIONAL | INFORMATIONAL. `locale` defaults to `en`. The template is created **inactive**."
+url: "{{baseUrl}}/admin/notifications/templates"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "eventType": "RefundCompleted",
+      "channel": "EMAIL",
+      "locale": "en",
+      "category": "TRANSACTIONAL",
+      "subjectTemplate": "Refund processed - [[${orderId}]]",
+      "bodyTemplate": "<p>A refund of <strong>₹[[${amount}]]</strong> for order <strong>[[${orderId}]]</strong> (ref [[${refundRef}]]) has been issued.</p>"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.templateId); if (v !== undefined && v !== null) { pm.collectionVariables.set('templateId', v); } }
+    language: text/javascript
+order: 2000

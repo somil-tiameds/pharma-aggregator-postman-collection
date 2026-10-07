@@ -1,0 +1,111 @@
+$kind: http-request
+description: Stock-in for several batches of one product in one call. Each element of `batches` has the same fields as the single-batch request (minus productId). Returns an array of StockLedgerResponseDto, one per batch.
+url: "{{baseUrl}}/stock/add-batches?sellerId={{productServiceSellerId}}"
+method: POST
+headers:
+  Content-Type: application/json
+queryParams:
+  - key: sellerId
+    value: "{{productServiceSellerId}}"
+    description: Seller performing the stock-in
+body:
+  type: json
+  content: |-
+    {
+      "productId": "{{productServiceProductId}}",
+      "batches": [
+        {
+          "packagingId": null,
+          "packagingDetails": {
+            "packSize": 10,
+            "unitPerPack": 10,
+            "numberOfPacks": 10,
+            "minOrderQty": 5,
+            "maxOrderQty": 500,
+            "packTypeId": 1
+          },
+          "batchLotNumber": "BATCH-PARA-2026-001",
+          "manufacturingDate": "2026-01-15T00:00:00",
+          "expiryDate": "2028-01-14T00:00:00",
+          "quantity": 1000,
+          "mrp": 30.0,
+          "sellingPrice": 24.5,
+          "discountPercentage": 18.33,
+          "specialDiscounts": [
+            {
+              "minQty": 100,
+              "discountPercentage": 2.5,
+              "startDate": "2026-10-01",
+              "endDate": "2026-12-31"
+            }
+          ],
+          "specialSchemes": [
+            {
+              "schemeName": "Buy 100 Get 5 Free",
+              "buyQuantity": 100,
+              "freeQuantity": 5,
+              "effectiveStartDate": "2026-10-01",
+              "effectiveStartTime": "00:00:00",
+              "effectiveEndDate": "2026-12-31",
+              "effectiveEndTime": "23:59:59",
+              "displayOfferScheme": true
+            }
+          ],
+          "shelfLifeMonths": 24,
+          "shelfLifeDays": 730,
+          "dateOfStockEntry": "2026-10-06",
+          "referenceId": "PO-2026-0001",
+          "referenceType": "PURCHASE_ORDER"
+        },
+        {
+          "packagingId": null,
+          "packagingDetails": {
+            "packSize": 10,
+            "unitPerPack": 10,
+            "numberOfPacks": 10,
+            "minOrderQty": 5,
+            "maxOrderQty": 500,
+            "packTypeId": 1
+          },
+          "batchLotNumber": "BATCH-PARA-2026-002",
+          "manufacturingDate": "2026-03-01T00:00:00",
+          "expiryDate": "2028-02-29T00:00:00",
+          "quantity": 500,
+          "mrp": 30.0,
+          "sellingPrice": 24.5,
+          "discountPercentage": 18.33,
+          "specialDiscounts": [
+            {
+              "minQty": 100,
+              "discountPercentage": 2.5,
+              "startDate": "2026-10-01",
+              "endDate": "2026-12-31"
+            }
+          ],
+          "specialSchemes": [
+            {
+              "schemeName": "Buy 100 Get 5 Free",
+              "buyQuantity": 100,
+              "freeQuantity": 5,
+              "effectiveStartDate": "2026-10-01",
+              "effectiveStartTime": "00:00:00",
+              "effectiveEndDate": "2026-12-31",
+              "effectiveEndTime": "23:59:59",
+              "displayOfferScheme": true
+            }
+          ],
+          "shelfLifeMonths": 24,
+          "shelfLifeDays": 730,
+          "dateOfStockEntry": "2026-10-06",
+          "referenceId": "PO-2026-0002",
+          "referenceType": "PURCHASE_ORDER"
+        }
+      ]
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

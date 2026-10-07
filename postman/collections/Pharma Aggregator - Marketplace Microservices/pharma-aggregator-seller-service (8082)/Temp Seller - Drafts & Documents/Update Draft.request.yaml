@@ -1,0 +1,34 @@
+$kind: http-request
+description: Update an existing draft; all fields optional. 200 TempSellerResponseDTO; 404 if not found.
+url: "{{baseUrl}}/temp-sellers/draft/{{tempSellerId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "sellerName": "Acme Pharma Distributors",
+      "productTypeId": [
+        1
+      ],
+      "companyTypeId": 1,
+      "sellerTypeId": 1,
+      "phone": "{{phone}}",
+      "email": "{{email}}",
+      "gstNumber": "27ABCDE1234F1Z5",
+      "address": {
+        "stateId": 1,
+        "districtId": 1,
+        "talukaId": 1,
+        "city": "Mumbai",
+        "street": "MG Road",
+        "buildingNo": "12-A",
+        "pinCode": "400001"
+      }
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

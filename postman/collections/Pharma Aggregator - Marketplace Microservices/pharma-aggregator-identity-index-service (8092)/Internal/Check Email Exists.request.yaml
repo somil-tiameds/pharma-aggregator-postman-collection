@@ -1,0 +1,17 @@
+$kind: http-request
+description: "Returns {exists, owningService}. Email is trimmed and lower-cased before lookup. Auth: none (internal). owningService names the service that registered the email, or null when exists=false. Errors: 400 if `email` is missing; 500 if DynamoDB is unreachable (LocalStack in dev)."
+url: "{{baseUrl}}/internal/identity/email-exists?email={{email}}"
+method: GET
+queryParams:
+  - key: email
+    value: "{{email}}"
+    description: Email address to check (required)
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+      pm.test('has exists flag', function () { pm.expect(pm.response.json()).to.have.property('exists'); });
+    language: text/javascript
+order: 1000

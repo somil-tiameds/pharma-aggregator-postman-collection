@@ -1,0 +1,3 @@
+$kind: collection
+description: Payment-gateway callbacks. Public route at the API gateway (`/api/v1/billing/webhooks/**`); authenticity comes only from the signature.
+order: 4000

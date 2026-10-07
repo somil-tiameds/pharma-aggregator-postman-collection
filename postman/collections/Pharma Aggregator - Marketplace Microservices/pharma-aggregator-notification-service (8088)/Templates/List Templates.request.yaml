@@ -1,0 +1,28 @@
+$kind: http-request
+description: Without filters returns every version. With only `eventType`, returns the active ones.
+url: "{{baseUrl}}/admin/notifications/templates"
+method: GET
+headers:
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+queryParams:
+  - key: eventType
+    value: "{{eventType}}"
+    disabled: true
+    description: e.g. RefundCompleted
+  - key: channel
+    value: EMAIL
+    disabled: true
+    description: EMAIL | SMS | PUSH
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = ((Array.isArray(body.data) && body.data.length ? body.data[0].templateId : undefined)); if (v !== undefined && v !== null) { pm.collectionVariables.set('templateId', v); } }
+    language: text/javascript
+order: 1000

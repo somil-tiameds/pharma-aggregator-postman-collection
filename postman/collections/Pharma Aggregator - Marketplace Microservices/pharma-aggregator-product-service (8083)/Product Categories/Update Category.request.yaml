@@ -1,0 +1,20 @@
+$kind: http-request
+description: Updates categoryName and categoryDescription of an existing category. 404 if it does not exist. Returns the saved Category.
+url: "{{baseUrl}}/categories/{{productCategoryId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "categoryName": "Ayush Products",
+      "categoryDescription": "Ayurvedic, Unani, Siddha and Homeopathy formulations"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

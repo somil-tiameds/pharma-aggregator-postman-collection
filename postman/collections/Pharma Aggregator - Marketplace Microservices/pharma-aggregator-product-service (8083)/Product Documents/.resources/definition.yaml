@@ -1,0 +1,3 @@
+$kind: collection
+description: Certificate and brochure uploads per product category (/product-documents). The attribute id is the productAttributeId returned inside the product from Create Product.
+order: 12000

@@ -1,0 +1,48 @@
+$kind: http-request
+description: "Places an order from cart lines. Caller: buyer. Seller is resolved server-side from pricingId -> product -> seller (never sent by client); the order is split into one SellerOrder per seller. If deliveryAddressId is set it is resolved via buyer-service and overrides the raw delivery* fields. paymentMethod is case-insensitive; currently every order is recorded as COD with a SUCCESS payment (no gateway). idempotencyKey makes retries return the original order. Errors: 400 validation (blank buyerId, empty lines, quantity<=0), 404 unknown product/pricing, 409/400 insufficient stock (rejected lines may be reported in rejectedLines). Returns 201 ApiResponse<OrderResponseDTO> with sellerOrders[] and paymentId. Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/orders"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "buyerId": "{{buyerId}}",
+      "deliveryAddressId": null,
+      "deliveryName": "Rajesh Kumar",
+      "deliveryPhone": "9876543210",
+      "deliveryAddressLine": "Shop 12, MG Road, Near City Hospital",
+      "deliveryCity": "Bengaluru",
+      "deliveryDistrict": "Bengaluru Urban",
+      "deliveryState": "Karnataka",
+      "deliveryPinCode": "560001",
+      "paymentMethod": "COD",
+      "idempotencyKey": "{{idempotencyKey}}",
+      "lines": [
+        {
+          "productId": "{{productId}}",
+          "pricingId": "{{pricingId}}",
+          "quantity": 10
+        },
+        {
+          "productId": "{{productId2}}",
+          "pricingId": "{{pricingId2}}",
+          "quantity": 5
+        }
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{buyerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [201]', function () { pm.expect([201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.data.orderId); if (v !== undefined && v !== null) { pm.collectionVariables.set('orderId', v); } } catch (e) {}
+      try { var so = body.data.sellerOrders[0]; pm.collectionVariables.set('sellerOrderId', so.sellerOrderId); if (so.items && so.items[0]) pm.collectionVariables.set('orderItemId', so.items[0].orderItemId); } catch (e) {}
+      try { pm.collectionVariables.set('paymentId', body.data.paymentId); } catch (e) {}
+    language: text/javascript
+order: 1000

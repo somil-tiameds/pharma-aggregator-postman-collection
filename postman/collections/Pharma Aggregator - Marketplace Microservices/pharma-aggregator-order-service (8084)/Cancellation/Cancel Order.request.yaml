@@ -1,0 +1,23 @@
+$kind: http-request
+description: "Cancels the whole order and all its seller orders (restocks inventory, writes status history). Caller: buyer (actorRole BUYER, actorId=buyerId); ADMIN is also accepted as actorRole (switch auth to adminToken). Allowed only while no seller order is SHIPPED/DELIVERED. Errors: 400 validation (actorRole/actorId required) or non-cancellable state, 404. Returns 200 ApiResponse<OrderResponseDTO> with status CANCELLED. Via the gateway the path is /api/v1<path> (StripPrefix=2); this collection calls the service directly on 8084 (no context path)."
+url: "{{baseUrl}}/orders/{{orderId}}/cancel"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "actorRole": "BUYER",
+      "actorId": "{{buyerId}}",
+      "reason": "Ordered by mistake"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{buyerToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

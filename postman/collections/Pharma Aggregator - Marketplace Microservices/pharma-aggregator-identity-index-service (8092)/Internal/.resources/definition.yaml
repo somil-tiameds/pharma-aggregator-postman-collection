@@ -1,0 +1,3 @@
+$kind: collection
+description: Service-to-service endpoints (no auth, not exposed via gateway).
+order: 1000

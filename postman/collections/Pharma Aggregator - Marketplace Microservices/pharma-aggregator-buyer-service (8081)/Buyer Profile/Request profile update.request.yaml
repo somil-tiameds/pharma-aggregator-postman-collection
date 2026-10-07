@@ -1,0 +1,30 @@
+$kind: http-request
+description: Buyer submits a profile change request; it is staged for admin review and does not change the live record directly. Returns the profile.
+url: "{{baseUrl}}/buyers/{{buyerId}}/request-update"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "buyerName": "Sanjeevani Medical & General Stores",
+      "buyerImageUrl": "https://example.com/logos/sanjeevani.png",
+      "phone": "9822012345",
+      "website": "https://www.sanjeevanipharmacy.in",
+      "address": {
+        "stateId": 27,
+        "districtId": 521,
+        "talukaId": 3401,
+        "city": "Pune",
+        "street": "FC Road",
+        "buildingNo": "Shop 12, Laxmi Chambers",
+        "landmark": "Near Fergusson College",
+        "pinCode": "411004"
+      }
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

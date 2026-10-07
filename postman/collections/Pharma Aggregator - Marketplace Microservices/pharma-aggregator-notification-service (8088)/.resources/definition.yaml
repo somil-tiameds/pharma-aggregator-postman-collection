@@ -1,0 +1,8 @@
+$kind: collection
+description: |-
+  Event-driven email/SMS/push notifications. There is **no public send API**: producers (order-service, billing-service, …) publish `{eventId, eventType, recipientId, recipientType, occurredAt, payload}` to SNS topic `notification-events`; this service consumes it from SQS, resolves the recipient's contact, renders the active template and records a log row. The endpoints here are the admin/operations surface.
+
+  **Auth note**: the service currently runs `permitAll` (same posture as the rest of the platform), so no token is needed. It also has **no API-gateway route yet** — call it directly on port 8088 until a route is added.
+
+  Responses use the `{status, message, data}` envelope.
+order: 11000

@@ -1,0 +1,31 @@
+$kind: http-request
+description: Debits `quantity` for the product (optionally restricted to one packagingId) using FIFO across non-expired batches; may span several batches. Returns one StockLedgerResponseDto per batch touched (STOCK_OUT). Fails (4xx) when stock is insufficient. Idempotency-Key optional.
+url: "{{baseUrl}}/stock/debit?sellerId={{productServiceSellerId}}"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Idempotency-Key
+    value: "{{productServiceIdempotencyKey}}"
+    description: Optional. Same key + same operation replays the cached result instead of re-executing.
+queryParams:
+  - key: sellerId
+    value: "{{productServiceSellerId}}"
+    description: Seller performing the debit
+body:
+  type: json
+  content: |-
+    {
+      "productId": "{{productServiceProductId}}",
+      "packagingId": "{{productServicePackagingId}}",
+      "quantity": 50,
+      "referenceId": "ORD-2026-0001",
+      "referenceType": "ORDER"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 3000

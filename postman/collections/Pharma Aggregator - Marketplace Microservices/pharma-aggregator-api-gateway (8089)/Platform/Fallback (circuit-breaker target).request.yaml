@@ -1,0 +1,11 @@
+$kind: http-request
+description: Local controller used as CircuitBreaker fallbackPath. Always answers 503 {status, error:'Service Unavailable', message}; it is what clients see when a downstream circuit is open. Not under /api/v1.
+url: "{{baseUrl}}/fallback"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [503]', function () { pm.expect([503]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

@@ -1,0 +1,3 @@
+$kind: collection
+description: "Batch-level stock ledger (/stock): stock-in, FIFO debit, availability queries and batch deletion. sellerId is passed as a query param (not taken from a token). Mutating calls accept an optional Idempotency-Key header."
+order: 9000

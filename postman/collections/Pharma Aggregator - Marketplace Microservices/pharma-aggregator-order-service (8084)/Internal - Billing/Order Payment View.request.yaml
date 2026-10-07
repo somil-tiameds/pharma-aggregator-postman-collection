@@ -1,0 +1,15 @@
+$kind: http-request
+description: "Payment-relevant order summary (orderId, buyerId, grandTotal, currency, status). Caller: billing-service only. Errors: 403 missing/wrong X-Service-Token, 404. Returns 200 OrderPaymentView (plain JSON)."
+url: "{{baseUrl}}/internal/orders/{{orderId}}/payment-view"
+method: GET
+headers:
+  - key: X-Service-Token
+    value: "{{serviceToken}}"
+    description: Must equal BILLING_SERVICE_TOKEN configured on order-service
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

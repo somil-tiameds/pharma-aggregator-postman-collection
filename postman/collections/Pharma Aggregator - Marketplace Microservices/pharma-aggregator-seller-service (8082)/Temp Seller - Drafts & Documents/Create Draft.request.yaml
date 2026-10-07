@@ -1,0 +1,37 @@
+$kind: http-request
+description: Save a partially filled registration; no validation (all fields optional). 201 TempSellerResponseDTO with tempSellerId and documents[{documentId, licenseName}].
+url: "{{baseUrl}}/temp-sellers/draft"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "sellerName": "Acme Pharma Distributors",
+      "productTypeId": [
+        1
+      ],
+      "companyTypeId": 1,
+      "sellerTypeId": 1,
+      "phone": "{{phone}}",
+      "email": "{{email}}",
+      "gstNumber": "27ABCDE1234F1Z5",
+      "address": {
+        "stateId": 1,
+        "districtId": 1,
+        "talukaId": 1,
+        "city": "Mumbai",
+        "street": "MG Road",
+        "buildingNo": "12-A",
+        "pinCode": "400001"
+      }
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [201]', function () { pm.expect([201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      try { var v = (body.tempSellerId); if (v !== undefined && v !== null) { pm.collectionVariables.set('tempSellerId', v); } } catch (e) {}
+    language: text/javascript
+order: 1000

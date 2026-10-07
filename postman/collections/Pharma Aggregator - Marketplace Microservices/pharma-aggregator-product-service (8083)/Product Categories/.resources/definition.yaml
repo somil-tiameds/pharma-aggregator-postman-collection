@@ -1,0 +1,3 @@
+$kind: collection
+description: CRUD for top-level product categories (/categories).
+order: 1000

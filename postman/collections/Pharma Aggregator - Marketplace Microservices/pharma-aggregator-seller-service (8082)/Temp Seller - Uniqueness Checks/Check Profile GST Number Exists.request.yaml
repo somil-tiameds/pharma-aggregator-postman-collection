@@ -1,0 +1,11 @@
+$kind: http-request
+description: Profile-update flow. Returns a bare boolean (true = already exists).
+url: "{{baseUrl}}/temp-sellers/coordinator/check-profilegstnumber?gstnumber=27ABCDE1234F1Z5"
+method: GET
+queryParams:
+  gstnumber: 27ABCDE1234F1Z5
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 8000

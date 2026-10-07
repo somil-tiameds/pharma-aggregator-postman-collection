@@ -1,0 +1,41 @@
+$kind: http-request
+description: Replaces the temp buyer fields (buyerName required). 400 validation, 404.
+url: "{{baseUrl}}/temp-buyers/{{tempBuyerId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "buyerName": "Sanjeevani Medical & General Stores",
+      "buyerImageUrl": "https://example.com/logos/sanjeevani.png",
+      "buyerTypeId": 1,
+      "phone": "9822012345",
+      "email": "{{email}}",
+      "website": "https://www.sanjeevanipharmacy.in",
+      "termsAccepted": true,
+      "address": {
+        "stateId": 27,
+        "districtId": 521,
+        "talukaId": 3401,
+        "city": "Pune",
+        "street": "FC Road",
+        "buildingNo": "Shop 12, Laxmi Chambers",
+        "landmark": "Near Fergusson College",
+        "pinCode": "411004"
+      },
+      "contacts": [
+        {
+          "name": "Rohan Deshmukh",
+          "designation": "Purchase Manager",
+          "email": "rohan.deshmukh@sanjeevanipharmacy.in",
+          "mobile": "9822012345"
+        }
+      ]
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 8000

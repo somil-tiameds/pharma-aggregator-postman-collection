@@ -1,0 +1,15 @@
+$kind: http-request
+description: Buyer tax particulars (GST, addresses) for invoicing. Guarded by X-Service-Token = BILLING_SERVICE_TOKEN; 403 if token missing/wrong or not configured on the server. Plain DTO response.
+url: "{{baseUrl}}/internal/buyers/{{buyerId}}/billing-profile"
+method: GET
+headers:
+  - key: X-Service-Token
+    value: "{{serviceToken}}"
+    description: Shared secret (BILLING_SERVICE_TOKEN).
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 5000

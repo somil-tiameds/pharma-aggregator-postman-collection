@@ -1,0 +1,38 @@
+$kind: http-request
+description: "Always scoped to the caller: a seller/buyer cannot widen the filter to another party's data. Admin may filter by `sellerId`/`buyerId`."
+url: "{{baseUrl}}/billing/invoices?page=0&size=20"
+method: GET
+headers:
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+queryParams:
+  - key: status
+    value: ISSUED
+    disabled: true
+    description: Optional.
+  - key: from
+    value: 2026-10-01
+    disabled: true
+    description: yyyy-MM-dd (IST).
+  - key: to
+    value: 2026-10-31
+    disabled: true
+  - key: page
+    value: "0"
+  - key: size
+    value: "20"
+  - key: sort
+    value: createdAt,desc
+    disabled: true
+    description: Whitelisted sort fields only; unknown fields are ignored. size is capped at 100.
+auth:
+  type: bearer
+  credentials:
+    token: "{{sellerToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

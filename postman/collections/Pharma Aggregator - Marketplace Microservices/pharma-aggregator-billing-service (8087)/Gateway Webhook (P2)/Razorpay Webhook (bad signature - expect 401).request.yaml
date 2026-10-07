@@ -1,0 +1,39 @@
+$kind: http-request
+description: "Negative test: a forged signature must be rejected with 401 and the body kept once for forensics."
+url: "{{baseUrl}}/billing/webhooks/razorpay"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+  - key: X-Razorpay-Event-Id
+    value: evt_{{$guid}}
+  - key: X-Razorpay-Signature
+    value: deadbeef
+body:
+  type: json
+  content: |-
+    {
+      "event": "payment.captured",
+      "payload": {
+        "payment": {
+          "entity": {
+            "id": "pay_test_{{$randomAlphaNumeric}}",
+            "order_id": "{{providerOrderId}}",
+            "amount": 11200,
+            "currency": "INR",
+            "status": "captured"
+          }
+        }
+      }
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [401]', function () { pm.expect([401]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

@@ -1,0 +1,43 @@
+$kind: http-request
+description: Sends the application confirmation email from the supplied data. 200 EmailResponseDTO.
+url: "{{baseUrl}}/independent/email/send-confirmation"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "applicationRequestId": "SLR-2026-0001",
+      "submissionDate": "2026-10-06",
+      "applicationStatus": "SUBMITTED",
+      "sellerName": "Acme Pharma Distributors",
+      "sellerEmail": "{{email}}",
+      "sellerPhone": "{{phone}}",
+      "coordinatorName": "Rahul Sharma",
+      "coordinatorEmail": "rahul.sharma@acmepharma.example.com",
+      "coordinatorMobile": "9876500000",
+      "coordinatorDesignation": "Operations Manager",
+      "addressCity": "Mumbai",
+      "addressStreet": "MG Road",
+      "addressBuildingNo": "12-A",
+      "addressLandmark": "Near Andheri Station",
+      "addressPinCode": "400001",
+      "addressState": "Maharashtra",
+      "addressDistrict": "Mumbai Suburban",
+      "addressTaluka": "Andheri",
+      "bankName": "HDFC Bank",
+      "bankBranch": "Andheri West",
+      "bankIfscCode": "HDFC0000123",
+      "bankAccountNumber": "123456789012",
+      "bankAccountHolderName": "Acme Pharma Distributors",
+      "gstNumber": "27ABCDE1234F1Z5",
+      "documentNumber": "MH-MZ1-123456"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

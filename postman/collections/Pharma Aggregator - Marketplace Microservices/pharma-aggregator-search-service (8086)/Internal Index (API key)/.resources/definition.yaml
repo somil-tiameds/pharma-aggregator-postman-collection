@@ -1,0 +1,3 @@
+$kind: collection
+description: Service-to-service index maintenance, requires X-Internal-Api-Key.
+order: 2000

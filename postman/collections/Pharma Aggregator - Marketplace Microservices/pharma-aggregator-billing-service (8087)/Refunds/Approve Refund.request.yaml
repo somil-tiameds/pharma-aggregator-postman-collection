@@ -1,0 +1,32 @@
+$kind: http-request
+description: REQUESTED → APPROVED, then executed. An admin cannot approve a refund they requested (403).
+url: "{{baseUrl}}/billing/refunds/{{refundRef}}/approve"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Idempotency-Key
+    value: "{{idempotencyKey}}"
+    description: Mandatory/used for money-moving calls. A fresh GUID is generated per send; reuse the same value to test replay.
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "reason": "Verified with seller"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: beforeRequest
+    code: pm.variables.set('idempotencyKey', pm.variables.get('fixedIdempotencyKey') || pm.variables.replaceIn('{{$guid}}'));
+    language: text/javascript
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

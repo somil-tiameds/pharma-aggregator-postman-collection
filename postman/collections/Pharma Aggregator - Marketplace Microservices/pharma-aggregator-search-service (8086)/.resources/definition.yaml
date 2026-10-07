@@ -1,13 +1,3 @@
 $kind: collection
-description: |-
-  Search domain — buyer product search, faceted filtering, autocomplete/typeahead, and trending search terms, backed by an OpenSearch index that is a read-optimized projection of pharma-aggregator-product-service's catalog. Also exposes the internal push-indexing endpoints (`/search/index/**`) that product-service (or an operator) calls to keep the index in sync.
-
-  Design docs: HLD/search-service-hld.md, LLD/search-service-lld.md, LLD/search-service-implementation-plan.md, DATA_MODEL/search-service-data-model.md, API_SPECIFICATION/search-service-api-specification.md, SECURITY/search-service-security.md, DEPLOYMENT/search-service-deployment.md, under D:\Tiameds_MarketPlace\Docs\MarketPlace_Dev_Docs.
-
-  Known gap: product-service does not yet expose `GET /products/changes?since=`, so the scheduled pull-sync path (ProductSyncJob) cannot populate the index end-to-end yet — use the `Indexing` folder's requests to manually seed/update documents for testing until that endpoint exists.
-variables:
-  - key: baseUrl
-    value: http://localhost:8086
-    disabled: false
-    secret: false
+description: "Search service (port 8086): product search, facets, trending terms and autocomplete (public), plus internal index/reconcile endpoints guarded by X-Internal-Api-Key. Via the gateway these live under /api/v1/search/** (the gateway applies the seller-secret JWT check to that path; see the gateway folder)."
 order: 9000

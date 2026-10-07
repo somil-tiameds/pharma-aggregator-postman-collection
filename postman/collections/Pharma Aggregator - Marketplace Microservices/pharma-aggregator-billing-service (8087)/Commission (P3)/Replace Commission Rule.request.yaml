@@ -1,0 +1,34 @@
+$kind: http-request
+description: The old rule is deactivated (history kept) and a new one created.
+url: "{{baseUrl}}/billing/admin/commission-rules/{{ruleId}}"
+method: PUT
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "scopeType": "GLOBAL",
+      "scopeRef": "*",
+      "ratePercent": 6.0,
+      "flatAmount": 0.0,
+      "minFee": 1.0,
+      "maxFee": 500.0,
+      "effectiveFrom": "2026-11-01",
+      "priority": 0,
+      "active": true
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

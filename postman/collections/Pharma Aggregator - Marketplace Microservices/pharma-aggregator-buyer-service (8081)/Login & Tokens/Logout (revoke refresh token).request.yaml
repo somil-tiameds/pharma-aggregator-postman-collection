@@ -1,0 +1,19 @@
+$kind: http-request
+description: "Revokes the given refresh token. Response: {message: 'Logout successful'}."
+url: "{{baseUrl}}/authentication/logout"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "refreshToken": "{{refreshToken}}"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

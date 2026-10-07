@@ -1,3 +1,0 @@
-$kind: collection
-description: Core product catalog CRUD — create, list, fetch by id/seller, update, and delete products.
-order: 1000

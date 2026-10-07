@@ -1,0 +1,41 @@
+$kind: http-request
+description: "Needs a **collected** payment (422 otherwise: cancel it instead). `orderItemId` null = whole seller-order scope. 422 if `amount` exceeds the refundable balance. `Idempotency-Key` mandatory."
+url: "{{baseUrl}}/billing/refunds"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Idempotency-Key
+    value: "{{idempotencyKey}}"
+    description: Mandatory/used for money-moving calls. A fresh GUID is generated per send; reuse the same value to test replay.
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "paymentRef": "{{paymentRef}}",
+      "sellerOrderId": "{{sellerOrderId}}",
+      "orderItemId": null,
+      "amount": 112.0,
+      "reason": "Damaged on delivery",
+      "returnId": null,
+      "restockEligible": true
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: beforeRequest
+    code: pm.variables.set('idempotencyKey', pm.variables.get('fixedIdempotencyKey') || pm.variables.replaceIn('{{$guid}}'));
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.refundRef); if (v !== undefined && v !== null) { pm.collectionVariables.set('refundRef', v); } }
+    language: text/javascript
+order: 1000

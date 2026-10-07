@@ -1,0 +1,3 @@
+$kind: collection
+description: "Public buyer signup: email + password, then OTP verification creates the buyer user. Routed via gateway /api/v1/auth/**."
+order: 1000

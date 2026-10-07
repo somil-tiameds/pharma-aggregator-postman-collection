@@ -1,0 +1,11 @@
+$kind: http-request
+description: Dropdown list (id + name) of molecules under a therapeutic subcategory, e.g. Antibiotics -> Amoxicillin. Returns a plain JSON array (not wrapped in ApiResponse). Public, no auth.
+url: "{{baseUrl}}/molecules/getByTherapeuticSubcategoryId/{{therapeuticSubcategoryId}}"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 4000

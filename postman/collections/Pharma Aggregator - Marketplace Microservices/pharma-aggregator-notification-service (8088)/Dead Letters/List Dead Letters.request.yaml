@@ -1,0 +1,21 @@
+$kind: http-request
+description: "`replayed=false` (default) lists open ones."
+url: "{{baseUrl}}/admin/notifications/dlq?replayed=false"
+method: GET
+headers:
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+queryParams:
+  replayed: "false"
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = ((Array.isArray(body.data) && body.data.length ? body.data[0].dlqId : undefined)); if (v !== undefined && v !== null) { pm.collectionVariables.set('dlqId', v); } }
+    language: text/javascript
+order: 1000

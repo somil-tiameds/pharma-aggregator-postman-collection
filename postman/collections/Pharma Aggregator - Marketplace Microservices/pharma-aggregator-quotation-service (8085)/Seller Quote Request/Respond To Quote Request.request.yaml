@@ -1,0 +1,17 @@
+$kind: http-request
+description: PENDING -> QUOTED. pricingId/packagingId must belong to this quote's product/seller (validated against product-service) — the tax %, discount %, and selling price of that pricing row are frozen onto the quote at this moment, so a later order conversion always bills exactly what was quoted here, never today's live batch pricing. quotedPrice is an optional seller-typed negotiated override; if omitted, it defaults to the pricing row's sellingPrice.
+url: "{{baseUrl}}/seller/quote-requests/{{quoteRequestId}}/respond"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "pricingId": "{{pricingId}}",
+      "packagingId": "{{packagingId}}",
+      "quotedPrice": 450.00,
+      "quoteValidUntil": "2026-10-31",
+      "sellerNotes": "Price valid for orders above 100 units."
+    }
+order: 2000

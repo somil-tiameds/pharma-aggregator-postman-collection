@@ -1,0 +1,11 @@
+$kind: http-request
+description: Internal. 200 boolean (true if status is Approved; false if unknown).
+url: "{{baseUrl}}/internal/sellers/{{sellerId}}/approval-status"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

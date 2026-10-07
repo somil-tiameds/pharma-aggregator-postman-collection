@@ -1,4 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/molecules/getByTherapeuticSubcategoryId/{{therapeuticSubcategoryId}}"
-method: GET
-order: 4000

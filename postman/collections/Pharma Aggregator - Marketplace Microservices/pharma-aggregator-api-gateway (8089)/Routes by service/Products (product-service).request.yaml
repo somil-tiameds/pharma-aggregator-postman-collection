@@ -1,0 +1,11 @@
+$kind: http-request
+description: "Route product-service (public, no JWT at the gateway). Forwards to /products/all after StripPrefix=2. Gateway auth rule (GatewayJwtAuthFilter): public (no token) = /actuator/**, /api/v1/auth/**, /api/v1/authentication/**, /api/v1/billing/webhooks/**, and all product-service/master-data paths. Paths under /api/v1/buyers/**, /temp-buyers/**, /buyer-types/**, /admin/buyer-requests/** need a JWT signed with the BUYER secret (BUYER_JWT_SECRET) - use {{buyerToken}}. Every other path (orders, search, quote-requests, billing, sellers...) is checked against the SELLER secret (SELLER_JWT_SECRET) - use {{sellerToken}}; a buyer token is rejected with 401 there. Missing secret config = 401 (fail closed). Rate limit: GATEWAY_RATE_LIMIT_RPS (default 20)."
+url: "{{baseUrl}}/api/v1/products/all"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

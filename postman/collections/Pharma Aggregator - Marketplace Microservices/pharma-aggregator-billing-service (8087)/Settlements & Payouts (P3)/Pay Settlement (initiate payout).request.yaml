@@ -1,0 +1,27 @@
+$kind: http-request
+description: 409 while `billing.payout.kill-switch` is on; 422 without a verified seller bank account.
+url: "{{baseUrl}}/billing/admin/settlements/{{settlementId}}/pay"
+method: POST
+headers:
+  - key: Idempotency-Key
+    value: "{{idempotencyKey}}"
+    description: Mandatory/used for money-moving calls. A fresh GUID is generated per send; reuse the same value to test replay.
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: beforeRequest
+    code: pm.variables.set('idempotencyKey', pm.variables.get('fixedIdempotencyKey') || pm.variables.replaceIn('{{$guid}}'));
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201, 409, 422]', function () { pm.expect([200, 201, 409, 422]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.payoutId); if (v !== undefined && v !== null) { pm.collectionVariables.set('payoutId', v); } }
+    language: text/javascript
+order: 5000

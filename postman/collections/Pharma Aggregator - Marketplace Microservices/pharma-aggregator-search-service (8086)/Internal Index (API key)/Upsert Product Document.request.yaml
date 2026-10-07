@@ -1,0 +1,42 @@
+$kind: http-request
+description: "Internal service-to-service endpoint, protected by InternalApiKeyFilter. Auth: header X-Internal-Api-Key must equal app.internal.api-key; 401 if missing/invalid or if the key is not configured (fails closed). Upserts (or removes, if the product is no longer eligible) the document for the product id. Errors: 400 if productName is blank."
+url: "{{baseUrl}}/search/index/{{searchProductId}}"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: X-Internal-Api-Key
+    value: "{{internalApiKey}}"
+    description: Shared secret = app.internal.api-key of search-service
+body:
+  type: json
+  content: |-
+    {
+      "productName": "Paracetamol 500mg Tablets",
+      "manufacturerName": "Acme Pharma",
+      "productDescription": "Pain and fever relief",
+      "categoryId": "1",
+      "categoryName": "Drugs",
+      "sellerId": "1",
+      "sellerApproved": true,
+      "therapeuticCategory": "Analgesic",
+      "dosageForm": "Tablet",
+      "packType": "Strip",
+      "priceMin": 12.5,
+      "priceMax": 18.0,
+      "gstPercentage": 12.0,
+      "hsnCode": 30049099,
+      "status": "ACTIVE",
+      "stockAvailable": true,
+      "attributeTags": [
+        "otc",
+        "fever"
+      ]
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 1000

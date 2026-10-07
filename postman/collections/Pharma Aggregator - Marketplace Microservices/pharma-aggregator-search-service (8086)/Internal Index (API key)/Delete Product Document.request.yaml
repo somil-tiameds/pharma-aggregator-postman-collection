@@ -1,0 +1,15 @@
+$kind: http-request
+description: "Internal service-to-service endpoint, protected by InternalApiKeyFilter. Auth: header X-Internal-Api-Key must equal app.internal.api-key; 401 if missing/invalid or if the key is not configured (fails closed). Removes the product's document from the index."
+url: "{{baseUrl}}/search/index/{{searchProductId}}"
+method: DELETE
+headers:
+  - key: X-Internal-Api-Key
+    value: "{{internalApiKey}}"
+    description: Shared secret = app.internal.api-key of search-service
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

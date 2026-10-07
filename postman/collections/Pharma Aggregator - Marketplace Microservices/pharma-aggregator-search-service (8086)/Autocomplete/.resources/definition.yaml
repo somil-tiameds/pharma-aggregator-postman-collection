@@ -1,3 +1,0 @@
-$kind: collection
-description: Typeahead/autocomplete suggestions — OpenSearch completion suggester prefix match against the `suggest` field, distinct from the full-text Search folder. Meant to be called on every keystroke once the query is at least 2 characters.
-order: 2000

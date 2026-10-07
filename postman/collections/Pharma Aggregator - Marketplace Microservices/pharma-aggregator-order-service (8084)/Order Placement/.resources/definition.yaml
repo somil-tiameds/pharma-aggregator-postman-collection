@@ -1,0 +1,3 @@
+$kind: collection
+description: "Buyer checkout: place an order from cart lines or from an ACCEPTED quote."
+order: 1000

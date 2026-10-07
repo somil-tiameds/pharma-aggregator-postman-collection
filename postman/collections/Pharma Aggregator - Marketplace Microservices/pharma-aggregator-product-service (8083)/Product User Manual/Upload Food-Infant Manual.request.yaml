@@ -1,0 +1,19 @@
+$kind: http-request
+name: Upload Food/Infant Manual
+description: Same as Upload User Manual, but for Food & Infant attributes. Response ApiResponse<String> with the manual URL.
+url: "{{baseUrl}}/userManual/new/{{productServiceAttributeId}}"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: []
+      description: User manual PDF
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

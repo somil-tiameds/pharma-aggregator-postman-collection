@@ -1,0 +1,47 @@
+$kind: http-request
+description: "Facet value counts (field + values[]) for the same query/filters as Search Products, without hits. Useful to build filter sidebars. Auth: none (permitAll; public so buyers can search anonymously). Errors: 400 if q is missing."
+url: "{{baseUrl}}/search/facets?q=paracetamol"
+method: GET
+queryParams:
+  - key: q
+    value: paracetamol
+    description: Search text (required)
+  - key: categoryId
+    value: "1"
+    disabled: true
+    description: Filter by product category id
+  - key: therapeuticCategory
+    value: Analgesic
+    disabled: true
+    description: Filter by therapeutic category
+  - key: dosageForm
+    value: Tablet
+    disabled: true
+    description: Filter by dosage form
+  - key: packType
+    value: Strip
+    disabled: true
+    description: Filter by pack type
+  - key: priceMin
+    value: "10"
+    disabled: true
+    description: Minimum price
+  - key: priceMax
+    value: "500"
+    disabled: true
+    description: Maximum price
+  - key: inStockOnly
+    value: "true"
+    disabled: true
+    description: Only products with stockAvailable=true
+  - key: sellerId
+    value: "1"
+    disabled: true
+    description: Restrict to one seller
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [200]', function () { pm.expect([200]).to.include(pm.response.code); });
+    language: text/javascript
+order: 2000

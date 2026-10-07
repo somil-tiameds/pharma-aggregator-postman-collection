@@ -1,0 +1,43 @@
+$kind: http-request
+description: "`reasonCode` ∈ SALES_RETURN, CANCELLATION_AFTER_INVOICE, PRICE_CORRECTION, QUALITY_CLAIM. Per line give **either** `quantity` (units) **or** `taxableAmount` (price correction). 422 if more than what remains creditable."
+url: "{{baseUrl}}/billing/credit-notes"
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Idempotency-Key
+    value: "{{idempotencyKey}}"
+    description: Mandatory/used for money-moving calls. A fresh GUID is generated per send; reuse the same value to test replay.
+  - key: X-Correlation-Id
+    value: "{{$guid}}"
+    disabled: true
+    description: Optional; echoed on the response and in service logs.
+body:
+  type: json
+  content: |-
+    {
+      "invoiceId": "{{invoiceId}}",
+      "reasonCode": "SALES_RETURN",
+      "lines": [
+        {
+          "invoiceLineId": 1,
+          "quantity": 1
+        }
+      ],
+      "refundRef": null
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{adminToken}}"
+scripts:
+  - type: beforeRequest
+    code: pm.variables.set('idempotencyKey', pm.variables.get('fixedIdempotencyKey') || pm.variables.replaceIn('{{$guid}}'));
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      pm.test('Status is one of [200, 201]', function () { pm.expect([200, 201]).to.include(pm.response.code); });
+      var body; try { body = pm.response.json(); } catch (e) { body = null; }
+      if (body && body.data) { var v = (body.data.creditNoteId); if (v !== undefined && v !== null) { pm.collectionVariables.set('creditNoteId', v); } }
+    language: text/javascript
+order: 1000

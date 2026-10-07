@@ -1,0 +1,3 @@
+$kind: collection
+description: Seller-facing listing of and response to incoming RFQs/price requests. Requires the seller's account to be admin-approved — an unapproved or suspended seller gets 403 on respond.
+order: 2000

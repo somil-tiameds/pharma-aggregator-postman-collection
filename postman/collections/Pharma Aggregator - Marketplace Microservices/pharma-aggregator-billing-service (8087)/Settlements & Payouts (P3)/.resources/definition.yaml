@@ -1,0 +1,3 @@
+$kind: collection
+description: "Maker-checker: the approver must differ from the drafter; above the configured threshold the payer must differ from both. Payouts are manual in this release (finance confirms the UTR). Bank details are always masked except on the audited bank-instruction call."
+order: 9000

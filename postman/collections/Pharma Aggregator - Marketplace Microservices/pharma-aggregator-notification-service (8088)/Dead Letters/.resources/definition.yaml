@@ -1,0 +1,3 @@
+$kind: collection
+description: Notifications that exhausted retries. Replaying creates a fresh log entry (derived eventId) so the original audit row is never overwritten.
+order: 3000

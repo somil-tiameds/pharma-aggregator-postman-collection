@@ -1,0 +1,11 @@
+$kind: http-request
+description: Deletes a product by id. 204 with empty body on success; 404 if not found.
+url: "{{baseUrl}}/products/delete/{{productServiceProductId}}"
+method: DELETE
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: pm.test('Status is one of [204]', function () { pm.expect([204]).to.include(pm.response.code); });
+    language: text/javascript
+order: 7000

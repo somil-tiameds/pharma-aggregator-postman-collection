@@ -1,0 +1,3 @@
+$kind: collection
+description: Commission = max(min, min(max, base × rate% + flat)) on the invoice's goods taxable value, plus GST on commission. A seller-specific rule beats the global one; overlapping active rules for the same scope are rejected (409).
+order: 8000

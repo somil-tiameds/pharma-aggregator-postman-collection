@@ -1,4 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/dosageMolecule/strengthFormat/{{dosageId}}"
-method: GET
-order: 1000
